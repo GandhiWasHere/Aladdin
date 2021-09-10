@@ -1,34 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Studies\\colman\\ASP\\Aladin\\Aladin\\Aladin.csproj": {}
+    "/Users/yaara/VSProjects/Aladin/Aladin/Aladin.csproj": {}
   },
   "projects": {
-    "D:\\Studies\\colman\\ASP\\Aladin\\Aladin\\Aladin.csproj": {
+    "/Users/yaara/VSProjects/Aladin/Aladin/Aladin.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Studies\\colman\\ASP\\Aladin\\Aladin\\Aladin.csproj",
+        "projectUniqueName": "/Users/yaara/VSProjects/Aladin/Aladin/Aladin.csproj",
         "projectName": "Aladin",
-        "projectPath": "D:\\Studies\\colman\\ASP\\Aladin\\Aladin\\Aladin.csproj",
-        "packagesPath": "C:\\Users\\aviv0\\.nuget\\packages\\",
-        "outputPath": "D:\\Studies\\colman\\ASP\\Aladin\\Aladin\\obj\\",
+        "projectPath": "/Users/yaara/VSProjects/Aladin/Aladin/Aladin.csproj",
+        "packagesPath": "/Users/yaara/.nuget/packages/",
+        "outputPath": "/Users/yaara/VSProjects/Aladin/Aladin/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\aviv0\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/yaara/.config/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.1"
+          "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.1": {
+          "net5.0": {
+            "targetAlias": "net5.0",
             "projectReferences": {}
           }
         },
@@ -39,7 +35,30 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.1": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.4.4, )"
+            },
+            "Microsoft.AspNetCore.Mvc": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.9, )"
+            },
+            "bootstrap": {
+              "target": "Package",
+              "version": "[5.1.0, )"
+            },
+            "jQuery": {
+              "target": "Package",
+              "version": "[3.6.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -58,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.412\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.400/RuntimeIdentifierGraph.json"
         }
       }
     }
