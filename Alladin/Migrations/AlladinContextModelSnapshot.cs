@@ -49,11 +49,20 @@ namespace Alladin.Migrations
                     b.Property<string>("CustomerAddress")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CustomerEmail")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CustomerName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CustomerPhoneNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("CustomerPassword")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerPhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerRole")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CustomerID");
 

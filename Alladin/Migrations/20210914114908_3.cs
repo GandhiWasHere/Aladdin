@@ -2,7 +2,7 @@
 
 namespace Alladin.Migrations
 {
-    public partial class _1 : Migration
+    public partial class _3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,7 +28,10 @@ namespace Alladin.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CustomerName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CustomerAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CustomerPhoneNumber = table.Column<int>(type: "int", nullable: false),
+                    CustomerEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CustomerPassword = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CustomerRole = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CustomerPhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CartID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
