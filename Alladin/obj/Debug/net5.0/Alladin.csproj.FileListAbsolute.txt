@@ -863,7 +863,6 @@ C:\Users\mrofe\source\repos\GandhiWasHere\Aladdin\Alladin\obj\Debug\net5.0\Razor
 C:\Users\mrofe\source\repos\GandhiWasHere\Aladdin\Alladin\obj\Debug\net5.0\Razor\Views\Customers\Edit.cshtml.g.cs
 C:\Users\mrofe\source\repos\GandhiWasHere\Aladdin\Alladin\obj\Debug\net5.0\Razor\Views\Customers\Index.cshtml.g.cs
 C:\Users\mrofe\source\repos\GandhiWasHere\Aladdin\Alladin\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
-C:\Users\mrofe\source\repos\GandhiWasHere\Aladdin\Alladin\obj\Debug\net5.0\Razor\Views\Home\LoginPage.cshtml.g.cs
 C:\Users\mrofe\source\repos\GandhiWasHere\Aladdin\Alladin\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\mrofe\source\repos\GandhiWasHere\Aladdin\Alladin\obj\Debug\net5.0\Razor\Views\Products\Create.cshtml.g.cs
 C:\Users\mrofe\source\repos\GandhiWasHere\Aladdin\Alladin\obj\Debug\net5.0\Razor\Views\Products\Delete.cshtml.g.cs
@@ -904,3 +903,5 @@ C:\Users\mrofe\source\repos\GandhiWasHere\Aladdin\Alladin\obj\Debug\net5.0\Aladd
 C:\Users\mrofe\source\repos\GandhiWasHere\Aladdin\Alladin\obj\Debug\net5.0\Aladdin.dll
 C:\Users\mrofe\source\repos\GandhiWasHere\Aladdin\Alladin\obj\Debug\net5.0\ref\Aladdin.dll
 C:\Users\mrofe\source\repos\GandhiWasHere\Aladdin\Alladin\obj\Debug\net5.0\Aladdin.pdb
+C:\Users\mrofe\source\repos\GandhiWasHere\Aladdin\Alladin\obj\Debug\net5.0\Razor\Views\Login\Index.cshtml.g.cs
+C:\Users\mrofe\source\repos\GandhiWasHere\Aladdin\Alladin\bin\Debug\net5.0\Scripts\package.json

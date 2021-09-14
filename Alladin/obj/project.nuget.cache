@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "Y+byen1U6IDVpie7JflJecdU+/C2Bw7BnY44hX/67dCDToULxw9Xa5w4HhYlq3DbFHqvzaX/PEKTun3xZewvtg==",
+  "dgSpecHash": "5SRjMCh+l8lb6IIjVMp/Lf9vo4qA4xZT0wr6tI3SOAW2USpSmw/WNseJRwB7dxB9wPYMyDjBr7F47/td7zlMNg==",
   "success": true,
   "projectFilePath": "C:\\Users\\mrofe\\source\\repos\\GandhiWasHere\\Aladdin\\Alladin\\Alladin.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mrofe\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\mrofe\\.nuget\\packages\\jquery\\1.4.4\\jquery.1.4.4.nupkg.sha512",
+    "C:\\Users\\mrofe\\.nuget\\packages\\jquery.validation\\1.19.3\\jquery.validation.1.19.3.nupkg.sha512",
     "C:\\Users\\mrofe\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\5.0.9\\microsoft.aspnetcore.diagnostics.entityframeworkcore.5.0.9.nupkg.sha512",
     "C:\\Users\\mrofe\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\mrofe\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\5.0.9\\microsoft.aspnetcore.mvc.razor.extensions.5.0.9.nupkg.sha512",

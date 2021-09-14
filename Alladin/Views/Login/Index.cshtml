@@ -1,0 +1,45 @@
+﻿@model Alladin.Models.Customer
+@{
+    ViewData["Title"] = "Login";
+}
+<!DOCTYPE html>
+
+<html>
+<body>
+    <div id="login">
+        <h1> Login Screen</h1>
+        <hr />
+        @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td></td>
+                    <td style="text-decoration:underline"></td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.CustomerName)</td>
+                    <td>@Html.EditorFor(model => model.CustomerName)</td>
+                </tr>
+                <tr><td> @Html.ValidationMessageFor(model => model.CustomerName)</td></tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.CustomerPassword)</td>
+                    <td>@Html.EditorFor(model => model.CustomerPassword)</td>
+                </tr>
+                <tr><td> @Html.ValidationMessageFor(model => model.CustomerPassword)</td></tr>
+                <tr><td colspan="2"><label class="field-validation-error"> 
+                    @Html.DisplayFor(model => model.ErrorMessage)
+                     </label></td></tr>
+                <tr>
+                    <td>
+                        <input type="submit" name="name" value="Login" />
+                        <a href="/Customers/create">
+                            <input type="button" name="name" value="Signup" />
+                        </a>
+                            
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>
+</body>
+</html>
