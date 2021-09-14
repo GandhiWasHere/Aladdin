@@ -53,15 +53,20 @@ namespace Alladin.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CustomerName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CustomerPassword")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CustomerPhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CustomerRole")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ErrorMessage")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CustomerID");

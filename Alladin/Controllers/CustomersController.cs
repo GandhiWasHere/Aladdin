@@ -54,7 +54,7 @@ namespace Alladin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CustomerID,CustomerName,CustomerAddress,CustomerPhoneNumber,CartID")] Customer customer)
+        public async Task<IActionResult> Create([Bind("CustomerID,CustomerName,CustomerPassword,CustomerAddress,CustomerPhoneNumber,CartID")] Customer customer)
         {
             if (ModelState.IsValid)
             {
