@@ -3,14 +3,16 @@ using Alladin.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Alladin.Migrations
 {
     [DbContext(typeof(AlladinContext))]
-    partial class AlladinContextModelSnapshot : ModelSnapshot
+    [Migration("20210911140600_Version1")]
+    partial class Version1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,20 +51,11 @@ namespace Alladin.Migrations
                     b.Property<string>("CustomerAddress")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CustomerEmail")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("CustomerName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CustomerPassword")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CustomerPhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CustomerRole")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CustomerPhoneNumber")
+                        .HasColumnType("int");
 
                     b.HasKey("CustomerID");
 

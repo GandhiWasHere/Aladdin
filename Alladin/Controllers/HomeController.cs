@@ -23,6 +23,11 @@ namespace Alladin.Controllers
             return View();
         }
 
+        public IActionResult LoginPage()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
