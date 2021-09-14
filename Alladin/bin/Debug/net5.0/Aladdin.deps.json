@@ -31,7 +31,7 @@
   },
   "targets": {
     ".NETCoreApp,Version=v5.0": {
-      "Alladin/1.0.0": {
+      "Aladdin/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "5.0.9",
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "5.0.9",
@@ -322,10 +322,10 @@
           "WindowsBase": "4.0.0.0"
         },
         "runtime": {
-          "Alladin.dll": {}
+          "Aladdin.dll": {}
         },
         "compile": {
-          "Alladin.dll": {}
+          "Aladdin.dll": {}
         }
       },
       "Humanizer.Core/2.8.26": {
@@ -3560,7 +3560,7 @@
     }
   },
   "libraries": {
-    "Alladin/1.0.0": {
+    "Aladdin/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
