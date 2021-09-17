@@ -905,4 +905,3 @@ C:\Users\mrofe\source\repos\GandhiWasHere\Aladdin\Alladin\obj\Debug\net5.0\ref\A
 C:\Users\mrofe\source\repos\GandhiWasHere\Aladdin\Alladin\obj\Debug\net5.0\Aladdin.pdb
 C:\Users\mrofe\source\repos\GandhiWasHere\Aladdin\Alladin\obj\Debug\net5.0\Razor\Views\Login\Index.cshtml.g.cs
 C:\Users\mrofe\source\repos\GandhiWasHere\Aladdin\Alladin\bin\Debug\net5.0\Scripts\package.json
-C:\Users\mrofe\source\repos\GandhiWasHere\Aladdin\Alladin\obj\Debug\net5.0\Razor\Views\Customers\UploadFile.cshtml.g.cs
