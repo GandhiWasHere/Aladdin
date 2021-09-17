@@ -52,6 +52,9 @@ namespace Alladin.Migrations
                     b.Property<string>("CustomerEmail")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CustomerImage")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CustomerName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

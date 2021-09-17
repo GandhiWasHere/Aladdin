@@ -1,9 +1,13 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+
 
 namespace Alladin.Models
 {
@@ -30,5 +34,12 @@ namespace Alladin.Models
         [Required(ErrorMessage = "You Must enter password")]
         [DataType(DataType.Password)]
         public string CustomerPassword { get; set; }
+
+
+        [BindProperty]
+        [DataType(DataType.Upload)]
+        public string CustomerImage { get; set; }
+
+
     }
 }

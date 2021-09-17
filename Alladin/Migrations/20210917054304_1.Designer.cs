@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Alladin.Migrations
 {
     [DbContext(typeof(AlladinContext))]
-    [Migration("20210914114908_3")]
-    partial class _3
+    [Migration("20210917054304_1")]
+    partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -54,16 +54,24 @@ namespace Alladin.Migrations
                     b.Property<string>("CustomerEmail")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CustomerImage")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CustomerName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CustomerPassword")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CustomerPhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CustomerRole")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ErrorMessage")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CustomerID");
