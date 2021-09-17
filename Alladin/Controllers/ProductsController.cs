@@ -7,16 +7,21 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Alladin.Data;
 using Alladin.Models;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Alladin.Controllers
 {
     public class ProductsController : Controller
     {
         private readonly AlladinContext _context;
+        private readonly IWebHostEnvironment _webhost;
 
-        public ProductsController(AlladinContext context)
+        public ProductsController(AlladinContext context, IWebHostEnvironment webhost)
         {
             _context = context;
+            _webhost = webhost;
+
         }
 
         // GET: Products
@@ -52,17 +57,30 @@ namespace Alladin.Controllers
         // POST: Products/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // I edited the create function so we can add image to product
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductID,ProductName,ProductSize,ProductColor,ProductRating,ProductPrice")] Product product)
+        public async Task<IActionResult> Create([Bind("ProductID,ProductName,ProductSize,ProductColor,ProductRating,ProductPrice,ProductImage")] ProductView model)
         {
             if (ModelState.IsValid)
             {
+                string uniqueFileName = UploadedFile(model);
+                Product product = new Product
+                {
+                    ProductID = model.ProductID,
+                    ProductName = model.ProductName,
+                    ProductSize = model.ProductSize,
+                    ProductColor = model.ProductColor,
+                    ProductRating = model.ProductRating,
+                    ProductPrice = model.ProductPrice,
+                    ProductImage = uniqueFileName
+                };
+
                 _context.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(product);
+            return View(model);
         }
 
         // GET: Products/Edit/5
@@ -148,6 +166,26 @@ namespace Alladin.Controllers
         private bool ProductExists(int id)
         {
             return _context.Product.Any(e => e.ProductID == id);
+        }
+        private string UploadedFile(ProductView model)
+        {
+            string uniqueFileName = null;
+
+            if (model.ProductImage != null)
+            {
+                string uploadsFolder = Path.Combine(_webhost.WebRootPath, "images");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.ProductImage.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.ProductImage.CopyTo(fileStream);
+                }
+            }
+            return uniqueFileName;
         }
     }
 }
