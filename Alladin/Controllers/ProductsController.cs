@@ -25,9 +25,15 @@ namespace Alladin.Controllers
         }
 
         // GET: Products
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Product.ToListAsync());
+            var products_list = from p in _context.Product select p;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products_list = products_list.Where(s => s.ProductName.Contains(searchString));
+            }
+            return View(await products_list.ToListAsync());
         }
 
         // GET: Products/Details/5
