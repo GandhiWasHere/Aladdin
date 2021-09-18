@@ -2,19 +2,75 @@
 
 @{
     ViewData["Title"] = "Index";
+
+    var x = (List<int>)ViewData["AAA"];
+}
+
+
+
+
+@section Scripts
+{
+<script>
+    $('#555').click(test);
+    function test() {
+
+        var Stringvalue = $('#444').val();
+        var Sizevalue = $('#sizes').val().html;
+
+        var conceptName = $('#sizes').find(":selected").text();
+        console.log(conceptName);
+        
+
+        $.get('/Products/index', { searchSize: conceptName, searchString: Stringvalue }, function (data, status) {
+        
+        console.log("Inside the Async Call");
+        console.log(status);
+
+        console.log(data);
+        //$.parseHTML(data);
+        //$('.body').html(data);
+        $('body').html(data);
+        //console.log(data);
+    })
+    }
+</script>
+
 }
 
 <h1>Index</h1>
+<h2>@x[0]</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
 <form asp-controller="Products" asp-action="Index">
     <p>
-        Name of Product: <input type="text" name="SearchString" />
-        <input type="submit" value="Filter" />
+        Name of Product: <input type="text" name="SearchString" id="444" />
+
+        <select name="sizes" id="sizes">
+            @foreach (var item in x)
+            {
+                <option value=@Html.DisplayNameFor(e => item)>@Html.DisplayFor(a => item)</option>
+            }
+        </select>
+
+        <input type="button" value="Filter" id="555" />
     </p>
+
+ 
+
+
+
 </form>
+
+
+
+
+
+
+
+
 <table class="table">
     <thead>
         <tr>

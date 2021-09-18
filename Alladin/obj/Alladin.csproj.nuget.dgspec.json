@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mrofe\\source\\repos\\GandhiWasHere\\Aladdin\\Alladin\\Alladin.csproj": {}
+    "C:\\Users\\AMIT\\Desktop\\MVC\\Alladin\\Alladin\\Alladin.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mrofe\\source\\repos\\GandhiWasHere\\Aladdin\\Alladin\\Alladin.csproj": {
+    "C:\\Users\\AMIT\\Desktop\\MVC\\Alladin\\Alladin\\Alladin.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mrofe\\source\\repos\\GandhiWasHere\\Aladdin\\Alladin\\Alladin.csproj",
+        "projectUniqueName": "C:\\Users\\AMIT\\Desktop\\MVC\\Alladin\\Alladin\\Alladin.csproj",
         "projectName": "Aladdin",
-        "projectPath": "C:\\Users\\mrofe\\source\\repos\\GandhiWasHere\\Aladdin\\Alladin\\Alladin.csproj",
-        "packagesPath": "C:\\Users\\mrofe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mrofe\\source\\repos\\GandhiWasHere\\Aladdin\\Alladin\\obj\\",
+        "projectPath": "C:\\Users\\AMIT\\Desktop\\MVC\\Alladin\\Alladin\\Alladin.csproj",
+        "packagesPath": "C:\\Users\\AMIT\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\AMIT\\Desktop\\MVC\\Alladin\\Alladin\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\mrofe\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\AMIT\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -99,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

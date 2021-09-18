@@ -25,16 +25,52 @@ namespace Alladin.Controllers
         }
 
         // GET: Products
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string searchSize, string searchString)
         {
             var products_list = from p in _context.Product select p;
+            var products_list1 = _context.Product;
+            var x = products_list1.AsQueryable();
+
+            var products_list_sizes = from p in _context.Product select p.ProductSize;
+            products_list_sizes = products_list_sizes.Distinct();
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products_list = products_list.Where(s => s.ProductName.Contains(searchString));
+                x = products_list.Where(s => s.ProductName.Contains(searchString));
+                
+            }
+
+            if (!String.IsNullOrEmpty(searchSize))
+            {
+                x = x.Where(s => s.ProductSize.ToString() == searchSize);
+                var t = x;
+            }
+
+                ViewData["AAA"] = products_list_sizes.ToList();
+            return View(await x.ToListAsync());
+        }
+
+
+
+        public async Task<IActionResult> Search(string searchString)
+        {
+            var products_list = from p in _context.Product select p;
+            var products_list1 = _context.Product;
+            var x = products_list1.AsQueryable();
 
             if (!String.IsNullOrEmpty(searchString))
             {
                 products_list = products_list.Where(s => s.ProductName.Contains(searchString));
+                x = products_list.Where(s => s.ProductName.Contains(searchString));
             }
-            return View(await products_list.ToListAsync());
+            return View(await x.ToListAsync());
         }
+
+
+
+
+
+
 
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
