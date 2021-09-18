@@ -25,7 +25,7 @@ namespace Alladin.Controllers
         }
 
         // GET: Products
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string searchString, string ProductColor)
         {
             var products_list = from p in _context.Product select p;
 
@@ -33,7 +33,24 @@ namespace Alladin.Controllers
             {
                 products_list = products_list.Where(s => s.ProductName.Contains(searchString));
             }
-            return View(await products_list.ToListAsync());
+
+            if (!string.IsNullOrEmpty(ProductColor))
+            {
+                products_list = products_list.Where(x => x.ProductColor == ProductColor);
+            }
+
+            // stam query for checks
+            IQueryable<string> genreQuery = from m in _context.Product
+                                            orderby m.ProductColor
+                                            select m.ProductColor;
+
+
+            var pcv = new ProductViewColor
+            {
+                Colors = new SelectList(await genreQuery.Distinct().ToListAsync()),
+                Products = await products_list.ToListAsync()
+            };
+            return View(pcv);
         }
 
         // GET: Products/Details/5
@@ -192,6 +209,15 @@ namespace Alladin.Controllers
                 }
             }
             return uniqueFileName;
+        }
+
+        // Just a try 
+        public class ProductViewColor
+        {
+            public List<Product> Products { get; set; }
+            public SelectList Colors { get; set; }
+            public string ProductColor { get; set; }
+            public string SearchString { get; set; }
         }
     }
 }

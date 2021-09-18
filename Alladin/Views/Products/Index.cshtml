@@ -1,5 +1,4 @@
-﻿@model IEnumerable<Alladin.Models.Product>
-
+﻿@model Alladin.Controllers.ProductsController.ProductViewColor
 @{
     ViewData["Title"] = "Index";
 }
@@ -11,6 +10,9 @@
 </p>
 <form asp-controller="Products" asp-action="Index">
     <p>
+        <select asp-for="ProductColor" asp-items="Model.Colors">
+            <option value="">All</option>
+        </select>
         Name of Product: <input type="text" name="SearchString" />
         <input type="submit" value="Filter" />
     </p>
@@ -19,51 +21,52 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ProductName)
+                @Html.DisplayNameFor(model => model.Products[0].ProductName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductSize)
+                @Html.DisplayNameFor(model => model.Products[0].ProductSize)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductColor)
+                @Html.DisplayNameFor(model => model.Products[0].ProductColor)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductRating)
+                @Html.DisplayNameFor(model => model.Products[0].ProductRating)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductPrice)
+                @Html.DisplayNameFor(model => model.Products[0].ProductPrice)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                <img src="~/images/@item.ProductImage"
-                     class="rounded-circle"
-                     height="40" width="40"
-                     asp-append-version="true" />
-                @Html.DisplayFor(modelItem => item.ProductName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductSize)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductColor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductRating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductPrice)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ProductID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProductID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProductID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Products)
+        {
+            <tr>
+                <td>
+                    <img src="~/images/@item.ProductImage"
+                         class="rounded-circle"
+                         height="40" width="40"
+                         asp-append-version="true" />
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductSize)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductColor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductRating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductPrice)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ProductID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ProductID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ProductID">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
