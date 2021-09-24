@@ -25,10 +25,23 @@ namespace Aladdin.Controllers
         }
 
         // GET: Products
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchColor, string searchString)
         {
-            return View(await _context.Product.ToListAsync());
+            var products_list = from p in _context.Product select p;
+            var colors = from p in _context.Product select p.ProductColor;
+            colors = colors.Distinct();
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products_list = products_list.Where(s => s.ProductName.Contains(searchString));
+            }
+            if (!String.IsNullOrEmpty(searchColor) & (searchColor!="All"))
+            {
+                products_list = products_list.Where(s => s.ProductColor == searchColor);
+            }
+            return View(await products_list.ToListAsync());
         }
+
+
 
         // GET: Products/Details/5
 
