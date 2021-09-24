@@ -6,10 +6,60 @@
 
 <h1>Index</h1>
 
+
+
+
+
+@section Scripts
+{
+    <script>
+        //$('#555').click(test);
+        //$('#Details').click(test1);
+        $('#Details').one('click',test1);
+    
+
+        function test1() {
+            
+
+            $.get('/Products/details', { id : 1 }, function (data, status) {
+
+                console.log("Inside the Async Call");
+                console.log(status);
+                console.log(data);
+                //$.parseHTML(data);
+                //$('.body').html(data);
+                //$('body').html(data);
+                //$('#Details').html("SSSSS");
+                $('#productslist').append(data);
+                
+                
+
+                //console.log(data);
+            })
+
+            //$('.navbar-brand').hide()
+            //$('footer').hide();
+        }
+
+
+        function test2() {
+            $('#Itemdetails').children().toggle()
+            console.log("ASDASD");
+        }
+        $('#Details').click(test2);
+        
+
+    </script>
+
+}
+
+
+
+
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table" id="productslist">
     <thead>
         <tr>
             <th>
@@ -33,33 +83,36 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductSize)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductColor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductRating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductImage)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ProductID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProductID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProductID">Delete</a>
-            </td>
-        </tr>
-}
+    <tbody >
+        @foreach (var item in Model)
+        {
+            <tr >
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductSize)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductColor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductRating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductImage)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ProductID">Edit</a> |
+                    
+                    
+                    <a id="Details" >Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ProductID">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

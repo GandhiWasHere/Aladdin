@@ -26,6 +26,7 @@ namespace Aladdin.Controllers
         }
 
         // GET: Products/Details/5
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -42,6 +43,27 @@ namespace Aladdin.Controllers
 
             return View(product);
         }
+        
+
+        /*
+        public string Details(int? id)
+        {
+            if (id == null)
+            {
+                return "NotFound()";
+            }
+
+            var product =  _context.Product
+                .FirstOrDefaultAsync(m => m.ProductID == id);
+            if (product == null)
+            {
+                return "NotFound()";
+            }
+
+            return "hello1111111";
+        }
+
+        */
 
         // GET: Products/Create
         public IActionResult Create()
