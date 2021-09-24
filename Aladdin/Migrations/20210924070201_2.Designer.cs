@@ -20,7 +20,7 @@ namespace Aladdin.Migrations
                 .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Alladin.Models.Cart", b =>
+            modelBuilder.Entity("Aladdin.Models.Cart", b =>
                 {
                     b.Property<int>("CartID")
                         .ValueGeneratedOnAdd()
@@ -38,7 +38,7 @@ namespace Aladdin.Migrations
                     b.ToTable("Cart");
                 });
 
-            modelBuilder.Entity("Alladin.Models.Customer", b =>
+            modelBuilder.Entity("Aladdin.Models.Customer", b =>
                 {
                     b.Property<int>("CustomerID")
                         .ValueGeneratedOnAdd()
@@ -79,7 +79,7 @@ namespace Aladdin.Migrations
                     b.ToTable("Customer");
                 });
 
-            modelBuilder.Entity("Alladin.Models.Product", b =>
+            modelBuilder.Entity("Aladdin.Models.Product", b =>
                 {
                     b.Property<int>("ProductID")
                         .ValueGeneratedOnAdd()
@@ -109,7 +109,7 @@ namespace Aladdin.Migrations
                     b.ToTable("Product");
                 });
 
-            modelBuilder.Entity("Alladin.Models.Supplier", b =>
+            modelBuilder.Entity("Aladdin.Models.Supplier", b =>
                 {
                     b.Property<int>("SupplierID")
                         .ValueGeneratedOnAdd()
@@ -159,13 +159,13 @@ namespace Aladdin.Migrations
 
             modelBuilder.Entity("CartProduct", b =>
                 {
-                    b.HasOne("Alladin.Models.Product", null)
+                    b.HasOne("Aladdin.Models.Product", null)
                         .WithMany()
                         .HasForeignKey("CartProductsProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Alladin.Models.Cart", null)
+                    b.HasOne("Aladdin.Models.Cart", null)
                         .WithMany()
                         .HasForeignKey("ProductCartsCartID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -174,13 +174,13 @@ namespace Aladdin.Migrations
 
             modelBuilder.Entity("ProductSupplier", b =>
                 {
-                    b.HasOne("Alladin.Models.Supplier", null)
+                    b.HasOne("Aladdin.Models.Supplier", null)
                         .WithMany()
                         .HasForeignKey("ProductSuppliersSupplierID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Alladin.Models.Product", null)
+                    b.HasOne("Aladdin.Models.Product", null)
                         .WithMany()
                         .HasForeignKey("SupplierProductsProductID")
                         .OnDelete(DeleteBehavior.Cascade)
