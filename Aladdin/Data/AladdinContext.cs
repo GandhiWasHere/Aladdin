@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Alladin.Models;
+using Aladdin.Models;
 
 namespace Aladdin.Data
 {
@@ -14,8 +14,8 @@ namespace Aladdin.Data
         {
         }
 
-        public DbSet<Alladin.Models.Customer> Customer { get; set; }
+        public DbSet<Aladdin.Models.Customer> Customer { get; set; }
 
-        public DbSet<Alladin.Models.Product> Product { get; set; }
+        public DbSet<Aladdin.Models.Product> Product { get; set; }
     }
 }

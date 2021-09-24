@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Aladdin.Data;
-using Alladin.Models;
+using Aladdin.Models;
 
 namespace Aladdin.Controllers
 {

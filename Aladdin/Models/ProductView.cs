@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Alladin.Models
+namespace Aladdin.Models
 {
     public class ProductView
     {
