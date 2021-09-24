@@ -9,12 +9,14 @@ namespace Aladdin.Models
     {
         public int ProductID { get; set; }
         public string ProductName { get; set; }
-        public int ProductSize{ get; set; }
         public string ProductColor { get; set; }
-        public ICollection<Supplier> ProductSuppliers{ get; set; }
-        public ICollection<Cart> ProductCarts { get; set; }
+        public int SupplierID { get; set; }
         public int ProductRating { get; set; }
         public int ProductPrice { get; set; }
         public string ProductImage { get; set; }
+        public int ProductQuantityS{ get; set; }
+        public int ProductQuantityM { get; set; }
+        public int ProductQuantityL { get; set; }
+        public ICollection<Cart> ProductCarts { get; set; }
     }
 }

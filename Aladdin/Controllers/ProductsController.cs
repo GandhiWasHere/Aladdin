@@ -91,7 +91,7 @@ namespace Aladdin.Controllers
                 {
                     ProductID = model.ProductID,
                     ProductName = model.ProductName,
-                    ProductSize = model.ProductSize,
+                    ProductQuantityS = model.ProductSize,
                     ProductColor = model.ProductColor,
                     ProductRating = model.ProductRating,
                     ProductPrice = model.ProductPrice,

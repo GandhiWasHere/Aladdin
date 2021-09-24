@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Aladdin.Migrations
 {
     [DbContext(typeof(AladdinContext))]
-    [Migration("20210924070201_2")]
-    partial class _2
+    [Migration("20210924153502_1")]
+    partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -98,33 +98,24 @@ namespace Aladdin.Migrations
                     b.Property<int>("ProductPrice")
                         .HasColumnType("int");
 
+                    b.Property<int>("ProductQuantityL")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductQuantityM")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductQuantityS")
+                        .HasColumnType("int");
+
                     b.Property<int>("ProductRating")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductSize")
+                    b.Property<int>("SupplierID")
                         .HasColumnType("int");
 
                     b.HasKey("ProductID");
 
                     b.ToTable("Product");
-                });
-
-            modelBuilder.Entity("Aladdin.Models.Supplier", b =>
-                {
-                    b.Property<int>("SupplierID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("SupplierName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SupplierPhonNumber")
-                        .HasColumnType("int");
-
-                    b.HasKey("SupplierID");
-
-                    b.ToTable("Supplier");
                 });
 
             modelBuilder.Entity("CartProduct", b =>
@@ -142,21 +133,6 @@ namespace Aladdin.Migrations
                     b.ToTable("CartProduct");
                 });
 
-            modelBuilder.Entity("ProductSupplier", b =>
-                {
-                    b.Property<int>("ProductSuppliersSupplierID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SupplierProductsProductID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProductSuppliersSupplierID", "SupplierProductsProductID");
-
-                    b.HasIndex("SupplierProductsProductID");
-
-                    b.ToTable("ProductSupplier");
-                });
-
             modelBuilder.Entity("CartProduct", b =>
                 {
                     b.HasOne("Aladdin.Models.Product", null)
@@ -168,21 +144,6 @@ namespace Aladdin.Migrations
                     b.HasOne("Aladdin.Models.Cart", null)
                         .WithMany()
                         .HasForeignKey("ProductCartsCartID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("ProductSupplier", b =>
-                {
-                    b.HasOne("Aladdin.Models.Supplier", null)
-                        .WithMany()
-                        .HasForeignKey("ProductSuppliersSupplierID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Aladdin.Models.Product", null)
-                        .WithMany()
-                        .HasForeignKey("SupplierProductsProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
