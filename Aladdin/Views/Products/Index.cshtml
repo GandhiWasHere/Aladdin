@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<Alladin.Models.Product>
 
 @{
+    Layout = "~/Views/Shared/mylayout.cshtml";
     ViewData["Title"] = "Index";
+    var id = 0;
 }
 
 <h1>Index</h1>
@@ -13,44 +15,20 @@
 @section Scripts
 {
     <script>
-        //$('#555').click(test);
-        //$('#Details').click(test1);
-        $('#Details').one('click',test1);
-    
-
-        function test1() {
-            
-
-            $.get('/Products/details', { id : 1 }, function (data, status) {
-
+        $('.Details').click(function () {
+            var elmId = $(this).attr("id");
+            getDetails(elmId);
+        });
+        function getDetails(id) {
+            $.get('/Products/details', { "id": id }, function (data, status) {
                 console.log("Inside the Async Call");
                 console.log(status);
                 console.log(data);
-                //$.parseHTML(data);
-                //$('.body').html(data);
-                //$('body').html(data);
-                //$('#Details').html("SSSSS");
-                $('#productslist').append(data);
-                
-                
-
-                //console.log(data);
+                $('#getitem').html(data);
             })
 
-            //$('.navbar-brand').hide()
-            //$('footer').hide();
         }
-
-
-        function test2() {
-            $('#Itemdetails').children().toggle()
-            console.log("ASDASD");
-        }
-        $('#Details').click(test2);
-        
-
     </script>
-
 }
 
 
@@ -59,7 +37,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table" id="productslist">
+<table class="table">
     <thead>
         <tr>
             <th>
@@ -83,10 +61,10 @@
             <th></th>
         </tr>
     </thead>
-    <tbody >
+    <tbody>
         @foreach (var item in Model)
         {
-            <tr >
+            <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.ProductName)
                 </td>
@@ -106,13 +84,34 @@
                     @Html.DisplayFor(modelItem => item.ProductImage)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.ProductID">Edit</a> |
-                    
-                    
-                    <a id="Details" >Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ProductID">Delete</a>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary Details" data-bs-toggle="modal" data-bs-target="#exampleModal" id="@item.ProductID">
+                        Details
+                    </button>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <div id="getitem">
+            </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
