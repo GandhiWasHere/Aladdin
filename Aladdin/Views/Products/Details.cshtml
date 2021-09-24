@@ -1,5 +1,7 @@
 ﻿@model Alladin.Models.Product
-
+@{
+    Layout = "~/Views/Shared/mylayout.cshtml";
+}
 @{
     ViewData["Title"] = "Details";
 }
@@ -21,6 +23,8 @@
 </head>
 
 <body>
+
+    <div id="Itemdetails"
     <main class="container">
 
         <!-- Left Column / Headphones Image -->
@@ -88,5 +92,7 @@
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
+
+    </div>
 </body>
 </html>
