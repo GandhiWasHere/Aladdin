@@ -58,8 +58,12 @@ namespace Aladdin.Controllers
         {
             if (ModelState.IsValid)
             {
+                Cart cart = new Cart();
+                cart.CartID = customer.CustomerID;
+                cart.CustomerID = customer.CustomerID;
                 customer.CartID = customer.CustomerID;
                 _context.Add(customer);
+                _context.Add(cart);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
