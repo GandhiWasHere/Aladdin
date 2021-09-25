@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 <link rel="stylesheet" href="~/css/cart.css">
 
-<h1>Shopping Cart</h1>
 
 <div class="container mt-5 p-3 rounded cart">
     <div class="row no-gutters">
@@ -24,7 +23,7 @@
                         <div class="price ml-2"><span class="mr-1">price</span><i class="fa fa-angle-down"></i></div>
                     </div>
                 </div>
-                @if (!Model.CartProducts.Equals(null))
+                @if (Model != null)
                 {
                     @foreach (var item in Model.CartProducts)
                     {

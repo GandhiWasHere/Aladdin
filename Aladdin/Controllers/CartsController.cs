@@ -24,9 +24,13 @@ namespace Aladdin.Controllers
         {
             return View(await _context.Cart.ToListAsync());
         }
+        public IActionResult mycart()
+        {
+            return View();
+        }
 
         // GET: Carts/Details/5
-        public async Task<IActionResult> mycart(int? id)
+        public async Task<IActionResult> mycart1(int? id)
         {
             if (id == null)
             {
@@ -43,27 +47,6 @@ namespace Aladdin.Controllers
             return View(cart);
         }
 
-        // GET: Carts/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Carts/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CartID,CustomerID,CartTotal")] Cart cart)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(cart);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(cart);
-        }
 
         // GET: Carts/Edit/5
         public async Task<IActionResult> Edit(int? id)
