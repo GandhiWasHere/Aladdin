@@ -1,0 +1,135 @@
+:root {
+    --outline-eastern-blue: hsl(199, 71%, 40%);
+}
+
+/* reseting css */
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    /* Defines what 1 rem is */
+    font-size: 62.5%; /* 1rem = 10px */
+}
+
+@media only screen and (max-width: 56.25em) /* 900px */{
+    html {
+        font-size: 50%; /* 1rem = 8px */
+    }
+}
+
+@media only screen and (max-width: 56.25em) /* 900px */{
+    html {
+        font-size: 56.25%; /* 1rem = 9px */
+    }
+}
+
+@media only screen and (max-width: 56.25em) /* 900px */{
+    html {
+        font-size: 75%; /* 1rem = 12px */
+    }
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 95%;
+}
+
+.container {
+    padding-top: 6rem;
+}
+
+.navbar {
+    padding: 1rem 2rem;
+
+    overflow: hidden;
+
+    display: flex;
+    justify-content: space-between;
+
+    font-family: 'Roboto', sans-serif;
+}
+
+.site-name {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 4rem;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4rem;
+
+    font-family: inherit;
+    font-weight: 400;
+    font-size: 2rem;
+}
+
+.nav-utils {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-basis: 20%;
+}
+
+.utils-search{
+    flex: 0 0 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar {
+    font-family: inherit;
+    font-size: 1.5rem;
+    color: inherit;
+    border: 1px solid black;
+    padding: .2rem 2rem;
+    border-radius: 100px;
+    transition: all .2s;
+    margin-right: -2.2rem;
+}
+
+.search-bar:focus {
+    outline: none !important;
+    border: 2px solid var(--outline-eastern-blue);
+    border-radius: 100px;
+}
+
+.search-submit {
+    border: none;
+    background-color: white;
+}
+
+.search-submit__icon {
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.utils-cart {
+    font-family: inherit;
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.cart-icon {
+    height: 1.7rem;
+    width: 1.7rem;
+}
+
+.cart-item-count {
+    vertical-align: middle;
+
+}
+
+.footer_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
