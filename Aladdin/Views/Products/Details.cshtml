@@ -4,6 +4,11 @@
     ViewData["Title"] = "Details";
 }
 
+<script>
+    $('#addcart').click(function () {
+        $.get('/carts/addproduct', { 'cartid': '8', 'productid':@Html.DisplayFor(model => model.ProductID)})});
+</script>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +23,6 @@
     <link rel="stylesheet" href="~/css/style.css" />
 
 </head>
-
 <body>
 
     <div id="Itemdetails">
@@ -60,7 +64,7 @@
             <!-- Product Pricing -->
             <div class="product-price">
                 <span>@Html.DisplayFor(model => model.ProductPrice)</span>
-                <button class="btn cart-btn">Add to cart</button>
+                <button class="btn cart-btn" id="addcart">Add to cart</button>
             </div>
 
             <!-- Rating-->

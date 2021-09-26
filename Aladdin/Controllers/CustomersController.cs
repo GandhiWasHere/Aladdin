@@ -58,10 +58,11 @@ namespace Aladdin.Controllers
         {
             if (ModelState.IsValid)
             {
+                var max_id = _context.Customer.Count() > 0 ? _context.Customer.Max(m => m.CustomerID) + 1 : 1;
                 Cart cart = new Cart();
-                cart.CartID = customer.CustomerID;
-                cart.CustomerID = customer.CustomerID;
-                customer.CartID = customer.CustomerID;
+                //cart.CartID = max_id;
+                cart.CustomerID = max_id;
+                customer.CartID = max_id;
                 _context.Add(customer);
                 _context.Add(cart);
                 await _context.SaveChangesAsync();

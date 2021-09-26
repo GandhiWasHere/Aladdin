@@ -24,27 +24,24 @@ namespace Aladdin.Controllers
         {
             return View(await _context.Cart.ToListAsync());
         }
-        public IActionResult mycart()
-        {
-            return View();
-        }
+
 
         // GET: Carts/Details/5
-        public async Task<IActionResult> mycart1(int? id)
+        public async Task<IActionResult> mycart(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
+            var cart = await _context.Cart.Include(x => x.CartProducts).SingleOrDefaultAsync(m => m.CartID == id);
 
-            var cart = await _context.Cart
-                .FirstOrDefaultAsync(m => m.CartID == id);
             if (cart == null)
             {
                 return NotFound();
             }
-
+            
             return View(cart);
+
         }
 
 
@@ -131,6 +128,25 @@ namespace Aladdin.Controllers
         private bool CartExists(int id)
         {
             return _context.Cart.Any(e => e.CartID == id);
+        }
+        [HttpGet]
+        public async Task<IActionResult> AddProductAsync(int cartid, int productid)
+        {
+            Product p = _context.Product.Where(s => s.ProductID == productid).FirstOrDefault();
+            Cart c = _context.Cart.Where(s => s.CartID == cartid).FirstOrDefault();
+            if (c != null) // checks if c exsists
+            {
+                if (c.CartProducts == null)
+                {
+                    c.CartProducts = new List<Product>();
+                    c.CartProducts.Add(p);
+                }
+                else c.CartProducts.Add(p);
+                _context.Update(c);
+                await _context.SaveChangesAsync();
+                return Ok();
+            }
+            return NotFound();   
         }
     }
 }

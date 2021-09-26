@@ -19,5 +19,6 @@ namespace Aladdin.Data
         public DbSet<Aladdin.Models.Product> Product { get; set; }
 
         public DbSet<Aladdin.Models.Cart> Cart { get; set; }
+
     }
 }
