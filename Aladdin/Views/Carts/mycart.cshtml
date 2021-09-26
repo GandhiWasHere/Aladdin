@@ -1,8 +1,13 @@
 ﻿@model Aladdin.Models.Cart
 
 @{
+<<<<<<< HEAD
     Layout = "~/Views/Shared/mylayout.cshtml";
     ViewData["Title"] = "mycart";
+=======
+    Layout = null;
+    ViewData["Title"] = "Index";
+>>>>>>> 2d20bc529dbb0b3d26d18b0a3585298a81d4862f
 }
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -29,7 +34,11 @@
                     {
                         <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
                             <div class="d-flex flex-row">
+<<<<<<< HEAD
                                 <img class="rounded" src="/images/@Html.DisplayFor(i => item.ProductImage)" width="40">
+=======
+                                <img class="rounded" src="@Html.DisplayFor(i => item.ProductImage)" width="40">
+>>>>>>> 2d20bc529dbb0b3d26d18b0a3585298a81d4862f
                                 <div class="ml-2">
                                     <span class="font-weight-bold d-block">@Html.DisplayFor(i => item.ProductName)</span><span class="spec">
                                         @Html.DisplayFor(i => item.ProductColor),
@@ -42,9 +51,16 @@
                     }
                 }
             </div>
+<<<<<<< HEAD
 
         </div>
 
+=======
+                
+        </div>
+
+        <!--> PAYMENT SECTION  <!-->
+>>>>>>> 2d20bc529dbb0b3d26d18b0a3585298a81d4862f
         <div class="col-md-4">
             <div class="payment-info">
                 <div class="d-flex justify-content-between align-items-center"><span>Card details</span><img class="rounded" src="https://i.imgur.com/WU501C8.jpg" width="30"></div><span class="type d-block mt-3 mb-1">Card type</span><label class="radio"> <input type="radio" name="card" value="payment" checked> <span><img width="30" src="https://img.icons8.com/color/48/000000/mastercard.png" /></span> </label>

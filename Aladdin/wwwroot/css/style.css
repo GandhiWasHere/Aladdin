@@ -321,6 +321,7 @@ label.radio input:checked+span {
     font-weight: 300
 }
 
+<<<<<<< HEAD
 .form-control.credit-inputs:focus {
     background: rgb(102, 102, 221);
     border: rgb(102, 102, 221)
@@ -347,3 +348,5 @@ label.radio input:checked+span {
 .spec {
     font-size: 11px
 }
+=======
+>>>>>>> 2d20bc529dbb0b3d26d18b0a3585298a81d4862f

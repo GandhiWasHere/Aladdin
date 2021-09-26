@@ -24,24 +24,45 @@ namespace Aladdin.Controllers
         {
             return View(await _context.Cart.ToListAsync());
         }
+<<<<<<< HEAD
 
 
         // GET: Carts/Details/5
         public async Task<IActionResult> mycart(int? id)
+=======
+        public IActionResult mycart()
+        {
+            return View();
+        }
+
+        // GET: Carts/Details/5
+        public async Task<IActionResult> mycart1(int? id)
+>>>>>>> 2d20bc529dbb0b3d26d18b0a3585298a81d4862f
         {
             if (id == null)
             {
                 return NotFound();
             }
+<<<<<<< HEAD
             var cart = await _context.Cart.Include(x => x.CartProducts).SingleOrDefaultAsync(m => m.CartID == id);
 
+=======
+
+            var cart = await _context.Cart
+                .FirstOrDefaultAsync(m => m.CartID == id);
+>>>>>>> 2d20bc529dbb0b3d26d18b0a3585298a81d4862f
             if (cart == null)
             {
                 return NotFound();
             }
+<<<<<<< HEAD
             
             return View(cart);
 
+=======
+
+            return View(cart);
+>>>>>>> 2d20bc529dbb0b3d26d18b0a3585298a81d4862f
         }
 
 
@@ -129,6 +150,7 @@ namespace Aladdin.Controllers
         {
             return _context.Cart.Any(e => e.CartID == id);
         }
+<<<<<<< HEAD
         [HttpGet]
         public async Task<IActionResult> AddProductAsync(int cartid, int productid)
         {
@@ -148,5 +170,7 @@ namespace Aladdin.Controllers
             }
             return NotFound();   
         }
+=======
+>>>>>>> 2d20bc529dbb0b3d26d18b0a3585298a81d4862f
     }
 }
