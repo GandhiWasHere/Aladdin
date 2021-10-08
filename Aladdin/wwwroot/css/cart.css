@@ -2,9 +2,8 @@
     --background-white: hsl(0, 0%, 100%);
     --background-light-grey-1: hsl(0, 0%, 93%);
     --border-light-grey-2: hsl(0, 2%, 67%);
-    --table-box-shadow-black-1: rgba(0, 0, 0, 0.42);
-    --box-shadow-black-2: rgba(0, 0, 0, 0.25);
-    --border-purple: rgb(102, 102, 221);
+    --box-shadow-black: rgba(0, 0, 0, 0.25);
+    --text-black: hsl(0, 0%, 0%);
 }
 
 *,
@@ -12,18 +11,6 @@
 *::before {
     margin: 0;
     padding: 0;
-}
-
-.payment-info {
-    background: blue;
-    padding: 10px;
-    border-radius: 6px;
-    color: var(--background-white);
-    font-weight: bold
-}
-
-.product-details {
-    padding: 10px
 }
 
 body {
@@ -38,83 +25,26 @@ body {
     font-size: 12px
 }
 
-.table-shadow {
-    -webkit-box-shadow: 5px 5px 15px -2px var(--table-box-shadow-black-1);
-    box-shadow: 5px 5px 15px -2px var(--table-box-shadow-black-1)
-}
-
-.type {
-    font-weight: 400;
-    font-size: 10px
-}
-
-label.radio {
-    cursor: pointer
-}
-
-label.radio input {
-    position: absolute;
-    top: 0;
-    left: 0;
-    visibility: hidden;
-    pointer-events: none
-}
-
-label.radio span {
-    padding: 1px 12px;
-    border: 2px solid var(--border-light-grey-2);
-    display: inline-block;
-    border-radius: 3px;
-    text-transform: uppercase;
-    font-size: 11px;
-    font-weight: 300
-}
-
-label.radio input:checked+span {
-    border-color: var(--background-white);
-    background-color: blue;
-    color: var(--background-white)
-}
-
-.credit-inputs {
-    background: var(--border-purple);
-    color: var(--background-white) !important;
-    border-color: var(--border-purple)
-}
-
-.credit-inputs::placeholder {
-    color: var(--background-white);
-    font-size: 13px
-}
-
-.credit-card-label {
-    font-size: 9px;
-    font-weight: 300
-}
-
-.form-control.credit-inputs:focus {
-    background: var(--border-purple);
-    border: var(--border-purple)
-}
-
-.line {
-    border-bottom: 1px solid var(--border-purple)
-}
-
-.information span {
-    font-size: 12px;
-    font-weight: 500
-}
-
-.information {
-    margin-bottom: 5px
+.payment-info {
+    padding: 10px;
+    border-radius: 6px;
+    color: var(--text-black);
+    font-weight: bold
 }
 
 .items {
-    -webkit-box-shadow: 5px 5px 4px -1px var(--box-shadow-black-2);
-    box-shadow: 5px 5px 4px -1px var(--box-shadow-black-2);
+    -webkit-box-shadow: 5px 5px 4px -1px var(--box-shadow-black);
+    box-shadow: 5px 5px 4px -1px var(--box-shadow-black);
 }
 
 .spec {
     font-size: 11px
+}
+
+.rm-lr-col-pad {
+    padding: 0;
+}
+
+.tb-pad {
+    padding: 2.5px 0;
 }
