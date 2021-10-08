@@ -63,7 +63,27 @@ namespace Aladdin.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CartProduct",
+                name: "ProductInCart",
+                columns: table => new
+                {
+                    ProductID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProductColor = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProductRating = table.Column<int>(type: "int", nullable: false),
+                    ProductPrice = table.Column<int>(type: "int", nullable: false),
+                    ProductImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProductQuantityS = table.Column<int>(type: "int", nullable: false),
+                    ProductQuantityM = table.Column<int>(type: "int", nullable: false),
+                    ProductQuantityL = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductInCart", x => x.ProductID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CartProductInCart",
                 columns: table => new
                 {
                     CartProductsProductID = table.Column<int>(type: "int", nullable: false),
@@ -71,40 +91,43 @@ namespace Aladdin.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CartProduct", x => new { x.CartProductsProductID, x.ProductCartsCartID });
+                    table.PrimaryKey("PK_CartProductInCart", x => new { x.CartProductsProductID, x.ProductCartsCartID });
                     table.ForeignKey(
-                        name: "FK_CartProduct_Cart_ProductCartsCartID",
+                        name: "FK_CartProductInCart_Cart_ProductCartsCartID",
                         column: x => x.ProductCartsCartID,
                         principalTable: "Cart",
                         principalColumn: "CartID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CartProduct_Product_CartProductsProductID",
+                        name: "FK_CartProductInCart_ProductInCart_CartProductsProductID",
                         column: x => x.CartProductsProductID,
-                        principalTable: "Product",
+                        principalTable: "ProductInCart",
                         principalColumn: "ProductID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CartProduct_ProductCartsCartID",
-                table: "CartProduct",
+                name: "IX_CartProductInCart_ProductCartsCartID",
+                table: "CartProductInCart",
                 column: "ProductCartsCartID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CartProduct");
+                name: "CartProductInCart");
 
             migrationBuilder.DropTable(
                 name: "Customer");
 
             migrationBuilder.DropTable(
+                name: "Product");
+
+            migrationBuilder.DropTable(
                 name: "Cart");
 
             migrationBuilder.DropTable(
-                name: "Product");
+                name: "ProductInCart");
         }
     }
 }

@@ -10,6 +10,6 @@ namespace Aladdin.Models
         public int CartID{ get; set; }
         public int CustomerID { get; set; }
         public int CartTotal{ get; set; }
-        public ICollection<Product> CartProducts{ get; set; }
+        public ICollection<ProductInCart> CartProducts{ get; set; }
     }
 }

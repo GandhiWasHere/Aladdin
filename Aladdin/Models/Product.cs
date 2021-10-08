@@ -17,6 +17,5 @@ namespace Aladdin.Models
         public int ProductQuantityS{ get; set; }
         public int ProductQuantityM { get; set; }
         public int ProductQuantityL { get; set; }
-        public ICollection<Cart> ProductCarts { get; set; }
     }
 }

@@ -27,7 +27,7 @@ namespace Aladdin.Controllers
 
 
         // GET: Carts/Details/5
-        public async Task<IActionResult> mycart(int? id)
+        public async Task<IActionResult> Mycart(int? id)
         {
             if (id == null)
             {
@@ -138,20 +138,21 @@ namespace Aladdin.Controllers
             {
                 if (c.CartProducts == null)
                 {
-                    c.CartProducts = new List<Product>();
+                    c.CartProducts = new List<ProductInCart>();
                 }
 
-                // Copy to new object to control quantity
-                Product p_copy = new()
+
+                ProductInCart p_copy = new()
                 {
-                    ProductColor = p.ProductColor,
-                    ProductImage = p.ProductImage,
-                    ProductPrice = p.ProductPrice,
-                    ProductName = p.ProductName,
-                    ProductQuantityS = 0,
-                    ProductQuantityM = 0,
-                    ProductQuantityL = 0
-                };
+                   ProductColor = p.ProductColor,
+                   ProductRating = p.ProductRating,
+                   ProductImage = p.ProductImage,
+                   ProductPrice = p.ProductPrice,
+                   ProductName = p.ProductName,
+                   ProductQuantityS = 0,
+                   ProductQuantityM = 0,
+                   ProductQuantityL = 0
+               };
                 if (size == "L")
                     p_copy.ProductQuantityL += 1;
                 if (size == "M")
