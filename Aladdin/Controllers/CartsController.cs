@@ -130,7 +130,7 @@ namespace Aladdin.Controllers
             return _context.Cart.Any(e => e.CartID == id);
         }
         [HttpGet]
-        public async Task<IActionResult> AddProductAsync(int cartid, int productid)
+        public async Task<IActionResult> AddProductAsync(int cartid, int productid, String size)
         {
             Product p = _context.Product.Where(s => s.ProductID == productid).FirstOrDefault();
             Cart c = _context.Cart.Where(s => s.CartID == cartid).FirstOrDefault();
@@ -139,9 +139,27 @@ namespace Aladdin.Controllers
                 if (c.CartProducts == null)
                 {
                     c.CartProducts = new List<Product>();
-                    c.CartProducts.Add(p);
                 }
-                else c.CartProducts.Add(p);
+
+                // Copy to new object to control quantity
+                Product p_copy = new()
+                {
+                    ProductColor = p.ProductColor,
+                    ProductImage = p.ProductImage,
+                    ProductPrice = p.ProductPrice,
+                    ProductName = p.ProductName,
+                    ProductQuantityS = 0,
+                    ProductQuantityM = 0,
+                    ProductQuantityL = 0
+                };
+                if (size == "L")
+                    p_copy.ProductQuantityL += 1;
+                if (size == "M")
+                    p_copy.ProductQuantityL += 1;
+                if (size == "S")
+                    p_copy.ProductQuantityL += 1;
+
+                c.CartProducts.Add(p_copy);
                 _context.Update(c);
                 await _context.SaveChangesAsync();
                 return Ok();

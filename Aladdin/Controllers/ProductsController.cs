@@ -100,7 +100,7 @@ namespace Aladdin.Controllers
             if (ModelState.IsValid)
             {
                 string uniqueFileName = UploadedFile(model);
-                Product product = new Product
+                Product product = new()
                 {
                     ProductID = model.ProductID,
                     ProductName = model.ProductName,
@@ -217,10 +217,8 @@ namespace Aladdin.Controllers
                 {
                     Directory.CreateDirectory(uploadsFolder);
                 }
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    model.ProductImage.CopyTo(fileStream);
-                }
+                using var fileStream = new FileStream(filePath, FileMode.Create);
+                model.ProductImage.CopyTo(fileStream);
             }
             return uniqueFileName;
         }

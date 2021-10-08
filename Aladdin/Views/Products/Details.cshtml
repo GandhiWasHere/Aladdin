@@ -6,7 +6,7 @@
 
 <script>
     $('#addcart').click(function () {
-        $.get('/carts/addproduct', { 'cartid': '8', 'productid':@Html.DisplayFor(model => model.ProductID)})});
+        $.get('/carts/addproduct', { 'cartid': '8', 'productid':@Html.DisplayFor(model => model.ProductID), 'size': "L"})});
 </script>
 
 <!DOCTYPE html>
