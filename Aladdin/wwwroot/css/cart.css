@@ -1,8 +1,24 @@
+:root {
+    --background-white: hsl(0, 0%, 100%);
+    --background-light-grey-1: hsl(0, 0%, 93%);
+    --border-light-grey-2: hsl(0, 2%, 67%);
+    --table-box-shadow-black-1: rgba(0, 0, 0, 0.42);
+    --box-shadow-black-2: rgba(0, 0, 0, 0.25);
+    --border-purple: rgb(102, 102, 221);
+}
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+}
+
 .payment-info {
     background: blue;
     padding: 10px;
     border-radius: 6px;
-    color: #fff;
+    color: var(--background-white);
     font-weight: bold
 }
 
@@ -11,11 +27,11 @@
 }
 
 body {
-    background: #eee
+    background: var(--background-light-grey-1)
 }
 
 .cart {
-    background: #fff
+    background: var(--background-white)
 }
 
 .p-about {
@@ -23,8 +39,8 @@ body {
 }
 
 .table-shadow {
-    -webkit-box-shadow: 5px 5px 15px -2px rgba(0, 0, 0, 0.42);
-    box-shadow: 5px 5px 15px -2px rgba(0, 0, 0, 0.42)
+    -webkit-box-shadow: 5px 5px 15px -2px var(--table-box-shadow-black-1);
+    box-shadow: 5px 5px 15px -2px var(--table-box-shadow-black-1)
 }
 
 .type {
@@ -46,9 +62,8 @@ label.radio input {
 
 label.radio span {
     padding: 1px 12px;
-    border: 2px solid #ada9a9;
+    border: 2px solid var(--border-light-grey-2);
     display: inline-block;
-    color: #8f37aa;
     border-radius: 3px;
     text-transform: uppercase;
     font-size: 11px;
@@ -56,19 +71,19 @@ label.radio span {
 }
 
 label.radio input:checked+span {
-    border-color: #fff;
+    border-color: var(--background-white);
     background-color: blue;
-    color: #fff
+    color: var(--background-white)
 }
 
 .credit-inputs {
-    background: rgb(102, 102, 221);
-    color: #fff !important;
-    border-color: rgb(102, 102, 221)
+    background: var(--border-purple);
+    color: var(--background-white) !important;
+    border-color: var(--border-purple)
 }
 
 .credit-inputs::placeholder {
-    color: #fff;
+    color: var(--background-white);
     font-size: 13px
 }
 
@@ -78,12 +93,12 @@ label.radio input:checked+span {
 }
 
 .form-control.credit-inputs:focus {
-    background: rgb(102, 102, 221);
-    border: rgb(102, 102, 221)
+    background: var(--border-purple);
+    border: var(--border-purple)
 }
 
 .line {
-    border-bottom: 1px solid rgb(102, 102, 221)
+    border-bottom: 1px solid var(--border-purple)
 }
 
 .information span {
@@ -96,8 +111,8 @@ label.radio input:checked+span {
 }
 
 .items {
-    -webkit-box-shadow: 5px 5px 4px -1px rgba(0, 0, 0, 0.25);
-    box-shadow: 5px 5px 4px -1px rgba(0, 0, 0, 0.08)
+    -webkit-box-shadow: 5px 5px 4px -1px var(--box-shadow-black-2);
+    box-shadow: 5px 5px 4px -1px var(--box-shadow-black-2);
 }
 
 .spec {

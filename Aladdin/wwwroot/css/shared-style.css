@@ -22,13 +22,13 @@ html {
     }
 }
 
-@media only screen and (max-width: 56.25em) /* 900px */{
+@media only screen and (max-width: 75em) /* 900px */{
     html {
         font-size: 56.25%; /* 1rem = 9px */
     }
 }
 
-@media only screen and (max-width: 56.25em) /* 900px */{
+@media only screen and (max-width: 112.5em) /* 1800px */{
     html {
         font-size: 75%; /* 1rem = 12px */
     }
@@ -46,12 +46,9 @@ html {
 
 .navbar {
     padding: 1rem 2rem;
-
     overflow: hidden;
-
     display: flex;
     justify-content: space-between;
-
     font-family: 'Roboto', sans-serif;
 }
 
