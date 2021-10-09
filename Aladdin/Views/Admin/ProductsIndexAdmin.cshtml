@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Aladdin.Models.Product>
+
+@{ Layout = "~/Views/Shared/Empty_Layout.cshtml";
+    ViewData["Title"] = "Index"; }
+
+<h1>Index</h1>
+
+
+
+
+
+    <script>$('.Details').click(function () {
+            var elmId = $(this).attr("id");
+            getDetails(elmId);
+        });
+        function getDetails(id) {
+            $.get('/Products/details', { "id": id }, function (data, status) {
+                console.log("Inside the Async Call");
+                console.log(status);
+                console.log(data);
+                $('#getitem').html(data);
+            })
+
+        }
+
+
+        $('#btn-filter').click(test);
+        function test() {
+            var Stringvalue = $('#search-head').val();
+            var Sizevalue = $('#colors').val().html;
+            var conceptName = $('#colors').find(":selected").text();
+            console.log(conceptName);
+
+            $.get('/Products/index', { searchColor: conceptName, searchString: Stringvalue }, function (data, status) {
+
+                console.log("Inside the Async Call");
+                console.log(status);
+                console.log(data);
+                $('body').html(data);
+            })
+        }</script>
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<p>
+    Name of Product: <input type="text" name="SearchString" id="search-head" />
+
+    <select name="colors" id="colors">
+        <option value="All">All</option>
+        @foreach (var item in Model)
+        {
+<option value=@Html.DisplayNameFor(modelItem => item.ProductColor)>@Html.DisplayFor(modelItem => item.ProductColor)</option>}
+    </select>
+
+    <input type="button" value="Filter" id="btn-filter" />
+</p>
+
+<div class="row row-cols-1 row-cols-md-4 g-4">
+    @foreach (var item in Model)
+    {
+<div class="col">
+    <div class="card">
+        <img src="/images/@Html.DisplayFor(modelItem => item.ProductImage)" width="20" height="160" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">@Html.DisplayFor(modelItem => item.ProductName)</h5>
+            <p class="card-text">@Html.DisplayFor(modelItem => item.ProductPrice)₪</p>
+            <button type="button" class="btn btn-primary Details" data-bs-toggle="modal" data-bs-target="#exampleModal" id="@item.ProductID">
+                Details
+            </button>
+        </div>
+    </div>
+</div>}
+</div>
+
+
