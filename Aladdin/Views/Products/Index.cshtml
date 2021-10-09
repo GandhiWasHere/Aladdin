@@ -29,18 +29,21 @@
         }
 
 
-        $('#btn-filter').click(test);
-        function test() {
-            var Stringvalue = $('#search-head').val();
-            var Sizevalue = $('#colors').val().html;
-            var conceptName = $('#colors').find(":selected").text();
-            console.log(conceptName);
+        $('#btn-filter').click(filter);
+        function filter() {
+            var Stringvalue = $('#name-search').val();
+            var conceptName = $('#colors-search').find(":selected").text();
+            var minValue = $('#min-search').val();
+            var maxValue = $('#max-search').val();
+            var rating = $('#rating-search').val();
+            $.get('/Products/index', { searchColor: conceptName, searchString: Stringvalue, minValue: minValue, maxValue: maxValue, rating: rating}, function (data, status) {
+                $('body').html(data);
+            })
+        }
 
-            $.get('/Products/index', { searchColor: conceptName, searchString: Stringvalue }, function (data, status) {
-
-                console.log("Inside the Async Call");
-                console.log(status);
-                console.log(data);
+        $('#btn-show').click(show);
+        function show() {
+            $.get('/Products/index', function (data, status) {
                 $('body').html(data);
             })
         }
@@ -48,20 +51,44 @@
 }
 
 <p>
-    <a asp-action="Create">Create New</a>
-</p>
-<p>
-    Name of Product: <input type="text" name="SearchString" id="search-head" />
+    Name:<input type="text" name="SearchString" id="name-search" />
 
-    <select name="colors" id="colors">
-        <option value="All">All</option>
+    <select name="colors" id="colors-search">
+        <option></option>
         @foreach (var item in Model)
         {
             <option value=@Html.DisplayNameFor(modelItem => item.ProductColor)>@Html.DisplayFor(modelItem => item.ProductColor)</option>
         }
     </select>
+    <select name="rating" id="rating-search">
+        <option></option>
+        <option value=3>1+</option>
+        <option value=3>2+</option>
+        <option value=3>3+</option>
+        <option value=4>4+</option>
+    </select>
+    <!---  Price  -->
+    <span name="between-price">
+        <select name="rating" id="min-search">
+            <option></option>
+            <option value=100>100</option>
+            <option value=200>200</option>
+            <option value=300>300</option>
+            <option value=400>400</option>
+            <option value=500>500+</option>
+        </select>
+        -
+        <select name="rating" id="max-search">
+            <option></option>
+            <option value=100>100</option>
+            <option value=200>200</option>
+            <option value=300>300</option>
+            <option value=400>400</option>
+        </select>
+    </span>
 
     <input type="button" value="Filter" id="btn-filter" />
+    <input type="button" value="Show-All" id="btn-show" />
 </p>
 
 <div class="row row-cols-1 row-cols-md-4 g-4">
