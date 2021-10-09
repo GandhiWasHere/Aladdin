@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Aladdin.Migrations
 {
     [DbContext(typeof(AladdinContext))]
-    [Migration("20211008125453_1")]
+    [Migration("20211008175742_1")]
     partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -120,13 +120,16 @@ namespace Aladdin.Migrations
 
             modelBuilder.Entity("Aladdin.Models.ProductInCart", b =>
                 {
-                    b.Property<int>("ProductID")
+                    b.Property<int>("ProductInCartID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ProductColor")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
 
                     b.Property<string>("ProductImage")
                         .HasColumnType("nvarchar(max)");
@@ -149,20 +152,20 @@ namespace Aladdin.Migrations
                     b.Property<int>("ProductRating")
                         .HasColumnType("int");
 
-                    b.HasKey("ProductID");
+                    b.HasKey("ProductInCartID");
 
                     b.ToTable("ProductInCart");
                 });
 
             modelBuilder.Entity("CartProductInCart", b =>
                 {
-                    b.Property<int>("CartProductsProductID")
+                    b.Property<int>("CartProductsProductInCartID")
                         .HasColumnType("int");
 
                     b.Property<int>("ProductCartsCartID")
                         .HasColumnType("int");
 
-                    b.HasKey("CartProductsProductID", "ProductCartsCartID");
+                    b.HasKey("CartProductsProductInCartID", "ProductCartsCartID");
 
                     b.HasIndex("ProductCartsCartID");
 
@@ -173,7 +176,7 @@ namespace Aladdin.Migrations
                 {
                     b.HasOne("Aladdin.Models.ProductInCart", null)
                         .WithMany()
-                        .HasForeignKey("CartProductsProductID")
+                        .HasForeignKey("CartProductsProductInCartID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

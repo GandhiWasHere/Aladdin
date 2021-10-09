@@ -10,6 +10,7 @@ namespace Aladdin.Models
     public class ProductInCart
     {
         [Key]
+        public int ProductInCartID { get; set; }
         public int ProductID { get; set; }
         public string ProductName { get; set; }
         public string ProductColor { get; set; }

@@ -20,5 +20,8 @@ namespace Aladdin.Data
 
         public DbSet<Aladdin.Models.Cart> Cart { get; set; }
 
+        public DbSet<Aladdin.Models.ProductInCart> ProductInCart { get; set; }
+
+
     }
 }

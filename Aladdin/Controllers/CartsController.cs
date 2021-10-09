@@ -133,26 +133,30 @@ namespace Aladdin.Controllers
         public async Task<IActionResult> AddProductAsync(int cartid, int productid, String size)
         {
             Product p = _context.Product.Where(s => s.ProductID == productid).FirstOrDefault();
-            Cart c = _context.Cart.Where(s => s.CartID == cartid).FirstOrDefault();
+            Cart c = _context.Cart.Where(s => s.CartID == cartid).Include(p=>p.CartProducts).FirstOrDefault();
+           
             if (c != null) // checks if c exsists
             {
                 if (c.CartProducts == null)
                 {
                     c.CartProducts = new List<ProductInCart>();
                 }
-
-
-                ProductInCart p_copy = new()
+                ProductInCart p_copy = CheckInCart(c, productid);
+                if (p_copy == null)
                 {
-                   ProductColor = p.ProductColor,
-                   ProductRating = p.ProductRating,
-                   ProductImage = p.ProductImage,
-                   ProductPrice = p.ProductPrice,
-                   ProductName = p.ProductName,
-                   ProductQuantityS = 0,
-                   ProductQuantityM = 0,
-                   ProductQuantityL = 0
-               };
+                    p_copy = new()
+                    {
+                        ProductID = p.ProductID,
+                        ProductColor = p.ProductColor,
+                        ProductRating = p.ProductRating,
+                        ProductImage = p.ProductImage,
+                        ProductPrice = p.ProductPrice,
+                        ProductName = p.ProductName,
+                        ProductQuantityS = 0,
+                        ProductQuantityM = 0,
+                        ProductQuantityL = 0
+                    };
+                }
                 if (size == "L")
                     p_copy.ProductQuantityL += 1;
                 if (size == "M")
@@ -167,5 +171,14 @@ namespace Aladdin.Controllers
             }
             return NotFound();   
         }
+        public ProductInCart CheckInCart(Cart cart, int id)
+        {
+            foreach (ProductInCart prod in cart.CartProducts)
+            {
+                if (prod.ProductID == id) return prod;
+            }
+            return null;
+        }
     }
+
 }
