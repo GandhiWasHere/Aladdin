@@ -25,7 +25,7 @@ namespace Aladdin.Controllers
         }
 
         // GET: Products
-        public async Task<IActionResult> Index(string searchColor, string searchString)
+        public async Task<IActionResult> Index(string searchColor, string searchString, string minValue, string maxValue, string Rating)
         {
             var products_list = from p in _context.Product select p;
             var colors = from p in _context.Product select p.ProductColor;
@@ -37,6 +37,18 @@ namespace Aladdin.Controllers
             if (!String.IsNullOrEmpty(searchColor) & (searchColor!="All"))
             {
                 products_list = products_list.Where(s => s.ProductColor == searchColor);
+            }
+            if (!String.IsNullOrEmpty(minValue))
+            {
+                products_list = products_list.Where(s => s.ProductPrice >= Int32.Parse(minValue));
+            }
+            if (!String.IsNullOrEmpty(maxValue))
+            {
+                products_list = products_list.Where(s => s.ProductPrice <= Int32.Parse(maxValue));
+            }
+            if (!String.IsNullOrEmpty(Rating))
+            {
+                products_list = products_list.Where(s => s.ProductRating >= Int32.Parse(Rating));
             }
             return View(await products_list.ToListAsync());
         }
