@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Aladdin.Data;
 using Aladdin.Models;
+using System.Text;
 
 namespace Aladdin.Controllers
 {
@@ -20,10 +21,65 @@ namespace Aladdin.Controllers
         }
 
         // GET: Suppliers
-        public async Task<IActionResult> Index()
+        /*public async Task<IActionResult> Index()
         {
+            //only if you are admin !
+
+            
+
             return View(await _context.Supplier.ToListAsync());
         }
+
+*/
+
+
+
+
+        public async Task<IActionResult> Index(string token)
+        {
+            //only if you are admin !
+            static string CreateMD5(string input)
+            {
+                // Use input string to calculate MD5 hash
+                using (System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create())
+                {
+                    byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
+                    byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+                    // Convert the byte array to hexadecimal string
+                    System.Text.StringBuilder sb = new StringBuilder();
+                    for (int i = 0; i < hashBytes.Length; i++)
+                    {
+                        sb.Append(hashBytes[i].ToString("X2"));
+                    }
+                    return sb.ToString();
+                }
+            }
+            var s = CreateMD5("admin");
+            if (s == token)
+            {
+
+                return View(await _context.Supplier.ToListAsync());
+            }
+
+            return RedirectToAction("index", "Products");
+            //return View("Index");
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
 
         // GET: Suppliers/Details/5
         public async Task<IActionResult> Details(int? id)

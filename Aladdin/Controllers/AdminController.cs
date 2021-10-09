@@ -53,11 +53,13 @@ namespace Aladdin.Controllers
             {
                 var x = from p in _context.Product select p;
                 ViewData["SSS"] = x;
-                return View();
+                ViewData["token"] = password;
+
+                return View("AdminPage1","Admin");
             }
             return View("Index");
         }
-        public async Task<IActionResult> ProductsIndexAdmin(string searchColor, string searchString)
+/*        public async Task<IActionResult> ProductsIndexAdmin(string searchColor, string searchString)
         {
             var products_list = from p in _context.Product select p;
             var colors = from p in _context.Product select p.ProductColor;
@@ -72,7 +74,7 @@ namespace Aladdin.Controllers
             }
             return View(await products_list.ToListAsync());
 
-        }
+        }*/
             /*        public string AdminPage(string password)
                     {
                         static string CreateMD5(string input)
