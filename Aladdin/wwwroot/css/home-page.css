@@ -1,0 +1,213 @@
+:root {
+    --btn-animation-shadow: hsla(0, 0%, 0%, .2);
+    --column-rule: hsl(0, 0%, 28%);
+    --btn-red: hsl(359, 68%, 36%);
+    --btn-text: hsl(39, 83%, 81%);
+    --branch-list-bg: hsl(192, 4%, 54%);
+    --btn-grey: hsl(203, 14%, 30%);
+}
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    /* Defines what 1 rem is */
+    font-size: 62.5%; /* 1rem = 10px */
+}
+
+@media only screen and (max-width: 56.25em) /* 900px */{
+    html {
+        font-size: 50%; /* 1rem = 8px */
+    }
+
+    .intro-left{
+        padding: 5rem 0 !important;
+    }
+
+    .intro-right{
+        padding: 5rem 0;
+    }
+
+    .intro-right-img{
+        height: 25rem;
+    }
+}
+
+@media only screen and (max-width: 75em) /* 900px */{
+    html {
+        font-size: 56.25%; /* 1rem = 9px */
+    }
+}
+
+@media only screen and (max-width: 112.5em) /* 1800px */{
+    html {
+        font-size: 75%; /* 1rem = 12px */
+    }
+}
+
+/* roboto-regular - latin */
+@font-face {
+    font-family: 'myRoboto';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/roboto-v29-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local(''),
+        url('../Fonts/Roboto/roboto-v29-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('../Fonts/Roboto/roboto-v29-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+        url('../Fonts/Roboto/roboto-v29-latin-regular.woff') format('woff'), /* Modern Browsers */
+        url('../Fonts/Roboto/roboto-v29-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+        url('../Fonts/Roboto/roboto-v29-latin-regular.svg#Roboto') format('svg'); /* Legacy iOS */
+}
+
+main {
+    font-family: 'Roboto';
+}
+
+section {
+    margin-bottom: 5rem;
+}
+
+.primary-color{
+    background: var(--primary-color);
+}
+
+.text-color {
+    color: var(--forth-color);
+}
+
+.container {
+    padding: 9rem 4rem;
+}
+
+.intro {
+    display: flex;
+    justify-content: space-evenly;
+    column-gap: 13rem;
+}
+
+.intro-left {
+    padding: 10rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-family: 'Roboto';
+
+}
+
+.intro-left-shop-title{
+    font-size: 2.5rem;
+    font-family: 'myRoboto';
+}
+
+.intro-left-shop-sub-title {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.btn {
+    padding: 1.5rem 0;
+    border-radius: 100px;
+    border: none;
+    font-weight: 400;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .2s;
+    background-color: var(--btn-red);
+    color: var(--btn-text);
+
+}
+
+.intro-left-cta {
+    font-size: 1.5rem;
+
+}
+
+.intro-left-cta:hover
+{
+    transform: translateY(-.3rem);
+    box-shadow: 0 1rem 2rem var(--btn-animation-shadow);
+
+}
+
+.tertiary-title {
+    font-family: 'myRoboto';
+    font-size: 2.5rem;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.about-vision-p{
+    padding: 3rem 5rem;
+    font-size: 1.6rem;
+    column-count: 3;
+    column-rule: .1rem solid var(--column-rule);
+    column-gap: 7rem;
+}
+
+.featured-hats-title{
+    padding-bottom: 4rem;
+}
+
+.featured-hats-grid {
+    display: flex;
+    justify-content: space-between;
+    overflow: scroll;
+    padding: 0 5rem;
+}
+
+.featured-hats-grid-item {
+    padding: 2rem 0;
+    width: 10rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
+.featured-hats-grid-item-img {
+    height: 10rem;
+}
+
+.featured-hats-grid-item-name {
+    font-size: 1.6rem;
+    font-weight: 400;
+    text-align: center;
+}
+
+.featured-hats-grid-item-btn {
+    padding: 1rem 2.5rem;
+}
+
+.location-branches {
+    display: flex;
+    padding: 2rem 5rem;
+    gap: 1rem;
+}
+
+.branches-list{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: space-evenly;
+    background-color: var(--branch-list-bg);
+}
+
+.branch-btn {
+    border: solid 1px black;
+    border-radius: 0;
+    background-color: var(--btn-grey);
+    transition: .2s;
+}
+
+.branch-btn:hover {
+    background-color: var(--btn-red);
+}
+
+.loaction-map {
+    height: 40rem;
+    width: 80%;
+}
