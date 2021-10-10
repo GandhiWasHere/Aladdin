@@ -107,7 +107,7 @@ namespace Aladdin.Controllers
         // I edited the create function so we can add image to product
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductID,ProductName,ProductSize,ProductColor,ProductRating,ProductPrice,ProductImage")] ProductView model)
+        public async Task<IActionResult> Create([Bind("ProductID,ProductName,ProductSize,ProductColor,ProductRating,ProductPrice,SupplierID,ProductImage")] ProductView model)
         {
             if (ModelState.IsValid)
             {
@@ -120,7 +120,9 @@ namespace Aladdin.Controllers
                     ProductColor = model.ProductColor,
                     ProductRating = model.ProductRating,
                     ProductPrice = model.ProductPrice,
+                    SupplierID = model.SupplierID,
                     ProductImage = uniqueFileName
+                    
                 };
 
                 _context.Add(product);

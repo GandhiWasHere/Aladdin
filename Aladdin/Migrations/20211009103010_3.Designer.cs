@@ -3,14 +3,16 @@ using Aladdin.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Aladdin.Migrations
 {
     [DbContext(typeof(AladdinContext))]
-    partial class AladdinContextModelSnapshot : ModelSnapshot
+    [Migration("20211009103010_3")]
+    partial class _3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -193,7 +195,7 @@ namespace Aladdin.Migrations
             modelBuilder.Entity("Aladdin.Models.Product", b =>
                 {
                     b.HasOne("Aladdin.Models.Supplier", null)
-                        .WithMany("SupplierProducts")
+                        .WithMany("ProductID")
                         .HasForeignKey("SupplierID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -216,7 +218,7 @@ namespace Aladdin.Migrations
 
             modelBuilder.Entity("Aladdin.Models.Supplier", b =>
                 {
-                    b.Navigation("SupplierProducts");
+                    b.Navigation("ProductID");
                 });
 #pragma warning restore 612, 618
         }
