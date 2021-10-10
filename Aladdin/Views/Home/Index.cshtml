@@ -1,4 +1,5 @@
 ﻿@{
+    Layout = "~/Views/Shared/mylayout.cshtml";
     ViewData["Title"] = "Aladdin";
 }
 <!-- Fonts -->
@@ -9,68 +10,65 @@
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="~/css/home-page.css">
 
-<main class="container">
-    <section class="intro ">
-        <div class="intro-left">
-            <h2 class="intro-left-shop-title">Find The Perfect Hat<br />For Your Head</h2>
-            <h4 class="intro-left-shop-sub-title">Beatiful hats to get you (a)head</h4>
-            <button class="btn intro-left-cta">SHOP NOW</button>
+<section class="intro ">
+    <div class="intro-left">
+        <h2 class="intro-left-shop-title">Find The Perfect Hat<br />For Your Head</h2>
+        <h4 class="intro-left-shop-sub-title">Beatiful hats to get you (a)head</h4>
+        <button class="btn intro-left-cta">SHOP NOW</button>
+    </div>
+    <div class="intro-right">
+        <img src="../images/red.png" alt="eggplent hat" class="intro-right-img">
+    </div>
+</section>
+
+<section class="about ">
+    <h3 class="about-vision tertiary-title">Our Vision</h3>
+    <div class="about-vision-p">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate, nostrum expedita in repudiandae architecto nemo placeat asperiores eaque ex quos consectetur officia sint. Perferendis illo nulla nobis, facere eum repellendus dolorem iste omnis assumenda consequatur totam dignissimos ullam molestias quas dolor reiciendis aperiam inventore, nesciunt deleniti nemo sapiente. Exercitationem, perferendis.
+    </div>
+</section>
+
+<section class="featured-hats ">
+    <h3 class="featured-hats-title tertiary-title">Our Top Rated Hats</h3>
+    <div id="featured-hats-grid" class="featured-hats-grid">
+        <div class="featured-hats-grid-item">
+            <img src="../images/red.png" alt="hat image" class="featured-hats-grid-item-img">
+            <h5 class="featured-hats-grid-item-name">Hat name 1</h5>
+            <button class="btn featured-hats-grid-item-btn">Details</button>
         </div>
-        <div class="intro-right">
-            <img src="../images/red.png" alt="eggplent hat" class="intro-right-img">
+
+        <div class="featured-hats-grid-item">
+            <img src="../images/red.png" alt="hat image" class="featured-hats-grid-item-img">
+            <h5 class="featured-hats-grid-item-name">Hat name 1</h5>
+            <button class="btn featured-hats-grid-item-btn">Details</button>
         </div>
-    </section>
 
-    <section class="about ">
-        <h3 class="about-vision tertiary-title">Our Vision</h3>
-        <div class="about-vision-p">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate, nostrum expedita in repudiandae architecto nemo placeat asperiores eaque ex quos consectetur officia sint. Perferendis illo nulla nobis, facere eum repellendus dolorem iste omnis assumenda consequatur totam dignissimos ullam molestias quas dolor reiciendis aperiam inventore, nesciunt deleniti nemo sapiente. Exercitationem, perferendis.
+        <div class="featured-hats-grid-item">
+            <img src="../images/red.png" alt="hat image" class="featured-hats-grid-item-img">
+            <h5 class="featured-hats-grid-item-name">Hat name 1</h5>
+            <button class="btn featured-hats-grid-item-btn">Details</button>
         </div>
-    </section>
 
-    <section class="featured-hats ">
-        <h3 class="featured-hats-title tertiary-title">Our Top Rated Hats</h3>
-        <div id="featured-hats-grid" class="featured-hats-grid">
-            <div class="featured-hats-grid-item">
-                <img src="../images/red.png" alt="hat image" class="featured-hats-grid-item-img">
-                <h5 class="featured-hats-grid-item-name">Hat name 1</h5>
-                <button class="btn featured-hats-grid-item-btn">Details</button>
-            </div>
-
-            <div class="featured-hats-grid-item">
-                <img src="../images/red.png" alt="hat image" class="featured-hats-grid-item-img">
-                <h5 class="featured-hats-grid-item-name">Hat name 1</h5>
-                <button class="btn featured-hats-grid-item-btn">Details</button>
-            </div>
-
-            <div class="featured-hats-grid-item">
-                <img src="../images/red.png" alt="hat image" class="featured-hats-grid-item-img">
-                <h5 class="featured-hats-grid-item-name">Hat name 1</h5>
-                <button class="btn featured-hats-grid-item-btn">Details</button>
-            </div>
-
-            <div class="featured-hats-grid-item">
-                <img src="../images/red.png" alt="hat image" class="featured-hats-grid-item-img">
-                <h5 class="featured-hats-grid-item-name">Hat name 1</h5>
-                <button class="btn featured-hats-grid-item-btn">Details</button>
-            </div>
+        <div class="featured-hats-grid-item">
+            <img src="../images/red.png" alt="hat image" class="featured-hats-grid-item-img">
+            <h5 class="featured-hats-grid-item-name">Hat name 1</h5>
+            <button class="btn featured-hats-grid-item-btn">Details</button>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="location ">
-        <h3 class="tertiary-title loaction-title">Where Can You Find Us</h3>
-        <div class="location-branches">
-            <aside class="branches-list">
-                <button id="btn-nemo" class="btn branch-btn">Nemo Branch</button>
-                <button id="btn-antartica" class="btn branch-btn">Antartica Branch</button>
-                <button id="btn-mosscow" class="btn branch-btn">Mosscow Branch</button>
-                <button id="btn-birTawil" class="btn branch-btn">Bir Tawil Branch</button>
-            </aside>
-            <div class="loaction-map" id="map"></div>
-        </div>
-    </section>
-
-</main>
+<section class="location ">
+    <h3 class="tertiary-title loaction-title">Where Can You Find Us</h3>
+    <div class="location-branches">
+        <aside class="branches-list">
+            <button id="btn-nemo" class="btn branch-btn">Nemo Branch</button>
+            <button id="btn-antartica" class="btn branch-btn">Antartica Branch</button>
+            <button id="btn-mosscow" class="btn branch-btn">Mosscow Branch</button>
+            <button id="btn-birTawil" class="btn branch-btn">Bir Tawil Branch</button>
+        </aside>
+        <div class="loaction-map" id="map"></div>
+    </div>
+</section>
 
 <script src="~/js/home-page-map-script.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbVRedWria7VHa8jmfOj-0X_Y5-JMww24&callback=initMap&libraries=&v=weekly"
