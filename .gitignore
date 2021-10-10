@@ -364,3 +364,6 @@ FodyWeavers.xsd
 /Aladdin/wwwroot/images
 /Aladdin/Migrations/20211009094143_1.cs
 /Aladdin/Migrations/20211009094143_1.Designer.cs
+/Aladdin/Migrations/
+/Aladdin/Migrations/20211009094143_1.Designer.cs
+/Aladdin/Migrations/20211009094143_1.cs
