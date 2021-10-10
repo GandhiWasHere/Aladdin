@@ -1,5 +1,9 @@
 :root {
     --outline-eastern-blue: hsl(199, 71%, 40%);
+    --header-background: hsl(0, 0%, 100%);
+    --scrollbar-track: hsl(192, 4%, 54%);
+    --scrollbar-track-shadow: hsl(203, 14%, 30%);
+    --scrollbar-handle: hsl(359, 68%, 36%);
 }
 
 /* reseting css */
@@ -16,28 +20,47 @@ html {
     font-size: 62.5%; /* 1rem = 10px */
 }
 
-@media only screen and (max-width: 56.25em) /* 900px */{
+@media only screen and (max-width: 56.25em) /* 900px */ {
     html {
         font-size: 50%; /* 1rem = 8px */
     }
+
+    .nav-links {
+        gap: 2rem !important;
+        font-size: 1.5rem !important;
+    }
+
+    .nav-utils {
+        flex-basis: 40% !important;
+    }
 }
 
-@media only screen and (max-width: 75em) /* 900px */{
+@media only screen and (max-width: 75em) /* 900px */ {
     html {
         font-size: 56.25%; /* 1rem = 9px */
     }
-}
 
-@media only screen and (max-width: 112.5em) /* 1800px */{
-    html {
-        font-size: 75%; /* 1rem = 12px */
+    .nav-utils {
+        flex-basis: 30% !important;
     }
 }
 
+@media only screen and (max-width: 112.5em) /* 1800px */ {
+    html {
+        font-size: 75%; /* 1rem = 12px */
+    }
+
+    .nav-utils {
+        flex-basis: 25% !important;
+    }
+}
+
+/* Header and Footer code*/
 .sticky {
     position: fixed;
     top: 0;
     width: 95%;
+    background-color: var(--header-background);
 }
 
 .container {
@@ -62,7 +85,6 @@ html {
     justify-content: space-between;
     align-items: center;
     gap: 4rem;
-
     font-family: inherit;
     font-weight: 400;
     font-size: 2rem;
@@ -75,7 +97,7 @@ html {
     flex-basis: 20%;
 }
 
-.utils-search{
+.utils-search {
     flex: 0 0 50%;
     display: flex;
     align-items: center;
@@ -93,11 +115,11 @@ html {
     margin-right: -2.2rem;
 }
 
-.search-bar:focus {
-    outline: none !important;
-    border: 2px solid var(--outline-eastern-blue);
-    border-radius: 100px;
-}
+    .search-bar:focus {
+        outline: none !important;
+        border: 2px solid var(--outline-eastern-blue);
+        border-radius: 100px;
+    }
 
 .search-submit {
     border: none;
@@ -122,11 +144,30 @@ html {
 
 .cart-item-count {
     vertical-align: middle;
-
 }
 
 .footer_container {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+/*Scroll bar*/
+/*width*/
+::-webkit-scrollbar {
+    width: 1rem;
+}
+
+/*track*/
+::-webkit-scrollbar-track {
+    border-radius: 1rem;
+    background-color: var(--scrollbar-track);
+    box-shadow: inset 0 0 .5rem var(--scrollbar-track-shadow);
+}
+
+/*Handle*/
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-handle);
+    width: 1rem;
+    border-radius: 10px;
 }
