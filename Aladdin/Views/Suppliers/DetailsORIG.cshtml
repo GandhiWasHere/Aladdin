@@ -1,0 +1,72 @@
+﻿@model Aladdin.Models.Supplier
+
+@{
+
+    ViewData["Title"] = "Details";
+    var productsids = (List<int>)ViewData["productsids"];
+    var productsnames = (List<string>)ViewData["productsnames"];
+    var productsprices = (List<int>)ViewData["productsprices"];
+}
+
+<h1>Details</h1>
+<h2>@productsids[0]</h2>
+
+
+<div>
+    <h4>Supplier</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SupplierName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SupplierName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SupplierPhonNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SupplierPhonNumber)
+        </dd>
+
+        <dt class="col-sm-2">
+            ProductsIdsList
+        </dt>
+        <dd class="col-sm-10">
+            @for (int i = 0; i < productsids.Count; i++)
+            {
+                @productsids[i]
+                @Html.Raw(" ")
+            }
+        </dd>
+
+        <dt class="col-sm-2">
+            ProductsNames
+        </dt>
+        <dd class="col-sm-10">
+            @for (int i = 0; i < productsnames.Count; i++)
+            {
+                @productsnames[i]
+                @Html.Raw(" ")
+            }
+        </dd>
+
+        <dt class="col-sm-2">
+            ProductsPrices
+        </dt>
+        <dd class="col-sm-10">
+            @for (int i = 0; i < productsprices.Count; i++)
+            {
+                @productsprices[i]
+                @Html.Raw(" ")
+            }
+        </dd>
+
+
+
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.SupplierID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

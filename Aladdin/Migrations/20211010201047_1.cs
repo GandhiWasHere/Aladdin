@@ -42,27 +42,6 @@ namespace Aladdin.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Product",
-                columns: table => new
-                {
-                    ProductID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProductColor = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SupplierID = table.Column<int>(type: "int", nullable: false),
-                    ProductRating = table.Column<int>(type: "int", nullable: false),
-                    ProductPrice = table.Column<int>(type: "int", nullable: false),
-                    ProductImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProductQuantityS = table.Column<int>(type: "int", nullable: false),
-                    ProductQuantityM = table.Column<int>(type: "int", nullable: false),
-                    ProductQuantityL = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Product", x => x.ProductID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ProductInCart",
                 columns: table => new
                 {
@@ -81,6 +60,20 @@ namespace Aladdin.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProductInCart", x => x.ProductInCartID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Supplier",
+                columns: table => new
+                {
+                    SupplierID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SupplierName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SupplierPhonNumber = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Supplier", x => x.SupplierID);
                 });
 
             migrationBuilder.CreateTable(
@@ -107,10 +100,42 @@ namespace Aladdin.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Product",
+                columns: table => new
+                {
+                    ProductID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProductColor = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SupplierID = table.Column<int>(type: "int", nullable: false),
+                    ProductRating = table.Column<int>(type: "int", nullable: false),
+                    ProductPrice = table.Column<int>(type: "int", nullable: false),
+                    ProductImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProductQuantityS = table.Column<int>(type: "int", nullable: false),
+                    ProductQuantityM = table.Column<int>(type: "int", nullable: false),
+                    ProductQuantityL = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Product", x => x.ProductID);
+                    table.ForeignKey(
+                        name: "FK_Product_Supplier_SupplierID",
+                        column: x => x.SupplierID,
+                        principalTable: "Supplier",
+                        principalColumn: "SupplierID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_CartProductInCart_ProductCartsCartID",
                 table: "CartProductInCart",
                 column: "ProductCartsCartID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Product_SupplierID",
+                table: "Product",
+                column: "SupplierID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -129,6 +154,9 @@ namespace Aladdin.Migrations
 
             migrationBuilder.DropTable(
                 name: "ProductInCart");
+
+            migrationBuilder.DropTable(
+                name: "Supplier");
         }
     }
 }

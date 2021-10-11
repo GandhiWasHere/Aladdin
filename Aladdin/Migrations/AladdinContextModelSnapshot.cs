@@ -113,6 +113,8 @@ namespace Aladdin.Migrations
 
                     b.HasKey("ProductID");
 
+                    b.HasIndex("SupplierID");
+
                     b.ToTable("Product");
                 });
 
@@ -155,6 +157,24 @@ namespace Aladdin.Migrations
                     b.ToTable("ProductInCart");
                 });
 
+            modelBuilder.Entity("Aladdin.Models.Supplier", b =>
+                {
+                    b.Property<int>("SupplierID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("SupplierName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SupplierPhonNumber")
+                        .HasColumnType("int");
+
+                    b.HasKey("SupplierID");
+
+                    b.ToTable("Supplier");
+                });
+
             modelBuilder.Entity("CartProductInCart", b =>
                 {
                     b.Property<int>("CartProductsProductInCartID")
@@ -170,6 +190,15 @@ namespace Aladdin.Migrations
                     b.ToTable("CartProductInCart");
                 });
 
+            modelBuilder.Entity("Aladdin.Models.Product", b =>
+                {
+                    b.HasOne("Aladdin.Models.Supplier", null)
+                        .WithMany("SupplierProducts")
+                        .HasForeignKey("SupplierID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("CartProductInCart", b =>
                 {
                     b.HasOne("Aladdin.Models.ProductInCart", null)
@@ -183,6 +212,11 @@ namespace Aladdin.Migrations
                         .HasForeignKey("ProductCartsCartID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Aladdin.Models.Supplier", b =>
+                {
+                    b.Navigation("SupplierProducts");
                 });
 #pragma warning restore 612, 618
         }

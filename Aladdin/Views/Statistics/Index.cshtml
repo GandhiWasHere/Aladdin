@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Aladdin.Controllers.StatisticsController.CustomerAddressView>
 @{
-    Layout= Layout = "~/Views/Shared/mylayout.cshtml";
+    Layout = "~/Views/Shared/_LayoutNOHEADERFOOTER.cshtml";
     ViewData["Title"] = "Index";
     List<string> address = new List<String>();
     List<int> counter = new List<int>();
@@ -13,7 +13,7 @@
     ViewBag.counter = counter.ToArray();
 }
 
-<div class="chart-wrapper" style="height:600px;margin-top:100px;">
+<div class="chart-wrapper" style="height:200px;">
     <h2>Customer Address Scatter</h2>
     <canvas id="main-chart" class="chart" height="100"></canvas>
 </div>

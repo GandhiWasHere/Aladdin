@@ -1,0 +1,138 @@
+﻿@model IEnumerable<Aladdin.Models.Supplier>
+
+@{
+    Layout = "~/Views/Shared/_LayoutNOHEADERFOOTER.cshtml";
+    ViewData["Title"] = "Index";
+}
+
+<h1>Suppliers List</h1>
+
+@section Scripts
+{
+    <script>
+    $('.Details').click(function () {
+    var elmId = $(this).attr("id");
+    getDetails(elmId);
+        console.log("ASDASD");
+    });
+
+        $('.Edit').click(function () {
+            var elmId = $(this).attr("id");
+            getEdit(elmId);
+            console.log("ASDASD");
+        });
+
+        $('.Delete').click(function () {
+            var elmId = $(this).attr("id");
+            getDelete(elmId);
+            console.log("ASDASD");
+        });
+
+
+        $('.Create').click(function () {
+            var elmId = $(this).attr("id");
+            getCreate(elmId);
+            console.log("ASDASD");
+        });
+
+
+
+
+        function getCreate(id) {
+            $.get('/Suppliers/Create', {}, function (data, status) {
+                console.log("Inside the Async Call");
+                console.log(status);
+                console.log(data);
+                //$('#getitem').html(data);
+                $("#maindiv").html(data);
+            })
+        }
+
+        function getDelete(id) {
+            $.get('/Suppliers/delete', { "id": id }, function (data, status) {
+                console.log("Inside the Async Call");
+                console.log(status);
+                console.log(data);
+                //$('#getitem').html(data);
+                $("#maindiv").html(data);
+            })
+        }
+
+
+
+
+
+
+        function getEdit(id) {
+            $.get('/Suppliers/edit', { "id": id }, function (data, status) {
+                console.log("Inside the Async Call");
+                console.log(status);
+                console.log(data);
+                //$('#getitem').html(data);
+                $("#maindiv").html(data);
+            })
+        }
+
+
+
+
+
+
+
+
+        function getDetails(id) {
+            $.get('/Suppliers/details', { "id": id }, function (data, status) {
+                console.log("Inside the Async Call");
+                console.log(status);
+                console.log(data);
+                //$('#getitem').html(data);
+                $("#maindiv").html(data);
+            })
+        }
+
+
+
+
+
+
+
+
+    </script>
+
+}
+<p>
+
+    <button type="button" id="Create" class="Create btn btn-primary">Create</button>
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SupplierName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SupplierPhonNumber)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SupplierName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SupplierPhonNumber)
+                </td>
+                <td>
+                    <button type="button" id="@item.SupplierID" class="Edit btn btn-primary">Edit</button> |
+                    <button type="button" id="@item.SupplierID" class="Details btn btn-primary">Details</button> |
+                    <button type="button" id="@item.SupplierID" class="Delete btn btn-primary">Delete</button> |
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

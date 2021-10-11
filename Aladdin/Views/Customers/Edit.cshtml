@@ -2,73 +2,89 @@
 
 @{
     ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_LayoutNOHEADERFOOTER.cshtml";
 }
 
 <h1>Edit</h1>
 
 <h4>Customer</h4>
 <hr />
+
+
+
+
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="CustomerID" />
-            <div class="form-group">
-                <label asp-for="CustomerName" class="control-label"></label>
-                <input asp-for="CustomerName" class="form-control" />
-                <span asp-validation-for="CustomerName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CustomerAddress" class="control-label"></label>
-                <input asp-for="CustomerAddress" class="form-control" />
-                <span asp-validation-for="CustomerAddress" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CustomerEmail" class="control-label"></label>
-                <input asp-for="CustomerEmail" class="form-control" />
-                <span asp-validation-for="CustomerEmail" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CustomerRole" class="control-label"></label>
-                <input asp-for="CustomerRole" class="form-control" />
-                <span asp-validation-for="CustomerRole" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CustomerPhoneNumber" class="control-label"></label>
-                <input asp-for="CustomerPhoneNumber" class="form-control" />
-                <span asp-validation-for="CustomerPhoneNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CartID" class="control-label"></label>
-                <input asp-for="CartID" class="form-control" />
-                <span asp-validation-for="CartID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ErrorMessage" class="control-label"></label>
-                <input asp-for="ErrorMessage" class="form-control" />
-                <span asp-validation-for="ErrorMessage" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CustomerPassword" class="control-label"></label>
-                <input asp-for="CustomerPassword" class="form-control" />
-                <span asp-validation-for="CustomerPassword" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CustomerImage" class="control-label"></label>
-                <input asp-for="CustomerImage" class="form-control" />
-                <span asp-validation-for="CustomerImage" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        <label for="fname">CustomerName</label>
+        <input type="text" id="CustomerName" name="fname" value=@Model.CustomerName><br><br>
+
+        <label for="fname">CustomerID-Primary-KEY</label>
+        <input type="text" id="CustomerID" name="fname" value=@Model.CustomerID><br><br>
+
+        <label for="lname">CustomerAddress</label>
+        <input type="text" id="CustomerAddress" name="lname" value=@Model.CustomerAddress><br><br>
+
+        <label for="lname">CustomerEmail</label>
+        <input type="email" id="CustomerEmail" name="lname" value=@Model.CustomerEmail><br><br>
+
+        <label for="lname">CustomerRole</label>
+        <input type="number" id="CustomerRole" name="lname" value=@Model.CustomerRole><br><br>
+
+        <label for="lname">CustomerPhoneNumber</label>
+        <input type="text" id="CustomerPhoneNumber" name="lname" value=@Model.CustomerPhoneNumber><br><br>
+
+        <label for="lname">CartID</label>
+        <input type="number" id="CartID" name="lname" value=@Model.CartID><br><br>
+
+        <label for="lname">CustomerPassword</label>
+        <input type="text" id="CustomerPassword" name="lname" value=@Model.CustomerPassword><br><br>
+
+        <label for="lname">CustomerImage</label>
+        <input type="file" id="CustomerImage" name="lname" value=@Model.CustomerImage><br><br>
+
+
+        <input type="button" value="Save" id="btn" class="btn btn-primary">
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
+
+
+
+
+
+
+
+
+
 
 @section Scripts {
+
+    <script>
+        $('#btn').click(function () {
+            var elmId = $(this).attr("id");
+            //getDetails(elmId);
+            console.log("ASDASD");
+            console.log($('#fname').val());
+            send();
+        });
+        function send() {
+            $.post("/customers/edit", {
+                CustomerID: $('#CustomerID').val(), CustomerName: $('#CustomerName').val(),
+                CustomerAddress: $('#CustomerAddress').val(), CustomerEmail: $('#CustomerEmail').val(),
+                CustomerRole: $('#CustomerRole').val(), CustomerPhoneNumber: $('#CustomerPhoneNumber').val(),
+                CartID: $('#CartID').val(), CustomerPassword: $('#CustomerPassword').val(),
+                CustomerImage: $('#CustomerImage').val()
+            }, function (data) {
+                console.log(data); // John
+                console.log(data); // 2pm
+                $("#maindiv").html(data);
+            });
+        }
+    </script>
+
+
+
+
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

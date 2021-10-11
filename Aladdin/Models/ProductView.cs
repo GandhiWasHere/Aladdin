@@ -17,6 +17,7 @@ namespace Aladdin.Models
         public ICollection<Supplier> ProductSuppliers { get; set; }
         public ICollection<Cart> ProductCarts { get; set; }
         public int ProductRating { get; set; }
+        public int SupplierID { get; set; }
         public int ProductPrice { get; set; }
         [BindProperty]
         [DataType(DataType.Upload)]

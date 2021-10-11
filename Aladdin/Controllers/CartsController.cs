@@ -86,6 +86,24 @@ namespace Aladdin.Controllers
             }
             return null;
         }
+
+        [HttpGet]
+        public async Task<IActionResult> CheckoutAsync(int cartid)
+        {
+            Cart c = _context.Cart.Where(s => s.CartID == cartid).Include(p => p.CartProducts).FirstOrDefault();
+            foreach (ProductInCart pic in c.CartProducts)
+            {
+                Product product = _context.Product.Where(s => s.ProductID == pic.ProductID).FirstOrDefault();
+                product.ProductQuantityL -= pic.ProductQuantityL;
+                product.ProductQuantityM -= pic.ProductQuantityM;
+                product.ProductQuantityS -= pic.ProductQuantityS;
+                Sell sell = new() { ProductID=pic.ProductID, Quantity=(pic.ProductQuantityL + pic.ProductQuantityM + pic.ProductQuantityS) };
+            }
+            c.CartProducts = null;
+            _context.Update(c);
+            await _context.SaveChangesAsync();
+            return View();
+        }
     }
 
 }

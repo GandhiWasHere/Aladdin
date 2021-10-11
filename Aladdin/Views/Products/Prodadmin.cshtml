@@ -1,0 +1,186 @@
+﻿@model IEnumerable<Aladdin.Models.Product>
+
+@{
+    ViewData["Title"] = "Prodadmin";
+    Layout = "~/Views/Shared/_LayoutNOHEADERFOOTER.cshtml";
+}
+
+
+
+
+
+
+@section Scripts
+{
+    <script>
+    $('.Details').click(function () {
+    var elmId = $(this).attr("id");
+    getDetails(elmId);
+        console.log("ASDASD");
+    });
+
+        $('.Edit').click(function () {
+            var elmId = $(this).attr("id");
+            getEdit(elmId);
+            console.log("ASDASD");
+        });
+
+        $('.Delete').click(function () {
+            var elmId = $(this).attr("id");
+            getDelete(elmId);
+            console.log("ASDASD");
+        });
+
+
+        $('.Create').click(function () {
+            var elmId = $(this).attr("id");
+            getCreate(elmId);
+            console.log("ASDASD");
+        });
+
+
+
+
+        function getCreate(id) {
+            $.get('/products/Create', {}, function (data, status) {
+                console.log("Inside the Async Call");
+                console.log(status);
+                console.log(data);
+                //$('#getitem').html(data);
+                $("#maindiv").html(data);
+            })
+        }
+
+        function getDelete(id) {
+            $.get('/products/delete', { "id": id }, function (data, status) {
+                console.log("Inside the Async Call");
+                console.log(status);
+                console.log(data);
+                //$('#getitem').html(data);
+                $("#maindiv").html(data);
+            })
+        }
+
+
+
+
+
+
+        function getEdit(id) {
+            $.get('/products/edit', { "id": id }, function (data, status) {
+                console.log("Inside the Async Call");
+                console.log(status);
+                console.log(data);
+                //$('#getitem').html(data);
+                $("#maindiv").html(data);
+            })
+        }
+
+
+
+
+
+
+
+
+        function getDetails(id) {
+            $.get('/products/details', { "id": id }, function (data, status) {
+                console.log("Inside the Async Call");
+                console.log(status);
+                console.log(data);
+                //$('#getitem').html(data);
+                $("#maindiv").html(data);
+            })
+        }
+
+
+
+    </script>
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1>Products List</h1>
+
+<p>
+    <button type="button" id="Create" class="Create btn btn-primary">Create</button>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductColor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductRating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductQuantityS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductQuantityM)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductQuantityL)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductColor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductRating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductImage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductQuantityS)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductQuantityM)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductQuantityL)
+                </td>
+                <td>
+                    
+                    <button type="button" id="@item.ProductID" class="Edit btn btn-primary">Edit</button> |
+                    <button type="button" id="@item.ProductID" class="Details btn btn-primary">Details</button> |
+                    <button type="button" id="@item.ProductID" class="Delete btn btn-primary">Delete</button> |
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
