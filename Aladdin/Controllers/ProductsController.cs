@@ -116,7 +116,7 @@ namespace Aladdin.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         // I edited the create function so we can add image to product
-        [HttpPost]
+        /*[HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ProductID,ProductName,ProductSize,ProductColor,ProductRating,ProductPrice,SupplierID,ProductImage")] ProductView model)
         {
@@ -141,7 +141,38 @@ namespace Aladdin.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(model);
+        }*/
+
+
+
+        [HttpPost]
+        
+        public async Task<IActionResult> Create([Bind("ProductID,ProductName,ProductSize,ProductColor,ProductRating,ProductPrice,SupplierID,ProductImage")] ProductView model)
+        {
+            if (ModelState.IsValid)
+            {
+                string uniqueFileName = UploadedFile(model);
+                Product product = new()
+                {
+                    ProductID = model.ProductID,
+                    ProductName = model.ProductName,
+                    ProductQuantityS = model.ProductSize,
+                    ProductColor = model.ProductColor,
+                    ProductRating = model.ProductRating,
+                    ProductPrice = model.ProductPrice,
+                    SupplierID = model.SupplierID,
+                    ProductImage = uniqueFileName
+
+                };
+
+                _context.Add(product);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(model);
         }
+
+
 
 
         // GET: Products/Edit/5
@@ -246,8 +277,23 @@ namespace Aladdin.Controllers
         }
 
         // POST: Products/Delete/5
-        [HttpPost, ActionName("Delete")]
+        /*[HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var product = await _context.Product.FindAsync(id);
+            _context.Product.Remove(product);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+*/
+
+
+
+
+
+        [HttpPost, ActionName("Delete")]
+        
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var product = await _context.Product.FindAsync(id);
