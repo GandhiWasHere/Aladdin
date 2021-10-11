@@ -31,6 +31,7 @@
         $('#btn-filter').click(filter);
         function filter() {
             var Stringvalue = $('#name-search').val();
+            console.log(Stringvalue);
             var conceptName = $('#colors-search').val();
             var minValue = $('#min-search').val();
             var maxValue = $('#max-search').val();
@@ -90,34 +91,21 @@
                 </li>
 
 
- @*               <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="rating-search" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Rating
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">1+</a>
-                        <a class="dropdown-item" href="#">2+</a>
-                        <a class="dropdown-item" href="#">3+</a>
-                        <a class="dropdown-item" href="#">4+</a>
-                        <a class="dropdown-item" href="#">5+</a>
-                    </div>
-                </li>*@
-
                 <li class="nav-item">
                     <form class="form-inline my-2 my-lg-0">
                         <label class="nav-link" for="price-min">Min Price:</label>
-                        <input class="nav-link" type="range" name="price-min" id="min-search" value="200" min="0" max="1000">
+                        <input class="nav-link" type="range" name="price-min" id="min-search" value="0" min="0" max="1000">
                     </form>
 
                 </li>
                 <li class="nav-item">
                     <form class="form-inline my-2 my-lg-0">
                         <label class="nav-link" for="price-max">Max Price:</label>
-                        <input class="nav-link" type="range" name="price-max" id="max-search" value="800" min="0" max="1000">
+                        <input class="nav-link" type="range" name="price-max" id="max-search" value="1000" min="0" max="1000">
                     </form>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" id="id=" btn-filter"">Filter</a>
+                    <a class="nav-link" href="#" id="btn-filter">Filter</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" id="btn-show">Show All</a>
