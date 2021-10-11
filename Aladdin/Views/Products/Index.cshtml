@@ -5,6 +5,7 @@
     ViewData["Title"] = "Index";
 }
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
 <h1>Index</h1>
 
 
@@ -36,7 +37,7 @@
             var minValue = $('#min-search').val();
             var maxValue = $('#max-search').val();
             var rating = $('#rating-search').val();
-            $.get('/Products/index', { searchColor: conceptName, searchString: Stringvalue, minValue: minValue, maxValue: maxValue, rating: rating}, function (data, status) {
+            $.get('/Products/index', { searchColor: conceptName, searchString: Stringvalue, minValue: minValue, maxValue: maxValue, rating: rating }, function (data, status) {
                 $('body').html(data);
             })
         }
@@ -50,26 +51,28 @@
     </script>
 }
 
-<p>
-    Name:<input type="text" name="SearchString" id="name-search" />
+<!--<form>-->
+<!---  Name  -->
+<!--Name:<input type="text" name="SearchString" id="name-search" />
 
-    <select name="colors" id="colors-search">
-        <option></option>
-        @foreach (var item in Model)
-        {
-            <option value=@Html.DisplayNameFor(modelItem => item.ProductColor)>@Html.DisplayFor(modelItem => item.ProductColor)</option>
-        }
-    </select>
-    <select name="rating" id="rating-search">
-        <option></option>
-        <option value=3>1+</option>
-        <option value=3>2+</option>
-        <option value=3>3+</option>
-        <option value=4>4+</option>
-    </select>
-    <!---  Price  -->
-    <span name="between-price">
-        <select name="rating" id="min-search">
+<select class="custom-select" name="colors" id="colors-search">
+    <option></option>-->
+@*        @foreach (var item in Model)
+    {
+        <option value=@Html.DisplayNameFor(modelItem => item.ProductColor)>@Html.DisplayFor(modelItem => item.ProductColor)</option>
+    }*@
+<!--</select>-->
+<!---  Rating  -->
+<!--<select class="custom-select" name="rating" id="rating-search">
+    <option></option>
+    <option value=3>1+</option>
+    <option value=3>2+</option>
+    <option value=3>3+</option>
+    <option value=4>4+</option>
+</select>-->
+<!---  Price  -->
+<!--<span name="between-price">
+        <select class="custom-select" name="rating" id="min-search">
             <option></option>
             <option value=100>100</option>
             <option value=200>200</option>
@@ -77,31 +80,110 @@
             <option value=400>400</option>
             <option value=500>500+</option>
         </select>
+        <label class="form-label select-label">Min</label>
         -
-        <select name="rating" id="max-search">
+        <select class="custom-select" name="rating" id="max-search">
             <option></option>
             <option value=100>100</option>
             <option value=200>200</option>
             <option value=300>300</option>
             <option value=400>400</option>
         </select>
+        <label class="form-label select-label">Max</label>
     </span>
 
     <input type="button" value="Filter" id="btn-filter" />
     <input type="button" value="Show-All" id="btn-show" />
-</p>
+</form>-->
+
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Color
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @foreach (var item in Model)
+                        {
+                            <a class="dropdown-item" href="#" value=@Html.DisplayNameFor(modelItem => item.ProductColor)>@Html.DisplayFor(modelItem => item.ProductColor)</a>
+                        }
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Rating
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Price
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <form class="form-inline my-2 my-lg-0">
+                        <label class="nav-link" for="price-min">Min Price:</label>
+                        <input class="nav-link" type="range" name="price-min" id="price-min" value="200" min="0" max="1000">
+                    </form>
+
+                </li>
+                <li class="nav-item">
+                    <form class="form-inline my-2 my-lg-0">
+                        <label class="nav-link" for="price-max">Max Price:</label>
+                        <input class="nav-link" type="range" name="price-max" id="price-max" value="800" min="0" max="1000">
+                    </form>
+                </li>
+
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sort
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Price</a>
+                        <a class="dropdown-item" href="#">New</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+
+
 
 <div class="row row-cols-1 row-cols-md-4 g-4">
     @foreach (var item in Model)
     {
         <div class="col">
-            <div class="card">
-                <img src="/images/@Html.DisplayFor(modelItem => item.ProductImage)" width="20" height="160" class="card-img-top" alt="...">
+            <div class="card product">
+                <img src="/images/@Html.DisplayFor(modelItem => item.ProductImage)" width="20" height="160" class="card-img-top" alt="">
                 <div class="card-body">
                     <h5 class="card-title">@Html.DisplayFor(modelItem => item.ProductName)</h5>
                     <p class="card-text">@Html.DisplayFor(modelItem => item.ProductPrice)₪</p>
-                    <button type="button" class="btn btn-primary Details" data-bs-toggle="modal" data-bs-target="#exampleModal" id="@item.ProductID">
-                        Details
+                    <button type="button" class="btn btn-info Details" data-bs-toggle="modal" data-bs-target="#exampleModal" id="@item.ProductID">
+                        View Details
                     </button>
                 </div>
             </div>
@@ -129,3 +211,12 @@
         </div>
     </div>
 </div>
+
+
+<script src="~/js/site.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+
