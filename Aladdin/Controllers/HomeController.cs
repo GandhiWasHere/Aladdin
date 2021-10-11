@@ -50,7 +50,8 @@ namespace Aladdin.Controllers
                 var props = new AuthenticationProperties();
                 HttpContext.SignInAsync(
                     CookieAuthenticationDefaults.AuthenticationScheme, principal, props).Wait();
-                return RedirectToAction("", "Admin");
+                //return RedirectToAction("", "Admin");
+                return RedirectToAction("AdminPage", "Admin");
             }
             else
             {

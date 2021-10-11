@@ -11,6 +11,7 @@ using System.Text;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Aladdin.Controllers
 {
@@ -24,32 +25,11 @@ namespace Aladdin.Controllers
         }
 
         // GET: Customers
-        public async Task<IActionResult> Index(string token)
+        [Authorize]
+        public async Task<IActionResult> Index( )
         {
-            static string CreateMD5(string input)
-            {
-                // Use input string to calculate MD5 hash
-                using (System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create())
-                {
-                    byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
-                    byte[] hashBytes = md5.ComputeHash(inputBytes);
-
-                    // Convert the byte array to hexadecimal string
-                    System.Text.StringBuilder sb = new StringBuilder();
-                    for (int i = 0; i < hashBytes.Length; i++)
-                    {
-                        sb.Append(hashBytes[i].ToString("X2"));
-                    }
-                    return sb.ToString();
-                }
-            }
-            var s = CreateMD5("admin");
-            if (s == token)
-            {
-
-                return View(await _context.Customer.ToListAsync());
-            }
-            return RedirectToAction("index", "Home");
+           return View(await _context.Customer.ToListAsync());
+         
         }
 
         // GET: Customers/Details/5
