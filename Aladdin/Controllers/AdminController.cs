@@ -1,4 +1,5 @@
 ﻿using Aladdin.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -40,10 +41,11 @@ namespace Aladdin.Controllers
         }
 
 
-
-        public IActionResult AdminPage(string password)
+        [Authorize]
+        public IActionResult AdminPage()
         {
-                return View("AdminPage1","Admin");
+            //ViewData["token"] = password;
+            return View("AdminPage1","Admin");
         }
 /*        public async Task<IActionResult> ProductsIndexAdmin(string searchColor, string searchString)
         {
