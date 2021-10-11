@@ -1,12 +1,14 @@
-﻿@model Aladdin.Models.Product
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@model Aladdin.Models.Product
 @{
     Layout = null;
     ViewData["Title"] = "Details";
+    var cart_id = HttpContextAccessor.HttpContext.Request.Cookies["cart_id"];
 }
 
 <script>
     $('#addcart').click(function () {
-        $.get('/carts/addproduct', { 'cartid': '1', 'productid':@Html.DisplayFor(model => model.ProductID), 'size': "L"})});
+        $.get('/carts/addproduct', { 'cartid': @cart_id , 'productid':@Html.DisplayFor(model => model.ProductID), 'size': "L"})});
 </script>
 
 <!DOCTYPE html>
@@ -26,70 +28,70 @@
 <body>
 
     <div id="Itemdetails">
-    <main class="container">
+        <main class="container">
 
-        <!-- Left Column / Headphones Image -->
-        <div class="left-column">
-            <img data-image="red" class="active" src="/images/@Html.DisplayFor(model => model.ProductImage)" alt="">
-        </div>
-
-
-        <!-- Right Column -->
-        <div class="right-column">
-
-            <!-- Product Description -->
-            <div class="product-description">
-                <h1>@Html.DisplayFor(model => model.ProductName)</h1>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet tempora dolore tempore, molestias
-                    beatae ipsam nemo et praesentium. Consequuntur, placeat!
-                </p>
+            <!-- Left Column / Headphones Image -->
+            <div class="left-column">
+                <img data-image="red" class="active" src="/images/@Html.DisplayFor(model => model.ProductImage)" alt="">
             </div>
 
-            <!-- Product Configuration -->
-            <div class="product-configuration">
 
-                <!-- Hat Sizes -->
-                <div class="hat-size-config">
-                    <span>Hat Size</span>
+            <!-- Right Column -->
+            <div class="right-column">
 
-                    <div class="size-choose">
-                        <button>S</button>
-                        <button>M</button>
-                        <button>L</button>
+                <!-- Product Description -->
+                <div class="product-description">
+                    <h1>@Html.DisplayFor(model => model.ProductName)</h1>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet tempora dolore tempore, molestias
+                        beatae ipsam nemo et praesentium. Consequuntur, placeat!
+                    </p>
+                </div>
+
+                <!-- Product Configuration -->
+                <div class="product-configuration">
+
+                    <!-- Hat Sizes -->
+                    <div class="hat-size-config">
+                        <span>Hat Size</span>
+
+                        <div class="size-choose">
+                            <button>S</button>
+                            <button>M</button>
+                            <button>L</button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Product Pricing -->
-            <div class="product-price">
-                <span>@Html.DisplayFor(model => model.ProductPrice)</span>
-                <button class="btn cart-btn" id="addcart">Add to cart</button>
-            </div>
-
-            <!-- Rating-->
-            <form action="#" method="post" id="commentform" class="comment-form">
-                <div class="comment-form-rating">
-                    <p class="your-rating">Your Rating</p>
-                    <div class="rate">
-                        <input type="radio" id="star5" name="rate" value="5" />
-                        <label for="star5" title="text">5 stars</label>
-                        <input type="radio" id="star4" name="rate" value="4" />
-                        <label for="star4" title="text">4 stars</label>
-                        <input type="radio" id="star3" name="rate" value="3" />
-                        <label for="star3" title="text">3 stars</label>
-                        <input type="radio" id="star2" name="rate" value="2" />
-                        <label for="star2" title="text">2 stars</label>
-                        <input type="radio" id="star1" name="rate" value="1" />
-                        <label for="star1" title="text">1 star</label>
-                    </div>
+                <!-- Product Pricing -->
+                <div class="product-price">
+                    <span>@Html.DisplayFor(model => model.ProductPrice)</span>
+                    <button class="btn cart-btn" id="addcart">Add to cart</button>
                 </div>
-                <p class="comment-form-comment">Your Review</p>
-                <textarea id="comment" name="comment" cols="30" rows="6" required=""></textarea>
-                <input class="btn submit-btn" type="submit">
-            </form>
-        </div>
-    </main>
+
+                <!-- Rating-->
+                <form action="#" method="post" id="commentform" class="comment-form">
+                    <div class="comment-form-rating">
+                        <p class="your-rating">Your Rating</p>
+                        <div class="rate">
+                            <input type="radio" id="star5" name="rate" value="5" />
+                            <label for="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4" name="rate" value="4" />
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" name="rate" value="3" />
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" name="rate" value="2" />
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" name="rate" value="1" />
+                            <label for="star1" title="text">1 star</label>
+                        </div>
+                    </div>
+                    <p class="comment-form-comment">Your Review</p>
+                    <textarea id="comment" name="comment" cols="30" rows="6" required=""></textarea>
+                    <input class="btn submit-btn" type="submit">
+                </form>
+            </div>
+        </main>
     </div>
 </body>
 </html>

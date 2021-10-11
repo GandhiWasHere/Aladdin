@@ -29,7 +29,7 @@ namespace Aladdin.Controllers
 
 
 
-
+       
         public async Task<IActionResult> Successfuly()
         {
             return View("Successfuly", "Admin");
@@ -43,33 +43,7 @@ namespace Aladdin.Controllers
 
         public IActionResult AdminPage(string password)
         {
-            static string CreateMD5(string input)
-            {
-                // Use input string to calculate MD5 hash
-                using (System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create())
-                {
-                    byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
-                    byte[] hashBytes = md5.ComputeHash(inputBytes);
-
-                    // Convert the byte array to hexadecimal string
-                    System.Text.StringBuilder sb = new StringBuilder();
-                    for (int i = 0; i < hashBytes.Length; i++)
-                    {
-                        sb.Append(hashBytes[i].ToString("X2"));
-                    }
-                    return sb.ToString();
-                }
-            }
-            var s = CreateMD5("admin");
-            if (s == password)
-            {
-                var x = from p in _context.Product select p;
-                ViewData["SSS"] = x;
-                ViewData["token"] = password;
-
                 return View("AdminPage1","Admin");
-            }
-            return View("Index");
         }
 /*        public async Task<IActionResult> ProductsIndexAdmin(string searchColor, string searchString)
         {
