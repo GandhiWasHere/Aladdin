@@ -219,3 +219,13 @@ section {
     height: 40rem;
     width: 80%;
 }
+
+.canvas {
+    display: flex;
+    justify-content: center;
+}
+
+.canvas-tophat {
+    height: 10rem;
+    width: 30rem;
+}

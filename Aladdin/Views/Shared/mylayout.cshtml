@@ -15,14 +15,14 @@
 </head>
 <body>
     <header>
-        <nav class="navbar-customized sticky">
+        <nav class="navbar sticky">
             <div class="title">
                 <p class="site-name">Aladdin</p>
             </div>
 
             <div class="nav-links">
                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Catalogue">Catalogue</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="">Catalogue</a>
                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
             </div>
 
@@ -35,9 +35,9 @@
                         </svg>
                     </button>
                 </form>
-                <a asp-area="" asp-controller="Home" asp-action="Cart" class="utils-cart">
+                <a asp-area="" asp-controller="carts" asp-action="Mycart" class="utils-cart">
                     <svg class="cart-icon">
-                        <use xlink:href="images/symbol-defs.svg#icon-cart" />
+                        <use xlink:href="images/symbol-defs.svg#icon-cart"/>
                     </svg>
                     (<span class="cart-item-count">0</span>)
                 </a>
