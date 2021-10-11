@@ -26,10 +26,12 @@
         console.log("ASDASDSAD");
         console.log($("#sup").html())
         $("#sup").click(test1)
-
         $("#prod").click(test2)
         $("#cust").click(test3)
-
+        $("#stat").click(test4)
+        
+        
+        $(".container").css('margin-left', '0px');
 
         function test1() {
 
@@ -50,7 +52,7 @@
 
             console.log($("#hid").html())
             var token = $("#hid").html();
-            $.get('/products/prodadmin', {}, function (data, status) {
+            $.get('/products/prodadmin', { token: token}, function (data, status) {
                 console.log("inside test1");
                 // console.log(status);
                 console.log(data);
@@ -63,7 +65,22 @@
 
             console.log($("#hid").html())
             var token = $("#hid").html();
-            $.get('/customers/index', {}, function (data, status) {
+            $.get('/customers/index', { token: token}, function (data, status) {
+                console.log("inside test1");
+                // console.log(status);
+                console.log(data);
+                $("#maindiv").html(data);
+            })
+            console.log("SSSSsS");
+        }
+
+
+
+        function test4() {
+
+            console.log($("#hid").html())
+            var token = $("#hid").html();
+            $.get('/statistics/index', { token: token}, function (data, status) {
                 console.log("inside test1");
                 // console.log(status);
                 console.log(data);
@@ -88,10 +105,6 @@
 
     <!-- Page Content -->
     <div style="margin-left:10%">
-
-        <div class="w3-container w3-teal">
-            <h1>Admin Page</h1>
-        </div>
 
         <button class="x" id="hid" hidden>@token</button>
 
