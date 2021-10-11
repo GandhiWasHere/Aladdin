@@ -1,9 +1,7 @@
 ﻿@model Aladdin.Models.Supplier
 
 @{
-    
 
-    Layout = "~/Views/Shared/_LayoutNOHEADERFOOTER.cshtml";
     ViewData["Title"] = "Details";
     var productsids = (List<int>)ViewData["productsids"];
     var productsnames = (List<string>)ViewData["productsnames"];
@@ -68,4 +66,7 @@
 
     </dl>
 </div>
-
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.SupplierID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

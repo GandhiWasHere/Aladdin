@@ -8,7 +8,7 @@
 
 <!DOCTYPE html>
 <html>
-<title>XXX</title>
+<title>Admin Page</title>
 
 
 <head>
@@ -27,6 +27,8 @@
         console.log($("#sup").html())
         $("#sup").click(test1)
 
+        $("#prod").click(test2)
+
 
         function test1() {
 
@@ -39,8 +41,21 @@
                 $("#maindiv").html(data);
             })
             console.log("SSSSsS");
+        }
 
 
+
+        function test2() {
+
+            console.log($("#hid").html())
+            var token = $("#hid").html();
+            $.get('/products/prodadmin', {}, function (data, status) {
+                console.log("inside test1");
+                // console.log(status);
+                console.log(data);
+                $("#maindiv").html(data);
+            })
+            console.log("SSSSsS");
         }
 
     </script>
@@ -61,15 +76,15 @@
     <div style="margin-left:25%">
 
         <div class="w3-container w3-teal">
-            <h1>My Page</h1>
+            <h1>Admin Page</h1>
         </div>
 
         <button class="x" id="hid" hidden>@token</button>
 
         <div class="w3-container1" id="maindiv">
             <h2>test</h2>
-            <p>The sidebar with is set with "style="width:25%".</p>
-            <p>The left margin of the page content is set to the same value.</p>
+            <p>Admin Only.</p>
+            <p>:)</p>
         </div>
 
     </div>
