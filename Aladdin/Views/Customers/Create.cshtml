@@ -1,6 +1,7 @@
 ﻿@model Aladdin.Models.Customer
 
 @{
+    Layout = "~/Views/Shared/_LayoutNOHEADERFOOTER.cshtml";
     ViewData["Title"] = "Create";
 }
 
@@ -8,46 +9,64 @@
 
 <h4>Customer</h4>
 <hr />
+
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="CustomerName" class="control-label"></label>
-                <input asp-for="CustomerName" class="form-control" />
-                <span asp-validation-for="CustomerName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CustomerPassword" class="control-label"></label>
-                <input asp-for="CustomerPassword" class="form-control" />
-                <span asp-validation-for="CustomerPassword" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CustomerAddress" class="control-label"></label>
-                <input asp-for="CustomerAddress" class="form-control" />
-                <span asp-validation-for="CustomerAddress" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CustomerEmail" class="control-label"></label>
-                <input asp-for="CustomerEmail" class="form-control" />
-                <span asp-validation-for="CustomerEmail" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CustomerPhoneNumber" class="control-label"></label>
-                <input asp-for="CustomerPhoneNumber" class="form-control" />
-                <span asp-validation-for="CustomerPhoneNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        <label for="fname">CustomerName</label>
+        <input type="text" id="CustomerName" name="fname" ><br><br>
+
+        <label for="lname">CustomerAddress</label>
+        <input type="text" id="CustomerAddress" name="lname" ><br><br>
+
+        <label for="lname">CustomerEmail</label>
+        <input type="email" id="CustomerEmail" name="lname" ><br><br>
+
+        <label for="lname">CustomerRole</label>
+        <input type="number" id="CustomerRole" name="lname" ><br><br>
+
+        <label for="lname">CustomerPhoneNumber</label>
+        <input type="text" id="CustomerPhoneNumber" name="lname" ><br><br>
+
+        <label for="lname">CartID</label>
+        <input type="number" id="CartID" name="lname" ><br><br>
+
+        <label for="lname">CustomerPassword</label>
+        <input type="text" id="CustomerPassword" name="lname" ><br><br>
+
+        <label for="lname">CustomerImage</label>
+        <input type="file" id="CustomerImage" name="lname" ><br><br>
+
+
+        <input type="button" value="Create" id="btn" class="btn btn-primary">
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
+
+    <script>
+        $('#btn').click(function () {
+            var elmId = $(this).attr("id");
+            //getDetails(elmId);
+            console.log("ASDASD");
+            console.log($('#fname').val());
+            send();
+        });
+        function send() {
+            $.post("/customers/create", {
+                CustomerName: $('#CustomerName').val(),
+                CustomerAddress: $('#CustomerAddress').val(), CustomerEmail: $('#CustomerEmail').val(),
+                CustomerRole: $('#CustomerRole').val(), CustomerPhoneNumber: $('#CustomerPhoneNumber').val(),
+                CartID: $('#CartID').val(), CustomerPassword: $('#CustomerPassword').val(),
+                CustomerImage: $('#CustomerImage').val()
+            }, function (data) {
+                console.log(data); // John
+                console.log(data); // 2pm
+                $("#maindiv").html(data);
+            });
+        }
+    </script>
+
+
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

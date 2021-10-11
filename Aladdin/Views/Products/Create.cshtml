@@ -2,44 +2,48 @@
 
 @{
     ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_LayoutNOHEADERFOOTER.cshtml";
 }
 <h1>Create</h1>
 
 <h4>Product</h4>
 <hr />
+
+
 <div class="row">
     <div class="col-md-4">
         <label for="fname">ProductName</label>
-        <input type="text" id="ProductName" name="fname" ><br><br>
+        <input type="text" id="ProductName" name="fname"><br><br>
+
+        <label for="fname">SupplierID-Foreign-KEY</label>
+        <input type="number" id="SupplierID" name="fname"><br><br>
+
         <label for="lname">ProductQuantityS</label>
-        <input type="number" id="ProductQuantityS" name="lname" ><br><br>
+        <input type="number" id="ProductQuantityS" name="lname"><br><br>
 
         <label for="lname">ProductQuantityM</label>
-        <input type="number" id="ProductQuantityM" name="lname" ><br><br>
+        <input type="number" id="ProductQuantityM" name="lname"><br><br>
 
         <label for="lname">ProductQuantityL</label>
-        <input type="number" id="ProductQuantityL" name="lname" ><br><br>
+        <input type="number" id="ProductQuantityL" name="lname"><br><br>
 
         <label for="lname">ProductColor</label>
-        <input type="text" id="ProductColor" name="lname" ><br><br>
-
+        <input type="text" id="ProductColor" name="lname"><br><br>
 
         <label for="lname">ProductRating</label>
-        <input type="number" id="ProductRating" name="lname" ><br><br>
+        <input type="number" id="ProductRating" name="lname"><br><br>
 
         <label for="lname">ProductPrice</label>
-        <input type="number" id="ProductPrice" name="lname" ><br><br>
+        <input type="number" id="ProductPrice" name="lname"><br><br>
 
         <label for="lname">ProductImage</label>
-        <input type="file" id="ProductImage" name="lname" ><br><br>
+        <input type="file" id="ProductImage" name="lname"><br><br>
 
 
-        <label for="lname">SupplierID</label>
-        <input type="text" id="SupplierID" name="lname" ><br><br>
-
-        <input type="button" value="Save" id="btn">
+        <input type="button" value="Save" id="btn" class="btn btn-primary">
     </div>
 </div>
+
 
 
 
@@ -53,6 +57,8 @@
         });
     </script>
 
+
+
     <script>
         $('#btn').click(function () {
             var elmId = $(this).attr("id");
@@ -61,12 +67,17 @@
             console.log($('#fname').val());
             send();
         });
-
-        
         function send() {
+
             $.post("/products/create", {
                 
-                ProductName: $('#ProductName').val(), ProductColor: $('#ProductColor').val(), ProductSize: $('#ProductSize').val(), SupplierID: $('#SupplierID').val(), ProductRating: $('#ProductRating').val(), ProductPrice: $('#ProductPrice').val(), ProductImage: $('#ProductImage').val(), ProductQuantityS: $('#ProductQuantityS').val(), ProductQuantityM: $('#ProductQuantityM').val(), ProductQuantityL: $('#ProductQuantityL').val()
+                ProductName: $('#ProductName').val(),
+                ProductColor: $('#ProductColor').val(),
+                SupplierID: $('#SupplierID').val(), ProductRating: $('#ProductRating').val(),
+                ProductPrice: $('#ProductPrice').val(), ProductImage: $('#ProductImage').val(),
+                ProductQuantityS: $('#ProductQuantityS').val(), ProductQuantityM: $('#ProductQuantityM').val(),
+                ProductQuantityL: $('#ProductQuantityL').val()
+
             }, function (data) {
                 console.log(data); // John
                 console.log(data); // 2pm
@@ -74,6 +85,7 @@
             });
         }
     </script>
+
 
 
 }

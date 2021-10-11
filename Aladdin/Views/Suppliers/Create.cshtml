@@ -18,7 +18,7 @@
                 <input type="text" id="SupplierPhoneNumber" name="lname"><br><br>
                 <label for="s">SupplierProducts List Will be Shown but Entered Via the Product TAB</label>
 
-                <input type="button" value="Save" id="btn">
+                <input type="button" value="Save" id="btn" class="btn btn-primary">
             </div>
         </div>
 
@@ -40,6 +40,7 @@
             $.post("/Suppliers/create", { SupplierID: $('#SupplierID').val(), SupplierName: $('#SupplierName').val(), SupplierPhonNumber: $('#SupplierPhoneNumber').val() }, function (data) {
                 console.log(data); // John
                 console.log(data); // 2pm
+                $("#maindiv").html(data);
             });
         }
     </script>

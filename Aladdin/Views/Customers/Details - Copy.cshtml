@@ -1,7 +1,6 @@
 ﻿@model Aladdin.Models.Customer
 
 @{
-    Layout = "~/Views/Shared/_LayoutNOHEADERFOOTER.cshtml";
     ViewData["Title"] = "Details";
 }
 
@@ -66,4 +65,8 @@
             @Html.DisplayFor(model => model.CustomerImage)
         </dd>
     </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CustomerID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
 </div>

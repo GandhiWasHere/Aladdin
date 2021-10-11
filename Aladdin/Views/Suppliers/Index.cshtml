@@ -5,7 +5,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Suppliers List</h1>
 
 @section Scripts
 {
@@ -102,7 +102,7 @@
 }
 <p>
 
-    <button type="button" id="Create" class="Create">Create</button>
+    <button type="button" id="Create" class="Create btn btn-primary">Create</button>
 
 </p>
 <table class="table">
@@ -128,9 +128,9 @@
                     @Html.DisplayFor(modelItem => item.SupplierPhonNumber)
                 </td>
                 <td>
-                    <button type="button" id="@item.SupplierID" class="Edit">Edit</button> |
-                    <button type="button" id="@item.SupplierID" class="Details">Details</button> |
-                    <button type="button" id="@item.SupplierID" class="Delete">Delete</button> |
+                    <button type="button" id="@item.SupplierID" class="Edit btn btn-primary">Edit</button> |
+                    <button type="button" id="@item.SupplierID" class="Details btn btn-primary">Details</button> |
+                    <button type="button" id="@item.SupplierID" class="Delete btn btn-primary">Delete</button> |
                 </td>
             </tr>
         }

@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Edit";
-Layout = "~/Views/Shared/_LayoutNOHEADERFOOTER.cshtml";
+    Layout = "~/Views/Shared/_LayoutNOHEADERFOOTER.cshtml";
 }
 
 <h1>Edit</h1>
@@ -11,10 +11,21 @@ Layout = "~/Views/Shared/_LayoutNOHEADERFOOTER.cshtml";
 <hr />
 
 
+
+
+
+
 <div class="row">
     <div class="col-md-4">
         <label for="fname">ProductName</label>
         <input type="text" id="ProductName" name="fname" value=@Model.ProductName><br><br>
+
+        <label for="fname">ProductID-Primary-KEY</label>
+        <input type="text" id="ProductID" name="fname" value=@Model.ProductID><br><br>
+
+        <label for="fname">SupplierID-Foreign-KEY</label>
+        <input type="text" id="SupplierID" name="fname" value=@Model.SupplierID><br><br>
+
         <label for="lname">ProductQuantityS</label>
         <input type="number" id="ProductQuantityS" name="lname" value=@Model.ProductQuantityS><br><br>
 
@@ -27,7 +38,6 @@ Layout = "~/Views/Shared/_LayoutNOHEADERFOOTER.cshtml";
         <label for="lname">ProductColor</label>
         <input type="text" id="ProductColor" name="lname" value=@Model.ProductColor><br><br>
 
-
         <label for="lname">ProductRating</label>
         <input type="number" id="ProductRating" name="lname" value=@Model.ProductRating><br><br>
 
@@ -37,16 +47,11 @@ Layout = "~/Views/Shared/_LayoutNOHEADERFOOTER.cshtml";
         <label for="lname">ProductImage</label>
         <input type="file" id="ProductImage" name="lname" value=@Model.ProductImage><br><br>
 
-        <label for="lname">ProductID</label>
-        <input type="number" id="ProductID" name="lname" value=@Model.ProductID><br><br>
 
-
-        <label for="lname">SupplierID</label>
-        <input type="text" id="SupplierID" name="lname" value=@Model.SupplierID><br><br>
-
-        <input type="button" value="Save" id="btn">
+        <input type="button" value="Save" id="btn" class="btn btn-primary">
     </div>
 </div>
+
 
 
 
@@ -61,16 +66,21 @@ Layout = "~/Views/Shared/_LayoutNOHEADERFOOTER.cshtml";
             console.log($('#fname').val());
             send();
         });
-
-        ProductID, ProductName, ProductColor, ProductSize, SupplierID, ProductRating, ProductPrice, ProductImage, ProductQuantityS, ProductQuantityM, ProductQuantityL
         function send() {
+            
             $.post("/products/edit", {
-                ProductID: $('#ProductID').val(),
-                ProductName: $('#ProductName').val(), ProductColor: $('#ProductColor').val(), ProductSize: $('#ProductSize').val(), SupplierID: $('#SupplierID').val(), ProductRating: $('#ProductRating').val(), ProductPrice: $('#ProductPrice').val(), ProductImage: $('#ProductImage').val(), ProductQuantityS: $('#ProductQuantityS').val(), ProductQuantityM: $('#ProductQuantityM').val(), ProductQuantityL: $('#ProductQuantityL').val()}, function (data) {
-            console.log(data); // John
+                ProductName: $('#ProductName').val(),
+                ProductColor: $('#ProductColor').val(),
+                SupplierID: $('#SupplierID').val(), ProductRating: $('#ProductRating').val(),
+                ProductPrice: $('#ProductPrice').val(), ProductImage: $('#ProductImage').val(),
+                ProductQuantityS: $('#ProductQuantityS').val(), ProductQuantityM: $('#ProductQuantityM').val(),
+                ProductQuantityL: $('#ProductQuantityL').val()
+                
+            }, function (data) {
+                console.log(data); // John
                 console.log(data); // 2pm
                 $("#maindiv").html(data);
-        });
+            });
         }
     </script>
 

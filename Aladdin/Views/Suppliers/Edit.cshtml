@@ -17,7 +17,7 @@
         <input type="text" id="SupplierPhoneNumber" name="lname" value=@Model.SupplierPhonNumber><br><br>
         <label for="lname">SupplierID</label>
         <input type="text" id="SupplierID" name="lname" value=@Model.SupplierID><br><br>
-        <input type="button" value="Save" id="btn">
+        <input type="button" value="Save" id="btn" class="btn btn-primary">
     </div>
 </div>
 
@@ -35,7 +35,8 @@
         function send() {
             $.post("/Suppliers/edit", { SupplierID: $('#SupplierID').val(), SupplierName: $('#SupplierName').val(), SupplierPhonNumber: $('#SupplierPhoneNumber').val()}, function (data) {
             console.log(data); // John
-            console.log(data); // 2pm
+                console.log(data); // 2pm
+                $("#maindiv").html(data);
         });
         }
     </script>
