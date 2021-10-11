@@ -222,10 +222,15 @@ section {
 
 .canvas {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .canvas-tophat {
     height: 10rem;
     width: 30rem;
+}
+
+.video {
+    width: 62rem;
 }
