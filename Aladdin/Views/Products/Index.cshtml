@@ -14,9 +14,9 @@
     <script>
         $('.dropdown-toggle').dropdown();
 
-        $(".dropdown-menu a").click(function () {
+        $(".dropdown-item").click(function () {
             var selText = $(this).text();
-            $(this).parents('.select').innerText=selText;
+            $(this).parents('.dropdown').find('.dropdown-toggle').html(selText);
         });
 
         $('.Details').click(function () {
@@ -25,16 +25,13 @@
         });
         function getDetails(id) {
             $.get('/Products/details', { "id": id }, function (data, status) {
-@*              console.log("Inside the Async Call");
-                console.log(status);
-                console.log(data);*@
                 $('#getitem').html(data);
             })
         }
         $('#btn-filter').click(filter);
         function filter() {
             var Stringvalue = $('#name-search').val();
-            var conceptName = $('#colors-search').find(":selected").text();
+            var conceptName = $('#colors-search').val();
             var minValue = $('#min-search').val();
             var maxValue = $('#max-search').val();
             var rating = $('#rating-search').val();
@@ -67,42 +64,44 @@
                     <input class="form-control mr-sm-2" type="search" placeholder="Name Search" aria-label="Search" id="name-search">
                 </li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Color
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="colors-search">
-                        @foreach (var item in Model)
-                        {
-                            <a class="dropdown-item" href="#" value=@Html.DisplayNameFor(modelItem => item.ProductColor)>@Html.DisplayFor(modelItem => item.ProductColor)</a>
-                        }
-                    </div>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <select name="rating" id="rating-search" class="nav-link dropdown-toggle">
-                            <option class="dropdown-item" disabled selected>Rating</option>
-                            <option class="dropdown-item" value=3>1+</option>
-                            <option class="dropdown-item" value=3>2+</option>
-                            <option class="dropdown-item" value=3>3+</option>
-                            <option class="dropdown-item" value=4>4+</option>
+                <li class="nav-item">
+                    <form class="form-inline my-2 my-lg-0 select-box">
+                        <select class="nav-link select-box" aria-labelledby="navbarDropdown" id="colors-search">
+                            <option disabled selected>Color</option>
+                            @foreach (var item in Model)
+                            {
+                                <option value=@Html.DisplayNameFor(modelItem => item.ProductColor)>@Html.DisplayFor(modelItem => item.ProductColor)</option>
+                            }
                         </select>
-                    </div>
+                    </form>
                 </li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <li class="nav-item">
+                    <form class="form-inline my-2 my-lg-0 select-box">
+                        <select class="nav-link select-box" aria-labelledby="navbarDropdown" id="rating-search">
+                            <option disabled selected >Rating</option>
+                            <option value="1">1+</option>
+                            <option value="2">2+</option>
+                            <option value="3">3+</option>
+                            <option value="4">4+</option>
+                            <option value="5">5+</option>
+                        </select>
+                    </form>
+                </li>
+
+
+ @*               <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="rating-search" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Rating
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="rating-search">
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">1+</a>
                         <a class="dropdown-item" href="#">2+</a>
                         <a class="dropdown-item" href="#">3+</a>
                         <a class="dropdown-item" href="#">4+</a>
                         <a class="dropdown-item" href="#">5+</a>
                     </div>
-                </li>
+                </li>*@
 
                 <li class="nav-item">
                     <form class="form-inline my-2 my-lg-0">

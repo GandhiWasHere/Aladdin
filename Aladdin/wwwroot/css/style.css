@@ -256,3 +256,10 @@ p {
 .nav-link {
     border: hidden;
 }
+
+.select-box {
+    -webkit-border-radius: 0;
+    border: 0;
+    outline: 1px solid #ccc;
+    outline-offset: -1px;
+}
