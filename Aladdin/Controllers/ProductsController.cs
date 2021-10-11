@@ -221,7 +221,7 @@ namespace Aladdin.Controllers
             byte[] bytes = Convert.FromBase64String(t);
 
             // Requires System.IO
-            string ImageName = "ttt.png";
+            
             string uniqueFileName = "";
             string uploadsFolder = Path.Combine(_webhost.WebRootPath, "images");
             Random r = new Random();
@@ -229,8 +229,13 @@ namespace Aladdin.Controllers
             uniqueFileName = Guid.NewGuid().ToString() + "_" + num.ToString() + ".png";
             string filePath = Path.Combine(uploadsFolder, uniqueFileName);
             System.IO.File.WriteAllBytes(filePath, bytes);
-            var pa = filePath.Substring(57);  // remove data:image/png;base64,
-            return pa;
+
+            var se = filePath.Split("\\");
+            var filenameFinal = se[se.Length -1];
+            //var pa = filePath.Substring(57);  // remove data:image/png;base64,
+            return filenameFinal;
+        
+        
         }
 
 
