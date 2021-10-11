@@ -1,0 +1,8 @@
+﻿
+.nav-link {
+    border: hidden;
+}
+
+.product .card {
+    border: hidden !important;
+}

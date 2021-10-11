@@ -6,6 +6,7 @@
 }
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="~/css/products.css">
 
 <h1>Index</h1>
 
@@ -32,7 +33,7 @@
         function filter() {
             var Stringvalue = $('#name-search').val();
             console.log(Stringvalue);
-            var conceptName = $('#colors-search').val();
+            var conceptName = $('#colors-search').find(":selected").text();
             var minValue = $('#min-search').val();
             var maxValue = $('#max-search').val();
             var rating = $('#rating-search').val();
@@ -71,7 +72,10 @@
                             <option disabled selected>Color</option>
                             @foreach (var item in Model)
                             {
-                                <option value=@Html.DisplayNameFor(modelItem => item.ProductColor)>@Html.DisplayFor(modelItem => item.ProductColor)</option>
+                                <option 
+                                        value=@Html.DisplayNameFor(modelItem => item.ProductColor)>
+                            @Html.DisplayFor(modelItem => item.ProductColor)
+                                </option>
                             }
                         </select>
                     </form>
@@ -135,7 +139,7 @@
     @foreach (var item in Model)
     {
         <div class="col">
-            <div class="card product">
+            <div class="product card">
                 <img src="/images/@Html.DisplayFor(modelItem => item.ProductImage)" width="20" height="160" class="card-img-top" alt="">
                 <div class="card-body">
                     <h5 class="card-title">@Html.DisplayFor(modelItem => item.ProductName)</h5>
