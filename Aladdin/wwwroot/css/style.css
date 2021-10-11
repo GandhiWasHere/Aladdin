@@ -252,3 +252,7 @@ p {
         top: -85px;
     }
 }
+
+.nav-link {
+    border: hidden;
+}

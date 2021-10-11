@@ -4,5 +4,7 @@
 // Write your JavaScript code.
 
 
-$('.dropdown-toggle').dropdown();
+
+
+
 
