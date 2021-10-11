@@ -72,10 +72,7 @@
                             <option disabled selected>Color</option>
                             @foreach (var item in Model)
                             {
-                                <option 
-                                        value=@Html.DisplayNameFor(modelItem => item.ProductColor)>
-                            @Html.DisplayFor(modelItem => item.ProductColor)
-                                </option>
+                                <option value=@Html.DisplayNameFor(modelItem => item.ProductColor)>@Html.DisplayFor(modelItem => item.ProductColor)</option>
                             }
                         </select>
                     </form>
