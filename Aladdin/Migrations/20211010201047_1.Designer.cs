@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Aladdin.Migrations
 {
     [DbContext(typeof(AladdinContext))]
-    [Migration("20211009110435_4")]
-    partial class _4
+    [Migration("20211010201047_1")]
+    partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

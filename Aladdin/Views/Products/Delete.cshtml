@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_LayoutNOHEADERFOOTER.cshtml";
 }
 
 <h1>Delete</h1>
@@ -10,42 +11,48 @@
 <div>
     <h4>Product</h4>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProductName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductColor)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProductColor)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductRating)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProductRating)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductPrice)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProductPrice)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductImage)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProductImage)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="ProductID" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+
+    <div class="1row">
+        <div class="col-md-4">
+            <label for="fname">ProductName</label>
+            <input type="text" id="ProductName" name="fname" value=@Model.ProductName><br><br>
+            <label for="lname">ProductID</label>
+            <input type="text" id="ProductID" name="lname" value=@Model.ProductID><br><br>
+            <label for="lname">SupplierID</label>
+            <input type="text" id="SupplierID" name="lname" value=@Model.SupplierID><br><br>
+            <input type="button" value="Delete" id="btn" class="Create btn btn-primary">
+        </div>
+    </div>
 </div>
+
+
+
+
+
+@section Scripts {
+
+    <script>
+        $('#btn').click(function () {
+            var elmId = $(this).attr("id");
+            //getDetails(elmId);
+            console.log("ASDASD");
+            console.log($('#ProductID').val());
+            send($('#ProductID').val());
+        });
+
+
+
+        function send() {
+            $.post("/products/delete", { id: $('#ProductID').val()}, function (data) {
+                console.log(data); // John
+                console.log(data); // 2pm
+                $("#maindiv").html(data);
+            });
+        }
+    </script>
+
+
+
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

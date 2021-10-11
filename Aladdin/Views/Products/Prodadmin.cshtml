@@ -1,11 +1,14 @@
-﻿@model IEnumerable<Aladdin.Models.Customer>
+﻿@model IEnumerable<Aladdin.Models.Product>
 
 @{
+    ViewData["Title"] = "Prodadmin";
     Layout = "~/Views/Shared/_LayoutNOHEADERFOOTER.cshtml";
-    ViewData["Title"] = "Index";
 }
 
-<h1>Customers list</h1>
+
+
+
+
 
 @section Scripts
 {
@@ -39,7 +42,7 @@
 
 
         function getCreate(id) {
-            $.get('/customers/Create', {}, function (data, status) {
+            $.get('/products/Create', {}, function (data, status) {
                 console.log("Inside the Async Call");
                 console.log(status);
                 console.log(data);
@@ -49,7 +52,7 @@
         }
 
         function getDelete(id) {
-            $.get('/customers/delete', { "id": id }, function (data, status) {
+            $.get('/products/delete', { "id": id }, function (data, status) {
                 console.log("Inside the Async Call");
                 console.log(status);
                 console.log(data);
@@ -57,11 +60,14 @@
                 $("#maindiv").html(data);
             })
         }
+
+
+
 
 
 
         function getEdit(id) {
-            $.get('/customers/edit', { "id": id }, function (data, status) {
+            $.get('/products/edit', { "id": id }, function (data, status) {
                 console.log("Inside the Async Call");
                 console.log(status);
                 console.log(data);
@@ -70,8 +76,15 @@
             })
         }
 
+
+
+
+
+
+
+
         function getDetails(id) {
-            $.get('/customers/details', { "id": id }, function (data, status) {
+            $.get('/products/details', { "id": id }, function (data, status) {
                 console.log("Inside the Async Call");
                 console.log(status);
                 console.log(data);
@@ -79,9 +92,26 @@
                 $("#maindiv").html(data);
             })
         }
+
+
+
     </script>
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1>Products List</h1>
 
 <p>
     <button type="button" id="Create" class="Create btn btn-primary">Create</button>
@@ -90,31 +120,28 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CustomerName)
+                @Html.DisplayNameFor(model => model.ProductName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CustomerAddress)
+                @Html.DisplayNameFor(model => model.ProductColor)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CustomerEmail)
+                @Html.DisplayNameFor(model => model.ProductRating)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CustomerRole)
+                @Html.DisplayNameFor(model => model.ProductPrice)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CustomerPhoneNumber)
+                @Html.DisplayNameFor(model => model.ProductImage)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CartID)
+                @Html.DisplayNameFor(model => model.ProductQuantityS)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ErrorMessage)
+                @Html.DisplayNameFor(model => model.ProductQuantityM)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CustomerPassword)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CustomerImage)
+                @Html.DisplayNameFor(model => model.ProductQuantityL)
             </th>
             <th></th>
         </tr>
@@ -124,36 +151,34 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CustomerName)
+                    @Html.DisplayFor(modelItem => item.ProductName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CustomerAddress)
+                    @Html.DisplayFor(modelItem => item.ProductColor)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CustomerEmail)
+                    @Html.DisplayFor(modelItem => item.ProductRating)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CustomerRole)
+                    @Html.DisplayFor(modelItem => item.ProductPrice)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CustomerPhoneNumber)
+                    @Html.DisplayFor(modelItem => item.ProductImage)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CartID)
+                    @Html.DisplayFor(modelItem => item.ProductQuantityS)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ErrorMessage)
+                    @Html.DisplayFor(modelItem => item.ProductQuantityM)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CustomerPassword)
+                    @Html.DisplayFor(modelItem => item.ProductQuantityL)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CustomerImage)
-                </td>
-                <td>
-                    <button type="button" id="@item.CustomerID" class="Edit btn btn-primary">Edit</button> |
-                    <button type="button" id="@item.CustomerID" class="Details btn btn-primary">Details</button> |
-                    <button type="button" id="@item.CustomerID" class="Delete btn btn-primary">Delete</button> |
+                    
+                    <button type="button" id="@item.ProductID" class="Edit btn btn-primary">Edit</button> |
+                    <button type="button" id="@item.ProductID" class="Details btn btn-primary">Details</button> |
+                    <button type="button" id="@item.ProductID" class="Delete btn btn-primary">Delete</button> |
                 </td>
             </tr>
         }

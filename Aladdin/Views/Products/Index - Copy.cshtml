@@ -1,0 +1,132 @@
+﻿@model IEnumerable<Aladdin.Models.Product>
+
+@{
+    Layout = "~/Views/Shared/mylayout.cshtml";
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+
+
+
+
+@section Scripts
+{
+    <script>
+        $('.Details').click(function () {
+            var elmId = $(this).attr("id");
+            getDetails(elmId);
+        });
+        function getDetails(id) {
+            $.get('/Products/details', { "id": id }, function (data, status) {
+                console.log("Inside the Async Call");
+                console.log(status);
+                console.log(data);
+                $('#getitem').html(data);
+            })
+
+        }
+
+
+        $('#btn-filter').click(filter);
+        function filter() {
+            var Stringvalue = $('#name-search').val();
+            var conceptName = $('#colors-search').find(":selected").text();
+            var minValue = $('#min-search').val();
+            var maxValue = $('#max-search').val();
+            var rating = $('#rating-search').val();
+            $.get('/Products/index', { searchColor: conceptName, searchString: Stringvalue, minValue: minValue, maxValue: maxValue, rating: rating}, function (data, status) {
+                $('body').html(data);
+            })
+        }
+
+        $('#btn-show').click(show);
+        function show() {
+            $.get('/Products/index', function (data, status) {
+                $('body').html(data);
+                
+            })
+        }
+    </script>
+}
+
+<p>
+    Name:<input type="text" name="SearchString" id="name-search" />
+
+    <select name="colors" id="colors-search">
+        <option></option>
+        @foreach (var item in Model)
+        {
+            <option value=@Html.DisplayNameFor(modelItem => item.ProductColor)>@Html.DisplayFor(modelItem => item.ProductColor)</option>
+        }
+    </select>
+    <select name="rating" id="rating-search">
+        <option></option>
+        <option value=3>1+</option>
+        <option value=3>2+</option>
+        <option value=3>3+</option>
+        <option value=4>4+</option>
+    </select>
+    <!---  Price  -->
+    <span name="between-price">
+        <select name="rating" id="min-search">
+            <option></option>
+            <option value=100>100</option>
+            <option value=200>200</option>
+            <option value=300>300</option>
+            <option value=400>400</option>
+            <option value=500>500+</option>
+        </select>
+        -
+        <select name="rating" id="max-search">
+            <option></option>
+            <option value=100>100</option>
+            <option value=200>200</option>
+            <option value=300>300</option>
+            <option value=400>400</option>
+        </select>
+    </span>
+
+    <input type="button" value="Filter" id="btn-filter" />
+    <input type="button" value="Show-All" id="btn-show" />
+</p>
+
+<div class="row row-cols-1 row-cols-md-4 g-4">
+    @foreach (var item in Model)
+    {
+        <div class="col">
+            <div class="card">
+                <img src="/images/@Html.DisplayFor(modelItem => item.ProductImage)" width="20" height="160" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.ProductName)</h5>
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.ProductPrice)₪</p>
+                    <button type="button" class="btn btn-primary Details" data-bs-toggle="modal" data-bs-target="#exampleModal" id="@item.ProductID">
+                        Details
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Aladdin's Hat Shop</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="getitem">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

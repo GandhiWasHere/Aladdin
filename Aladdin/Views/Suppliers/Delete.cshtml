@@ -1,6 +1,7 @@
 ﻿@model Aladdin.Models.Supplier
 
 @{
+    Layout = "~/Views/Shared/_LayoutNOHEADERFOOTER.cshtml";
     ViewData["Title"] = "Delete";
 }
 
@@ -9,25 +10,45 @@
 <h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>Supplier</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SupplierName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SupplierName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SupplierPhonNumber)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SupplierPhonNumber)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="SupplierID" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+
+
+    <div class="1row">
+        <div class="col-md-4">
+            <label for="fname">SupplierName</label>
+            <input type="text" id="SupplierName" name="fname" value=@Model.SupplierName><br><br>
+            <label for="lname">SupplierPhoneNumber</label>
+            <input type="text" id="SupplierPhoneNumber" name="lname" value=@Model.SupplierPhonNumber><br><br>
+            <label for="lname">SupplierID</label>
+            <input type="text" id="SupplierID" name="lname" value=@Model.SupplierID><br><br>
+            <input type="button" value="Delete" id="btn" class="Create btn btn-primary">
+        </div>
+    </div>
 </div>
+
+@section Scripts {
+
+    <script>
+        $('#btn').click(function () {
+            var elmId = $(this).attr("id");
+            //getDetails(elmId);
+            console.log("ASDASD");
+            console.log($('#SupplierID').val());
+            send($('#SupplierID').val());
+        });
+
+
+
+        function send() {
+            $.post("/Suppliers/delete", { id: $('#SupplierID').val()}, function (data) {
+                console.log(data); // John
+                console.log(data); // 2pm
+                $("#maindiv").html(data);
+            });
+        }
+    </script>
+
+
+
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

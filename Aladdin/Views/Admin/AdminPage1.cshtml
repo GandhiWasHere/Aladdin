@@ -8,7 +8,7 @@
 
 <!DOCTYPE html>
 <html>
-<title>XXX</title>
+<title>Admin Page</title>
 
 
 <head>
@@ -26,7 +26,12 @@
         console.log("ASDASDSAD");
         console.log($("#sup").html())
         $("#sup").click(test1)
-
+        $("#prod").click(test2)
+        $("#cust").click(test3)
+        $("#stat").click(test4)
+        
+        
+        $(".container").css('margin-left', '0px');
 
         function test1() {
 
@@ -39,8 +44,49 @@
                 $("#maindiv").html(data);
             })
             console.log("SSSSsS");
+        }
 
 
+
+        function test2() {
+
+            console.log($("#hid").html())
+            var token = $("#hid").html();
+            $.get('/products/prodadmin', { token: token}, function (data, status) {
+                console.log("inside test1");
+                // console.log(status);
+                console.log(data);
+                $("#maindiv").html(data);
+            })
+            console.log("SSSSsS");
+        }
+
+        function test3() {
+
+            console.log($("#hid").html())
+            var token = $("#hid").html();
+            $.get('/customers/index', { token: token}, function (data, status) {
+                console.log("inside test1");
+                // console.log(status);
+                console.log(data);
+                $("#maindiv").html(data);
+            })
+            console.log("SSSSsS");
+        }
+
+
+
+        function test4() {
+
+            console.log($("#hid").html())
+            var token = $("#hid").html();
+            $.get('/statistics/index', { token: token}, function (data, status) {
+                console.log("inside test1");
+                // console.log(status);
+                console.log(data);
+                $("#maindiv").html(data);
+            })
+            console.log("SSSSsS");
         }
 
     </script>
@@ -49,7 +95,7 @@
 
 
     <!-- Sidebar -->
-    <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%">
+    <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:10%">
         <h3 class="w3-bar-item">Menu</h3>
         <button class="x" id="sup">Manage Suppliers</button>
         <button class="x" id="prod">Manage Products</button>
@@ -58,18 +104,12 @@
     </div>
 
     <!-- Page Content -->
-    <div style="margin-left:25%">
-
-        <div class="w3-container w3-teal">
-            <h1>My Page</h1>
-        </div>
+    <div style="margin-left:10%">
 
         <button class="x" id="hid" hidden>@token</button>
 
-        <div class="w3-container1" id="maindiv">
-            <h2>test</h2>
-            <p>The sidebar with is set with "style="width:25%".</p>
-            <p>The left margin of the page content is set to the same value.</p>
+        <div class="11w3-container1" id="maindiv">
+
         </div>
 
     </div>

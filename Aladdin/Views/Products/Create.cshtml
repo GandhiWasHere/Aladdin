@@ -2,81 +2,46 @@
 
 @{
     ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_LayoutNOHEADERFOOTER.cshtml";
 }
 <h1>Create</h1>
 
 <h4>Product</h4>
 <hr />
+
+
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create" method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ProductName" class="control-label"></label>
-                <input asp-for="ProductName" class="form-control" />
-                <span asp-validation-for="ProductName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProductQuantityS" class="control-label"></label>
-                <input asp-for="ProductQuantityS" class="form-control" />
-                <span asp-validation-for="ProductQuantityS" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProductQuantityM" class="control-label"></label>
-                <input asp-for="ProductQuantityM" class="form-control" />
-                <span asp-validation-for="ProductQuantityM" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProductQuantityL" class="control-label"></label>
-                <input asp-for="ProductQuantityL" class="form-control" />
-                <span asp-validation-for="ProductQuantityL" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProductColor" class="control-label"></label>
-                <input asp-for="ProductColor" class="form-control" />
-                <span asp-validation-for="ProductColor" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProductRating" class="control-label"></label>
-                <input asp-for="ProductRating" class="form-control" />
-                <span asp-validation-for="ProductRating" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProductPrice" class="control-label"></label>
-                <input asp-for="ProductPrice" class="form-control" />
-                <span asp-validation-for="ProductPrice" class="text-danger"></span>
-            </div>
+        <label for="fname">ProductName</label>
+        <input type="text" id="ProductName" name="fname"><br><br>
+
+        <label for="fname">SupplierID-Foreign-KEY</label>
+        <input type="number" id="SupplierID" name="fname"><br><br>
+
+        <label for="lname">ProductQuantityS</label>
+        <input type="number" id="ProductQuantityS" name="lname"><br><br>
+
+        <label for="lname">ProductQuantityM</label>
+        <input type="number" id="ProductQuantityM" name="lname"><br><br>
+
+        <label for="lname">ProductQuantityL</label>
+        <input type="number" id="ProductQuantityL" name="lname"><br><br>
+
+        <label for="lname">ProductColor</label>
+        <input type="text" id="ProductColor" name="lname"><br><br>
+
+        <label for="lname">ProductRating</label>
+        <input type="number" id="ProductRating" name="lname"><br><br>
+
+        <label for="lname">ProductPrice</label>
+        <input type="number" id="ProductPrice" name="lname"><br><br>
+
+        <label for="lname">ProductImage</label>
+        <input type="file" id="ProductImage" name="lname" class=".custom-file-input"><br><br>
 
 
-            <div class="form-group">
-                <label asp-for="SupplierID" class="control-label"></label>
-                <input asp-for="SupplierID" class="form-control" />
-                <span asp-validation-for="SupplierID" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="ProductImage" class="control-label"></label>
-                <div class="custom-file">
-                    <input asp-for="ProductImage" type="file" class="custom-file-input" id="customFile">
-                    <label class="custom-file-label" for="customFile">Choose file</label>
-                </div>
-                <span asp-validation-for="ProductImage" class="text-danger"></span>
-            </div>
-
-
-
-
-
-
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        <input type="button" value="Save" id="btn" class="btn btn-primary">
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
@@ -88,5 +53,71 @@
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
         });
     </script>
+
+
+
+    <script>
+        $('#btn').click(function () {
+            var elmId = $(this).attr("id");
+            //getDetails(elmId);
+            console.log("ASDASD");
+            console.log($('#fname').val());
+            send();
+        });
+        function send() {
+
+            $.post("/products/create", {
+                
+                ProductName: $('#ProductName').val(),
+                ProductColor: $('#ProductColor').val(),
+                SupplierID: $('#SupplierID').val(), ProductRating: $('#ProductRating').val(),
+                ProductPrice: $('#ProductPrice').val(), ProductImage: x6,
+                ProductQuantityS: $('#ProductQuantityS').val(), ProductQuantityM: $('#ProductQuantityM').val(),
+                ProductQuantityL: $('#ProductQuantityL').val()
+
+            }, function (data) {
+                console.log(data); // John
+                console.log(data); // 2pm
+                $("#maindiv").html(data);
+            });
+        }
+        
+
+
+
+    
+        File.prototype.convertToBase64 = function (callback) {
+            var reader = new FileReader();
+            reader.onloadend = function (e) {
+                callback(e.target.result, e.target.error);
+            };
+            reader.readAsDataURL(this);
+        };
+
+        $("#ProductImage").on('change', function () {
+            var selectedFile = this.files[0];
+            selectedFile.convertToBase64(function (base64) {
+
+                x5 = base64;
+                
+
+
+                $.post("/products/saveimage", {
+
+                   file : x5
+
+                }, function (data) {
+                    console.log(data); // John
+                    console.log(data); // 2pm
+                    x6 = data;
+                   // $("#maindiv").html(data);
+                });
+
+            })
+        });
+    </script>
+
+
+
 }
 

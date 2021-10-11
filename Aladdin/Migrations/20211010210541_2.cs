@@ -2,7 +2,7 @@
 
 namespace Aladdin.Migrations
 {
-    public partial class _4 : Migration
+    public partial class _2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

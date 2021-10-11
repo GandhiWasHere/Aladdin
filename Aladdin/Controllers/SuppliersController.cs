@@ -131,7 +131,7 @@ namespace Aladdin.Controllers
         // POST: Suppliers/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        /*[HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("SupplierID,SupplierName,SupplierPhonNumber")] Supplier supplier)
         {
@@ -142,6 +142,26 @@ namespace Aladdin.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(supplier);
+        }
+
+*/
+
+
+
+
+        [HttpPost]
+    
+        public async Task<IActionResult> Create([Bind("SupplierID,SupplierName,SupplierPhonNumber")] Supplier supplier)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(supplier);
+                await _context.SaveChangesAsync();
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Successfuly", "Admin");
+            }
+            return RedirectToAction("unSuccessfuly", "Admin");
+            //return View(supplier);
         }
 
         // GET: Suppliers/Edit/5
@@ -163,7 +183,7 @@ namespace Aladdin.Controllers
         // POST: Suppliers/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+    /*    [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("SupplierID,SupplierName,SupplierPhonNumber")] Supplier supplier)
         {
@@ -194,6 +214,84 @@ namespace Aladdin.Controllers
             }
             return View(supplier);
         }
+*/
+
+
+          [HttpPost]
+        
+        public async Task<IActionResult> Edit( [Bind("SupplierID,SupplierName,SupplierPhonNumber")] Supplier supplier)
+        {
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(supplier);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!SupplierExists(supplier.SupplierID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                //return RedirectToAction(nameof(Index),new {token= "21232F297A57A5A743894A0E4A801FC3" });
+                return RedirectToAction("Successfuly", "Admin");
+
+                //return RedirectToAction("AdminPage","Admin",new { token = "21232F297A57A5A743894A0E4A801FC3" });
+                //return View("AdminPage", "Admin");
+            }
+            return RedirectToAction("unSuccessfuly", "Admin");
+            //return View(supplier);
+        }
+
+
+        /*[HttpPost]
+        public  void Edit([Bind("SupplierID,SupplierName,SupplierPhonNumber")] Supplier supplier)
+        {
+
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(supplier);
+                     _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!SupplierExists(supplier.SupplierID))
+                    {
+                       //return "not found";
+                        //return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                //return "update succefully";
+                //return View("Suppliers", "Admin");
+                //return RedirectToAction(nameof(Index));
+            }
+            //return "update unsuccefully";
+            //return View(supplier);
+        }*/
+
+
+
+
+
+
+
+
+
+
 
         // GET: Suppliers/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -214,15 +312,29 @@ namespace Aladdin.Controllers
         }
 
         // POST: Suppliers/Delete/5
+        /*        [HttpPost, ActionName("Delete")]
+                [ValidateAntiForgeryToken]
+                       public async Task<IActionResult> DeleteConfirmed(int id)
+                        {
+                            var supplier = await _context.Supplier.FindAsync(id);
+                            _context.Supplier.Remove(supplier);
+                            await _context.SaveChangesAsync();
+                            return RedirectToAction(nameof(Index));
+                        }
+
+        */
+        // POST: Suppliers/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var supplier = await _context.Supplier.FindAsync(id);
             _context.Supplier.Remove(supplier);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            //return RedirectToAction(nameof(Index));
+            return RedirectToAction("Successfuly", "Admin");
         }
+
 
         private bool SupplierExists(int id)
         {
