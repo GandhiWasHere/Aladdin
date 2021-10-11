@@ -205,19 +205,17 @@ namespace Aladdin.Controllers
         }
 
 
-
-
-
-
-
         
         [HttpPost]
         public string SaveImage(string file)
         {
+            
             var x = file;
-            var x1 = file;
-            var t = x.Substring(22);  // remove data:image/png;base64,
+            
 
+            var se2 = x.Split("base64,");
+            //var t = x.Substring(22);  // remove data:image/png;base64,
+            var t = se2[1];
             byte[] bytes = Convert.FromBase64String(t);
 
             // Requires System.IO
