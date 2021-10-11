@@ -25,6 +25,10 @@ html {
         font-size: 50%; /* 1rem = 8px */
     }
 
+    .intro {
+        column-gap: 1rem !important;
+    }
+
     .intro-left{
         padding: 5rem 0 !important;
     }
@@ -33,7 +37,7 @@ html {
         padding: 5rem 0;
     }
 
-    .intro-right-img{
+    .intro-right-vid{
         height: 25rem;
     }
 }
