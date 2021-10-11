@@ -9,6 +9,8 @@ using Aladdin.Data;
 using Aladdin.Models;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using System.Text;
+
 
 namespace Aladdin.Controllers
 {
@@ -55,12 +57,39 @@ namespace Aladdin.Controllers
 
 
         // GET: Products
-        public async Task<IActionResult> Prodadmin()
+        public async Task<IActionResult> Prodadmin(string token)
         {
-            var products_list = from p in _context.Product select p;
-     
-      
-            return View(await products_list.ToListAsync());
+            {
+                static string CreateMD5(string input)
+                {
+                    // Use input string to calculate MD5 hash
+                    using (System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create())
+                    {
+                        byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
+                        byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+                        // Convert the byte array to hexadecimal string
+                        System.Text.StringBuilder sb = new StringBuilder();
+                        for (int i = 0; i < hashBytes.Length; i++)
+                        {
+                            sb.Append(hashBytes[i].ToString("X2"));
+                        }
+                        return sb.ToString();
+                    }
+                }
+                var s = CreateMD5("admin");
+                if (s == token)
+                {
+                    var products_list = from p in _context.Product select p;
+                    return View(await products_list.ToListAsync());
+                    //return View(await _context.Customer.ToListAsync());
+                }
+                return RedirectToAction("index", "Home");
+            }
+
+            
+                
+            
         }
 
 
@@ -146,31 +175,66 @@ namespace Aladdin.Controllers
 
 
         [HttpPost]
-        
-        public async Task<IActionResult> Create([Bind("ProductID,ProductName,ProductSize,ProductColor,ProductRating,ProductPrice,SupplierID,ProductImage")] ProductView model)
+        //public async Task<IActionResult> Create([Bind("ProductID,ProductName,ProductColor,ProductSize,ProductRating,ProductPrice,SupplierID,ProductImage")] ProductView model)
+        public async Task<IActionResult> Create([Bind("ProductID,ProductName,ProductColor,ProductRating,ProductPrice,SupplierID,ProductImage")] Product model)
         {
             if (ModelState.IsValid)
             {
-                string uniqueFileName = UploadedFile(model);
+                //string uniqueFileName = UploadedFile(model);
                 Product product = new()
                 {
                     ProductID = model.ProductID,
                     ProductName = model.ProductName,
-                    ProductQuantityS = model.ProductSize,
+                    ProductQuantityS = model.ProductQuantityS,
+                    ProductQuantityM = model.ProductQuantityM,
+                    ProductQuantityL = model.ProductQuantityL,
                     ProductColor = model.ProductColor,
                     ProductRating = model.ProductRating,
                     ProductPrice = model.ProductPrice,
                     SupplierID = model.SupplierID,
-                    ProductImage = uniqueFileName
-
+                    ProductImage = model.ProductImage
                 };
 
                 _context.Add(product);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Successfuly", "Admin");
+                //return RedirectToAction(nameof(Index));
             }
-            return View(model);
+            return RedirectToAction("unSuccessfuly", "Admin");
+            //return View(model);
         }
+
+
+
+
+
+
+
+        
+        [HttpPost]
+        public string SaveImage(string file)
+        {
+            var x = file;
+            var x1 = file;
+            var t = x.Substring(22);  // remove data:image/png;base64,
+
+            byte[] bytes = Convert.FromBase64String(t);
+
+            // Requires System.IO
+            string ImageName = "ttt.png";
+            string uniqueFileName = "";
+            string uploadsFolder = Path.Combine(_webhost.WebRootPath, "images");
+            Random r = new Random();
+            int num = r.Next();
+            uniqueFileName = Guid.NewGuid().ToString() + "_" + num.ToString() + ".png";
+            string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+            System.IO.File.WriteAllBytes(filePath, bytes);
+            var pa = filePath.Substring(57);  // remove data:image/png;base64,
+            return pa;
+        }
+
+
+
 
 
 
@@ -253,9 +317,11 @@ namespace Aladdin.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Successfuly", "Admin");
             }
-            return View(product);
+            return RedirectToAction("unSuccessfuly", "Admin");
+            //return View(product);
         }
 
         // GET: Products/Delete/5
@@ -299,7 +365,8 @@ namespace Aladdin.Controllers
             var product = await _context.Product.FindAsync(id);
             _context.Product.Remove(product);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            //return RedirectToAction(nameof(Index));
+            return RedirectToAction("Successfuly", "Admin");
         }
 
         private bool ProductExists(int id)

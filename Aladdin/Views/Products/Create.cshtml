@@ -2,46 +2,47 @@
 
 @{
     ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_LayoutNOHEADERFOOTER.cshtml";
 }
 <h1>Create</h1>
 
 <h4>Product</h4>
 <hr />
+
+
 <div class="row">
     <div class="col-md-4">
         <label for="fname">ProductName</label>
-        <input type="text" id="ProductName" name="fname" ><br><br>
+        <input type="text" id="ProductName" name="fname"><br><br>
+
+        <label for="fname">SupplierID-Foreign-KEY</label>
+        <input type="number" id="SupplierID" name="fname"><br><br>
+
         <label for="lname">ProductQuantityS</label>
-        <input type="number" id="ProductQuantityS" name="lname" ><br><br>
+        <input type="number" id="ProductQuantityS" name="lname"><br><br>
 
         <label for="lname">ProductQuantityM</label>
-        <input type="number" id="ProductQuantityM" name="lname" ><br><br>
+        <input type="number" id="ProductQuantityM" name="lname"><br><br>
 
         <label for="lname">ProductQuantityL</label>
-        <input type="number" id="ProductQuantityL" name="lname" ><br><br>
+        <input type="number" id="ProductQuantityL" name="lname"><br><br>
 
         <label for="lname">ProductColor</label>
-        <input type="text" id="ProductColor" name="lname" ><br><br>
-
+        <input type="text" id="ProductColor" name="lname"><br><br>
 
         <label for="lname">ProductRating</label>
-        <input type="number" id="ProductRating" name="lname" ><br><br>
+        <input type="number" id="ProductRating" name="lname"><br><br>
 
         <label for="lname">ProductPrice</label>
-        <input type="number" id="ProductPrice" name="lname" ><br><br>
+        <input type="number" id="ProductPrice" name="lname"><br><br>
 
         <label for="lname">ProductImage</label>
-        <input type="file" id="ProductImage" name="lname" ><br><br>
+        <input type="file" id="ProductImage" name="lname" class=".custom-file-input"><br><br>
 
 
-        <label for="lname">SupplierID</label>
-        <input type="text" id="SupplierID" name="lname" ><br><br>
-
-        <input type="button" value="Save" id="btn">
+        <input type="button" value="Save" id="btn" class="btn btn-primary">
     </div>
 </div>
-
-
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
@@ -53,6 +54,8 @@
         });
     </script>
 
+
+
     <script>
         $('#btn').click(function () {
             var elmId = $(this).attr("id");
@@ -61,19 +64,59 @@
             console.log($('#fname').val());
             send();
         });
-
-        
         function send() {
+
             $.post("/products/create", {
                 
-                ProductName: $('#ProductName').val(), ProductColor: $('#ProductColor').val(), ProductSize: $('#ProductSize').val(), SupplierID: $('#SupplierID').val(), ProductRating: $('#ProductRating').val(), ProductPrice: $('#ProductPrice').val(), ProductImage: $('#ProductImage').val(), ProductQuantityS: $('#ProductQuantityS').val(), ProductQuantityM: $('#ProductQuantityM').val(), ProductQuantityL: $('#ProductQuantityL').val()
+                ProductName: $('#ProductName').val(),
+                ProductColor: $('#ProductColor').val(),
+                SupplierID: $('#SupplierID').val(), ProductRating: $('#ProductRating').val(),
+                ProductPrice: $('#ProductPrice').val(), ProductImage: x6,
+                ProductQuantityS: $('#ProductQuantityS').val(), ProductQuantityM: $('#ProductQuantityM').val(),
+                ProductQuantityL: $('#ProductQuantityL').val()
+
             }, function (data) {
                 console.log(data); // John
                 console.log(data); // 2pm
                 $("#maindiv").html(data);
             });
         }
+        
+
+
+
+    
+        File.prototype.convertToBase64 = function (callback) {
+            var reader = new FileReader();
+            reader.onloadend = function (e) {
+                callback(e.target.result, e.target.error);
+            };
+            reader.readAsDataURL(this);
+        };
+
+        $("#ProductImage").on('change', function () {
+            var selectedFile = this.files[0];
+            selectedFile.convertToBase64(function (base64) {
+
+                x5 = base64;
+                
+
+
+                $.post("/products/saveimage", {
+
+                   file : x5
+
+                }, function (data) {
+                    console.log(data); // John
+                    console.log(data); // 2pm
+                    x6 = data;
+                   // $("#maindiv").html(data);
+                });
+
+            })
+        });
     </script>
+
 
 
 }

@@ -157,9 +157,11 @@ namespace Aladdin.Controllers
             {
                 _context.Add(supplier);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Successfuly", "Admin");
             }
-            return View(supplier);
+            return RedirectToAction("unSuccessfuly", "Admin");
+            //return View(supplier);
         }
 
         // GET: Suppliers/Edit/5
@@ -238,11 +240,14 @@ namespace Aladdin.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index),new {token= "21232F297A57A5A743894A0E4A801FC3" });
+                //return RedirectToAction(nameof(Index),new {token= "21232F297A57A5A743894A0E4A801FC3" });
+                return RedirectToAction("Successfuly", "Admin");
+
                 //return RedirectToAction("AdminPage","Admin",new { token = "21232F297A57A5A743894A0E4A801FC3" });
                 //return View("AdminPage", "Admin");
             }
-            return View(supplier);
+            return RedirectToAction("unSuccessfuly", "Admin");
+            //return View(supplier);
         }
 
 
@@ -326,7 +331,8 @@ namespace Aladdin.Controllers
             var supplier = await _context.Supplier.FindAsync(id);
             _context.Supplier.Remove(supplier);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            //return RedirectToAction(nameof(Index));
+            return RedirectToAction("Successfuly", "Admin");
         }
 
 
