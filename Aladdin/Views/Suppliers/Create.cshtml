@@ -1,38 +1,50 @@
 ﻿@model Aladdin.Models.Supplier
 
 @{
+    Layout = "~/Views/Shared/_LayoutNOHEADERFOOTER.cshtml";
     ViewData["Title"] = "Create";
 }
 
 <h1>Create</h1>
 
 <h4>Supplier</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="SupplierName" class="control-label"></label>
-                <input asp-for="SupplierName" class="form-control" />
-                <span asp-validation-for="SupplierName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SupplierPhonNumber" class="control-label"></label>
-                <input asp-for="SupplierPhonNumber" class="form-control" />
-                <span asp-validation-for="SupplierPhonNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label for="fname">SupplierName</label>
+                <input type="text" id="SupplierName" name="fname"><br><br>
+                <label for="lname">SupplierPhoneNumber</label>
+                <input type="text" id="SupplierPhoneNumber" name="lname"><br><br>
+                <label for="s">SupplierProducts List Will be Shown but Entered Via the Product TAB</label>
+
+                <input type="button" value="Save" id="btn" class="btn btn-primary">
+            </div>
+        </div>
+
+
+
+
 
 @section Scripts {
+
+    <script>
+        $('#btn').click(function () {
+            var elmId = $(this).attr("id");
+            //getDetails(elmId);
+            console.log("ASDASD");
+            console.log($('#fname').val());
+            send();
+        });
+        function send() {
+            $.post("/Suppliers/create", { SupplierID: $('#SupplierID').val(), SupplierName: $('#SupplierName').val(), SupplierPhonNumber: $('#SupplierPhoneNumber').val() }, function (data) {
+                console.log(data); // John
+                console.log(data); // 2pm
+                $("#maindiv").html(data);
+            });
+        }
+    </script>
+
+
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
