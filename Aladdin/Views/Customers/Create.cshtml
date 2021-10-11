@@ -13,28 +13,25 @@
 <div class="row">
     <div class="col-md-4">
         <label for="fname">CustomerName</label>
-        <input type="text" id="CustomerName" name="fname" ><br><br>
+        <input type="text" id="CustomerName" name="fname"><br><br>
 
         <label for="lname">CustomerAddress</label>
-        <input type="text" id="CustomerAddress" name="lname" ><br><br>
+        <input type="text" id="CustomerAddress" name="lname"><br><br>
 
         <label for="lname">CustomerEmail</label>
-        <input type="email" id="CustomerEmail" name="lname" ><br><br>
+        <input type="email" id="CustomerEmail" name="lname"><br><br>
 
         <label for="lname">CustomerRole</label>
-        <input type="number" id="CustomerRole" name="lname" ><br><br>
+        <input type="number" id="CustomerRole" name="lname"><br><br>
 
         <label for="lname">CustomerPhoneNumber</label>
-        <input type="text" id="CustomerPhoneNumber" name="lname" ><br><br>
-
-        <label for="lname">CartID</label>
-        <input type="number" id="CartID" name="lname" ><br><br>
+        <input type="text" id="CustomerPhoneNumber" name="lname"><br><br>
 
         <label for="lname">CustomerPassword</label>
-        <input type="text" id="CustomerPassword" name="lname" ><br><br>
+        <input type="text" id="CustomerPassword" name="lname"><br><br>
 
         <label for="lname">CustomerImage</label>
-        <input type="file" id="CustomerImage" name="lname" ><br><br>
+        <input type="file" id="CustomerImage" name="lname"><br><br>
 
 
         <input type="button" value="Create" id="btn" class="btn btn-primary">
@@ -57,8 +54,8 @@
                 CustomerName: $('#CustomerName').val(),
                 CustomerAddress: $('#CustomerAddress').val(), CustomerEmail: $('#CustomerEmail').val(),
                 CustomerRole: $('#CustomerRole').val(), CustomerPhoneNumber: $('#CustomerPhoneNumber').val(),
-                CartID: $('#CartID').val(), CustomerPassword: $('#CustomerPassword').val(),
-                CustomerImage: $('#CustomerImage').val()
+                CustomerPassword: $('#CustomerPassword').val(),
+                CustomerImage: x6
             }, function (data) {
                 console.log(data); // John
                 console.log(data); // 2pm
@@ -67,6 +64,38 @@
         }
     </script>
 
+    <script>
+        
+        File.prototype.convertToBase64 = function (callback) {
+            var reader = new FileReader();
+            reader.onloadend = function (e) {
+                callback(e.target.result, e.target.error);
+            };
+            reader.readAsDataURL(this);
+        };
 
+        $("#CustomerImage").on('change', function () {
+            var selectedFile = this.files[0];
+            selectedFile.convertToBase64(function (base64) {
+
+                x5 = base64;
+
+
+
+                $.post("/products/saveimage", {
+
+                    file: x5
+
+                }, function (data) {
+                    console.log(data); // John
+                    console.log(data); // 2pm
+                    x6 = data;
+                    // $("#maindiv").html(data);
+                });
+
+            })
+        });
+
+    </script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

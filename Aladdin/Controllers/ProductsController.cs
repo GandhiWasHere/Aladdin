@@ -197,9 +197,11 @@ namespace Aladdin.Controllers
 
                 _context.Add(product);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Successfuly", "Admin");
+                //return RedirectToAction(nameof(Index));
             }
-            return View(model);
+            return RedirectToAction("unSuccessfuly", "Admin");
+            //return View(model);
         }
 
 
@@ -315,9 +317,11 @@ namespace Aladdin.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Successfuly", "Admin");
             }
-            return View(product);
+            return RedirectToAction("unSuccessfuly", "Admin");
+            //return View(product);
         }
 
         // GET: Products/Delete/5
@@ -361,7 +365,8 @@ namespace Aladdin.Controllers
             var product = await _context.Product.FindAsync(id);
             _context.Product.Remove(product);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            //return RedirectToAction(nameof(Index));
+            return RedirectToAction("Successfuly", "Admin");
         }
 
         private bool ProductExists(int id)

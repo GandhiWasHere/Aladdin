@@ -29,6 +29,18 @@ namespace Aladdin.Controllers
 
 
 
+
+        public async Task<IActionResult> Successfuly()
+        {
+            return View("Successfuly", "Admin");
+        }
+        public async Task<IActionResult> Unsuccessfuly()
+        {
+            return View("Unsuccessfuly", "Admin");
+        }
+
+
+
         public IActionResult AdminPage(string password)
         {
             static string CreateMD5(string input)

@@ -8,6 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using Aladdin.Data;
 using Aladdin.Models;
 using System.Text;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore;
 
 namespace Aladdin.Controllers
 {
@@ -99,7 +102,7 @@ namespace Aladdin.Controllers
 
         [HttpPost]
   
-        public async Task<IActionResult> Create([Bind("CustomerID,CustomerName,CustomerPassword,CustomerAddress,CustomerEmail,CustomerPhoneNumber")] Customer customer)
+        public async Task<IActionResult> Create([Bind("CustomerID,CustomerName,CustomerPassword,CustomerAddress,CustomerImage,CustomerEmail,CustomerPhoneNumber")] Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -111,14 +114,15 @@ namespace Aladdin.Controllers
                 _context.Add(customer);
                 _context.Add(cart);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                //return View("Succefully");
+                //return View("~/Views/admin/Succefully.cshtml");
+                return RedirectToAction("Successfuly", "Admin");
             }
-            return View(customer);
+            //return View("unSuccessfuly", "Admin");
+            return RedirectToAction("Unsuccessfuly", "Admin");
+            //return View(customer);
         }
-
-
-
-
 
 
 
@@ -198,9 +202,11 @@ namespace Aladdin.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Successfuly", "Admin");
             }
-            return View(customer);
+            return RedirectToAction("unSuccessfuly", "Admin");
+            //return View(customer);
         }
 
 
@@ -242,7 +248,8 @@ namespace Aladdin.Controllers
             var customer = await _context.Customer.FindAsync(id);
             _context.Customer.Remove(customer);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            //return RedirectToAction(nameof(Index));
+            return RedirectToAction("Successfuly", "Admin");
         }
 
         private bool CustomerExists(int id)
