@@ -54,6 +54,17 @@ namespace Aladdin.Controllers
         }
 
 
+        // GET: Products
+        public async Task<IActionResult> Prodadmin()
+        {
+            var products_list = from p in _context.Product select p;
+     
+      
+            return View(await products_list.ToListAsync());
+        }
+
+
+
 
         // GET: Products/Details/5
 
@@ -152,14 +163,46 @@ namespace Aladdin.Controllers
         // POST: Products/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /*        [HttpPost]
+                [ValidateAntiForgeryToken]
+                public async Task<IActionResult> Edit(int id, [Bind("ProductID,ProductName,ProductSize,ProductColor,ProductRating,ProductPrice,ProductImage")] Product product)
+                {
+                    if (id != product.ProductID)
+                    {
+                        return NotFound();
+                    }
+
+                    if (ModelState.IsValid)
+                    {
+                        try
+                        {
+                            _context.Update(product);
+                            await _context.SaveChangesAsync();
+                        }
+                        catch (DbUpdateConcurrencyException)
+                        {
+                            if (!ProductExists(product.ProductID))
+                            {
+                                return NotFound();
+                            }
+                            else
+                            {
+                                throw;
+                            }
+                        }
+                        return RedirectToAction(nameof(Index));
+                    }
+                    return View(product);
+                }
+        */
+
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductID,ProductName,ProductSize,ProductColor,ProductRating,ProductPrice,ProductImage")] Product product)
+
+        //public async Task<IActionResult> Edit([Bind("ProductID,ProductName,ProductSize,ProductColor,ProductRating,ProductPrice,ProductImage")] Product product)
+        public async Task<IActionResult> Edit([Bind("ProductID,ProductName,ProductColor,ProductSize,SupplierID,ProductRating,ProductPrice,ProductImage,ProductQuantityS,ProductQuantityM,ProductQuantityL")] Product product)
         {
-            if (id != product.ProductID)
-            {
-                return NotFound();
-            }
+       
 
             if (ModelState.IsValid)
             {
