@@ -1,6 +1,8 @@
 var map;
 var marker
 
+console.log("Im Here")
+
 const locationList = {
   nemo: { lat: -48.876667, lng: -123.393333 },
   antartica: {lat: -62.940122577017675, lng:-60.55539982795775},
@@ -50,3 +52,20 @@ for (const [key, value] of Object.entries(mapBtns)) {
     panMap(key, locationList[key]);
   });
 }
+
+function toProducts() {
+    console.log("inside test1");
+    $.get('/products/index', {}, function (data, status) {
+        
+        // console.log(status);
+        console.log(data);
+        $("body").html(data);
+    })
+}
+
+$('#intro-left-cta').click(toProducts);
+
+const cta = document.getElementById('intro-left-cta');
+cta.addEventListener('click', () => {
+    toProducts();
+});

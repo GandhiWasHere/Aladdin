@@ -14,17 +14,17 @@
     <div class="intro-left">
         <h2 class="intro-left-shop-title">Find The Perfect Hat<br />For Your Head</h2>
         <h4 class="intro-left-shop-sub-title">Beatiful hats to get you (a)head</h4>
-        <button class="btn intro-left-cta">SHOP NOW</button>
+        <button id="intro-left-cta" class="btn intro-left-cta">SHOP NOW</button>
     </div>
     <div class="intro-right">
-        <img src="../images/red.png" alt="eggplent hat" class="intro-right-img">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/Y9FzD7Bfy6g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 </section>
 
 <section class="about ">
     <h3 class="about-vision tertiary-title">Our Vision</h3>
     <div class="about-vision-p">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate, nostrum expedita in repudiandae architecto nemo placeat asperiores eaque ex quos consectetur officia sint. Perferendis illo nulla nobis, facere eum repellendus dolorem iste omnis assumenda consequatur totam dignissimos ullam molestias quas dolor reiciendis aperiam inventore, nesciunt deleniti nemo sapiente. Exercitationem, perferendis.
+        Why is a raven like a writing-desk? Have you guessed the riddle yet? the Hatter said, turning to Alice again. No, I give it up, Alice replied: What’s the answer? I haven’t the slightest idea, said the Hatter If I had a world of my own, everything would be nonsense. Nothing would be what it is, because everything would be what it isn’t. And contrary wise, what is, it wouldn’t be. And what it wouldn’t be, it would. You see? “I don’t think…” then you shouldn’t talk, said the Hatter.” Have I gone mad? I’m afraid so. You’re entirely bonkers. But I’ll tell you a secret. All the best people are. You mean you can’t take less, said the Hatter It’s very easy to take more than nothing
     </div>
 </section>
 
@@ -70,8 +70,121 @@
     </div>
 </section>
 
-<script src="~/js/home-page-map-script.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbVRedWria7VHa8jmfOj-0X_Y5-JMww24&callback=initMap&libraries=&v=weekly"
-        async>
-</script>
+<section class="canvas">
+    <canvas class="canvas-tophat" id="canvas-tophat">
+    </canvas>
+</section>
 
+@section Scripts {
+
+    <script>
+        function drawTextAlongArc(context, str, centerX, centerY, radius, angle) {
+            var len = str.length, s;
+            context.save();
+            context.translate(centerX, centerY);
+            context.rotate(-1 * angle / 2);
+            context.rotate(-1 * (angle / len) / 2);
+            for (var n = 0; n < len; n++) {
+                context.rotate(angle / len);
+                context.save();
+                context.translate(0, -1 * radius);
+                s = str[n];
+                context.fillText(s, 0, 0);
+                context.restore();
+            }
+            context.restore();
+        }
+        var canvas = document.getElementById('canvas-tophat'),
+            context = canvas.getContext('2d'),
+            centerX = canvas.width / 2,
+            centerY = canvas.height - 30,
+            angle = Math.PI * 0.8,
+            radius = 70;
+
+        context.font = '25pt Calibri';
+        context.textAlign = 'center';
+        context.fillStyle = 'black';
+        context.strokeStyle = 'blue';
+        context.lineWidth = 4;
+        drawTextAlongArc(context, 'Aladdin', centerX, centerY, radius, angle)
+    </script>
+
+    <script>
+        var map;
+        var marker
+
+        console.log("Im Here")
+
+        const locationList = {
+            nemo: { lat: -48.876667, lng: -123.393333 },
+            antartica: { lat: -62.940122577017675, lng: -60.55539982795775 },
+            mosscow: { lat: 56.406907832198044, lng: 37.68425713399322 },
+            birTawil: { lat: 21.900277058794284, lng: 33.62077231035544 }
+        }
+
+        // Initialize and add the map
+        function initMap() {
+            // The map, centered at Nemo
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 2,
+                center: locationList.nemo,
+            });
+            // The marker, positioned at location
+            marker = new google.maps.Marker({
+                position: locationList.nemo,
+                map: map,
+            });
+        }
+
+        function panMap(loc, newCenter) {
+            marker.setPosition(newCenter);
+            switch (loc) {
+                case 'antartica':
+                    map.setZoom(10);
+                    break;
+                case 'nemo':
+                    map.setZoom(2);
+                    break;
+                default:
+                    map.setZoom(8);
+                    break;
+            }
+            map.panTo(newCenter);
+        }
+
+        const mapBtns = {
+            nemo: 'btn-nemo',
+            antartica: 'btn-antartica',
+            mosscow: 'btn-mosscow',
+            birTawil: 'btn-birTawil'
+        }
+
+        for (const [key, value] of Object.entries(mapBtns)) {
+            document.getElementById(value).addEventListener('click', () => {
+                panMap(key, locationList[key]);
+            });
+        }
+
+        function toProducts() {
+            console.log("inside test1");
+            $.get('/products/index', {}, function (data, status) {
+
+                // console.log(status);
+                console.log(data);
+                $("body").html(data);
+            })
+        }
+
+        $('#intro-left-cta').click(toProducts);
+
+        const cta = document.getElementById('intro-left-cta');
+        cta.addEventListener('click', () => {
+            toProducts();
+        });
+    </script>
+
+    <script src="~/js/home-page-map-script.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbVRedWria7VHa8jmfOj-0X_Y5-JMww24&callback=initMap&libraries=&v=weekly"
+            async>
+    </script>
+}
