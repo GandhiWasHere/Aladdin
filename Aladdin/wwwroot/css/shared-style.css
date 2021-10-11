@@ -67,9 +67,15 @@ html {
     padding-top: 6rem;
 }
 
+
+.navbar {
+    padding: 1rem 2rem;
+    /*overflow: hidden;*/
+
 .navbar-customized {
     padding: 1rem 3rem;
     overflow: hidden;
+
     display: flex;
     justify-content: space-between;
     font-family: 'Roboto', sans-serif;
