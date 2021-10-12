@@ -59,7 +59,7 @@ namespace Aladdin.Controllers
                 if (userDetails != null)
                 {
                     HttpContext.Response.Cookies.Append("cart_id", userDetails.CartID.ToString());
-                    return RedirectToAction("Customer", "Details", userDetails.CustomerID);
+                    return RedirectToAction("index", "products", userDetails.CustomerID);
                 }
                 else
                 {

@@ -1,5 +1,5 @@
 ﻿@model Aladdin.Models.Cart
-
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @{
     Layout = "~/Views/Shared/mylayout.cshtml";
     ViewData["Title"] = "Mycart";
@@ -10,6 +10,8 @@
         number_of_items += (item.ProductQuantityL + item.ProductQuantityM + item.ProductQuantityS);
         total_cost += item.ProductPrice * (item.ProductQuantityL + item.ProductQuantityM + item.ProductQuantityS);
     }
+    var cart_id = HttpContextAccessor.HttpContext.Request.Cookies["cart_id"];
+
 }
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -39,7 +41,7 @@
                 @if (Model != null)
                 {
                     @foreach (var item in Model.CartProducts)
-                    { 
+                    {
                         var counter = (item.ProductQuantityL + item.ProductQuantityM + item.ProductQuantityS);
                         <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
                             <div class="d-flex flex-row">
@@ -60,7 +62,7 @@
         </div>
 
         <aside class="col-md-4">
-            <div class="payment-info">                    
+            <div class="payment-info">
                 <form class="needs-validation" novalidate>
                     <section class="shippinp-info">
                         <h4 class="mb-3">Shipping Address</h4>
@@ -162,7 +164,7 @@
 
                     <hr class="my-4">
 
-                    <button class="w-100 btn btn-primary btn-lg" type="submit">Hat Away!</button>
+                    <a href="/carts/checkout?cartid=@cart_id" class="w-100 btn btn-primary btn-lg">Hat Away!</a>
                 </form>
             </div>
         </aside>

@@ -97,7 +97,8 @@ namespace Aladdin.Controllers
                 product.ProductQuantityL -= pic.ProductQuantityL;
                 product.ProductQuantityM -= pic.ProductQuantityM;
                 product.ProductQuantityS -= pic.ProductQuantityS;
-                Sell sell = new() { ProductID=pic.ProductID, Quantity=(pic.ProductQuantityL + pic.ProductQuantityM + pic.ProductQuantityS) };
+                Sell sell = new() { ProductID=pic.ProductID, Quantity=(pic.ProductQuantityL + pic.ProductQuantityM + pic.ProductQuantityS), CustomerID=cartid, PDate= DateTime.Now};
+                _context.Update(sell);
             }
             c.CartProducts = null;
             _context.Update(c);

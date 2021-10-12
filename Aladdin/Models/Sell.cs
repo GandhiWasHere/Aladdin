@@ -9,7 +9,12 @@ namespace Aladdin.Models
 {
     public class Sell
     {
+        [Key]
+        public int SellID{ get; set; }
         public int ProductID { get; set; }
         public int Quantity{ get; set; }
+        public int CustomerID { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime PDate { get; set; }
     }
 }
