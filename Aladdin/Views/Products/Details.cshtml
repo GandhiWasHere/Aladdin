@@ -1,10 +1,12 @@
 ﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @model Aladdin.Models.Product
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/mylayout.cshtml";
     ViewData["Title"] = "Details";
     var cart_id = HttpContextAccessor.HttpContext.Request.Cookies["cart_id"];
 }
+
+@*<link rel="stylesheet" href="~/css/shared-style.css">*@
 
 <script>
     $('#addcart').click(function () {
@@ -85,7 +87,12 @@
 
                 <!-- Product Pricing -->
                 <div class="product-price">
-                    <span>@Html.DisplayFor(model => model.ProductPrice)</span>
+                    <span>Price: </span>&nbsp;
+                    <span id="price">@Html.DisplayFor(model => model.ProductPrice)$</span>
+                </div>
+          
+
+                <div class="add-to-cart">
                     <button class="btn cart-btn" id="addcart">Add to cart</button>
                 </div>
 
@@ -107,7 +114,7 @@
                         </div>
                     </div>
                     <p class="comment-form-comment">Your Review</p>
-                    <textarea id="comment" name="comment" cols="30" rows="6" required=""></textarea>
+                    <textarea id="comment" name="comment" cols="30" rows="4" required=""></textarea>
                     <input class="btn submit-btn" type="submit">
                 </form>
             </div>

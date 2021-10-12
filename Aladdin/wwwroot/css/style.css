@@ -17,25 +17,25 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 15px;
+/*    padding: 15px;*/
     display: flex;
 }
 
 /* Columns */
 .left-column {
-    width: 65%;
+    width: 35%;
     position: relative;
 }
 
 .right-column {
-    width: 35%;
-    margin-top: 60px;
+    width: 65%;
+/*    margin-top: 60px;*/
 }
 
 
 /* Left Column */
 .left-column img {
-    width: 100%;
+    width: 80%;
     position: absolute;
     left: 0;
     top: 0;
@@ -80,7 +80,7 @@ p {
 .product-color span,
 .hat-size-config span,
 .user-rating {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 400;
     color: #86939E;
     margin-bottom: 20px;
@@ -96,7 +96,7 @@ p {
     border: 2px solid #E1E8EE;
     border-radius: 6px;
     padding: 13px 20px;
-    font-size: 14px;
+    font-size: 12px;
     color: #5E6977;
     background-color: #fff;
     cursor: pointer;
@@ -111,9 +111,14 @@ p {
 }
 
 .hat-size-config,
+.add-to-cart,
 .product-price {
     border-bottom: 1px solid #E1E8EE;
     margin-bottom: 20px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #86939E;
+    display: inline-block;
 }
 
 .hat-size-config a {
@@ -212,6 +217,14 @@ p {
 .rate:not(:checked) > label:hover,
 .rate:not(:checked) > label:hover ~ label {
     color: #deb217;
+}
+
+#price {
+    color: #d44318;
+}
+
+#addcart {
+    cursor: pointer;
 }
 
 .rate > input:checked + label:hover,
