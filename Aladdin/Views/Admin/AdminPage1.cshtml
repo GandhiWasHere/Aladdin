@@ -37,7 +37,7 @@
                 console.log("SSSSsS");
                 console.log($("#hid").html())
                 var token = $("#hid").html();
-                $.get('/suppliers/index', {  }, function (data, status) {
+                $.get('/suppliers/index', {}, function (data, status) {
                     console.log("inside test1");
                     // console.log(status);
                     console.log(data);
@@ -53,7 +53,7 @@
                 // console.log($("#hid").html())
                 //var token = $("#hid").html();
                 console.log("SSSSsS");
-                $.get('/products/prodadmin', {  }, function (data, status) {
+                $.get('/products/prodadmin', {}, function (data, status) {
                     console.log("inside test1");
                     // console.log(status);
                     console.log(data);
@@ -67,7 +67,7 @@
                 //console.log($("#hid").html())
                 // var token = $("#hid").html();
                 console.log("SSSSsS");
-                $.get('/customers/index', {  }, function (data, status) {
+                $.get('/customers/index', {}, function (data, status) {
                     console.log("inside test1");
                     // console.log(status);
                     console.log(data);
@@ -82,7 +82,7 @@
                 console.log("SSSSsS");
                 console.log($("#hid").html())
                 var token = $("#hid").html();
-                $.get('/statistics/index', {  }, function (data, status) {
+                $.get('/statistics/index', {}, function (data, status) {
                     console.log("inside test1");
                     // console.log(status);
                     console.log(data);
@@ -92,28 +92,22 @@
             }
 
         </script>
-        }
+    }
 
-
-
-        <!-- Sidebar -->
-        <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:10%">
-            <h3 class="w3-bar-item">Menu</h3>
-            <button class="x" id="sup">Manage Suppliers</button>
-            <button class="x" id="prod">Manage Products</button>
-            <button class="x" id="cust">Manage Customers</button>
-            <button class="x" id="stat">Statistics</button>
-        </div>
+    <main>
+        <aside class="sidebar">
+            <h3 class="tertiary-title">Menu</h3>
+            <button class="x btn sidebar-btn" id="sup">Manage Suppliers</button>
+            <button class="x btn sidebar-btn" id="prod">Manage Products</button>
+            <button class="x btn sidebar-btn" id="cust">Manage Customers</button>
+            <button class="x btn sidebar-btn" id="stat">Statistics</button>
+        </aside>
 
         <!-- Page Content -->
-        <div style="margin-left:10%">
-
-
-            <div class="11w3-container1" id="maindiv">
-
+        <div class="graph-container">
+            <div class="graph" id="maindiv">
             </div>
-
         </div>
-
-    </body>
+    </main>
+</body>
 </html>
