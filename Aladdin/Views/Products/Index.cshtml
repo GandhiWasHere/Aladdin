@@ -13,12 +13,12 @@
 @section Scripts
 {
     <script>
-        $('.dropdown-toggle').dropdown();
+        //$('.dropdown-toggle').dropdown();
 
-        $(".dropdown-item").click(function () {
-            var selText = $(this).text();
-            $(this).parents('.dropdown').find('.dropdown-toggle').html(selText);
-        });
+        //$(".dropdown-item").click(function () {
+        //    var selText = $(this).text();
+        //    $(this).parents('.dropdown').find('.dropdown-toggle').html(selText);
+        //});
 
         $('.Details').click(function () {
             var elmId = $(this).attr("id");
@@ -74,9 +74,9 @@
                     <form class="form-inline my-2 my-lg-0 select-box">
                         <select class="nav-link select-box" aria-labelledby="navbarDropdown" id="colors-search">
                             <option disabled selected>Color</option>
-                            @foreach (var item in Model)
+                            @foreach (String item in Model.Select(x=> x.ProductColor).Distinct())
                             {
-                                <option value=@Html.DisplayNameFor(modelItem => item.ProductColor)>@Html.DisplayFor(modelItem => item.ProductColor)</option>
+                                <option value=Product Color>@Html.DisplayFor(modelItem => item)</option>
                             }
                         </select>
                     </form>
