@@ -36,7 +36,7 @@ namespace Aladdin.Controllers
             {
                 products_list = products_list.Where(s => s.ProductName.Contains(searchString));
             }
-            if (!String.IsNullOrEmpty(searchColor) & (searchColor!="All"))
+            if (!String.IsNullOrEmpty(searchColor) & (searchColor!="Color"))
             {
                 products_list = products_list.Where(s => s.ProductColor == searchColor);
             }

@@ -74,6 +74,7 @@ namespace Aladdin.Controllers
         public async Task<IActionResult> LogoutAsync()
         {
             await HttpContext.SignOutAsync();
+            HttpContext.Response.Cookies.Delete("cart_id");
             return RedirectToAction("Index");
         }
 

@@ -38,7 +38,16 @@
                         </svg>
                     </button>
                 </form>
-                <a asp-area="" asp-controller="home" asp-action="login" class="utils-cart">login</a>
+                @if (cart_id == null)
+                {
+                    <a asp-area="" asp-controller="home" asp-action="login" class="utils-cart">login</a>
+                    <a asp-area="" asp-controller="Customer" asp-action="Create" class="utils-cart">signup</a>
+                }
+                else
+                {
+                    <a asp-area="" asp-controller="home" asp-action="logout" class="utils-cart">logout</a>
+                }
+
                 <a href="/carts/mycart?id=@cart_id">
                     <svg class="cart-icon">
                         <use xlink:href="images/symbol-defs.svg#icon-cart" />
