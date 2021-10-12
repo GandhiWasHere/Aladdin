@@ -10,6 +10,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Aladdin.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.AspNetCore.Http;
 
 namespace Aladdin
 {
@@ -25,7 +28,16 @@ namespace Aladdin
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddMvc();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/Home/Login";
+                    options.Cookie.Name = "AshProgHelpCookie";
+                });
             services.AddControllersWithViews();
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddDbContext<AladdinContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("AladdinContext")));
@@ -47,6 +59,9 @@ namespace Aladdin
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.UseRouting();
 
             app.UseAuthorization();
@@ -57,8 +72,6 @@ namespace Aladdin
                     name: "default",
                     //pattern: "{controller=Home}/{action=Index}/{id?}");
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-                    //pattern: "{controller=Admin}/{action=Index}/{id?}");
-
         });
         }
     }

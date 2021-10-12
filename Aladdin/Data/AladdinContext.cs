@@ -24,6 +24,7 @@ namespace Aladdin.Data
 
         public DbSet<Aladdin.Models.Supplier> Supplier { get; set; }
 
+        public DbSet<Aladdin.Models.Sell> Sell { get; set; }
 
     }
 }

@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    var cart_id = HttpContextAccessor.HttpContext.Request.Cookies["cart_id"];
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -35,9 +39,10 @@
                         </svg>
                     </button>
                 </form>
-                <a asp-area="" asp-controller="carts" asp-action="Mycart" class="utils-cart">
+                <a asp-area="" asp-controller="home" asp-action="login" class="utils-cart">login</a>
+                <a href="/carts/mycart?id=@cart_id">
                     <svg class="cart-icon">
-                        <use xlink:href="images/symbol-defs.svg#icon-cart"/>
+                        <use xlink:href="images/symbol-defs.svg#icon-cart" />
                     </svg>
                     (<span class="cart-item-count">0</span>)
                 </a>
