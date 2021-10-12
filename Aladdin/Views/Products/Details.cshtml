@@ -8,7 +8,24 @@
 
 <script>
     $('#addcart').click(function () {
-        $.get('/carts/addproduct', { 'cartid': @cart_id , 'productid':@Html.DisplayFor(model => model.ProductID), 'size': "L"})});
+        @if (cart_id == null) {
+            <text>
+            alert("you need to login first");
+            window.location.replace("/home/login");
+            </text>
+        }
+        else {
+            <text>
+            $.get('/carts/addproduct',
+            {
+                'cartid': @cart_id ,
+                'productid':"@Html.DisplayFor(model => model.ProductID)",
+                'size': "L"
+                })
+            alert("added to cart");
+                </text>
+        }
+    });
 </script>
 
 <!DOCTYPE html>
