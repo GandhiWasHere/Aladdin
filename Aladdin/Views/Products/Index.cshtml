@@ -24,11 +24,13 @@
             var elmId = $(this).attr("id");
             getDetails(elmId);
         });
+        // get product's details
         function getDetails(id) {
             $.get('/Products/details', { "id": id }, function (data, status) {
                 $('#getitem').html(data);
             })
         }
+        // filter 
         $('#btn-filter').click(filter);
         function filter() {
             var Stringvalue = $('#name-search').val();
@@ -41,6 +43,7 @@
                 $('body').html(data);
             })
         }
+        // show all products
         $('#btn-show').click(show);
         function show() {
             $.get('/Products/index', function (data, status) {
@@ -48,6 +51,15 @@
 
             })
         }
+        // update min price
+        function updateMinPrice(val) {
+            $('#min-val').val(val);
+        }
+        // update max price
+        function updateMaxPrice(val) {
+            $('#max-val').val(val);
+        }
+
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -99,14 +111,16 @@
                 <li class="nav-item">
                     <form class="form-inline my-2 my-lg-0">
                         <label class="nav-link" for="price-min">Min Price:</label>
-                        <input class="nav-link" type="range" name="price-min" id="min-search" value="0" min="0" max="1000">
+                        <input class="nav-link" type="range" name="price-min" id="min-search" value="0" min="0" max="1000" onchange="updateMinPrice(this.value);">
+                        <input class="price-input nav-link" type="text" id="min-val" value="0">
                     </form>
 
                 </li>
                 <li class="nav-item">
                     <form class="form-inline my-2 my-lg-0">
                         <label class="nav-link" for="price-max">Max Price:</label>
-                        <input class="nav-link" type="range" name="price-max" id="max-search" value="1000" min="0" max="1000">
+                        <input class="nav-link" type="range" name="price-max" id="max-search" value="1000" min="0" max="1000" onchange="updateMaxPrice(this.value);">
+                        <input class="price-input nav-link" type="text" id="max-val" value="1000">
                     </form>
                 </li>
                 <li class="nav-item">
