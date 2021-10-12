@@ -20,7 +20,7 @@
             {
                 'cartid': @cart_id ,
                 'productid': "@Html.DisplayFor(model => model.ProductID)",
-                'size': "L"
+                'size': size
             }).fail(function () {
                 alert('sold out.');
             }).done(function () {
@@ -29,6 +29,20 @@
         </text>
         }
     });
+</script>
+<script>
+    let size;
+    const sizes = {
+        l: 'hat-large',
+        m: 'hat-medium',
+        s: 'hat-small'
+    }
+
+    for (const [siz, button] of Object.entries(sizes)) {
+        document.getElementById(button).addEventListener('click', () => {
+            size = siz;
+        })
+    }
 </script>
 
 <!DOCTYPE html>
