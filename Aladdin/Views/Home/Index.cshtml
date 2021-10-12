@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<Aladdin.Models.Product>
+@{
     Layout = "~/Views/Shared/mylayout.cshtml";
     ViewData["Title"] = "Aladdin";
 }
@@ -28,32 +29,18 @@
     </div>
 </section>
 
+
 <section class="featured-hats ">
     <h3 class="featured-hats-title tertiary-title">Our Top Rated Hats</h3>
     <div id="featured-hats-grid" class="featured-hats-grid">
-        <div class="featured-hats-grid-item">
-            <img src="../images/red.png" alt="hat image" class="featured-hats-grid-item-img">
-            <h5 class="featured-hats-grid-item-name">Hat name 1</h5>
-            <button class="btn featured-hats-grid-item-btn">Details</button>
-        </div>
-
-        <div class="featured-hats-grid-item">
-            <img src="../images/red.png" alt="hat image" class="featured-hats-grid-item-img">
-            <h5 class="featured-hats-grid-item-name">Hat name 1</h5>
-            <button class="btn featured-hats-grid-item-btn">Details</button>
-        </div>
-
-        <div class="featured-hats-grid-item">
-            <img src="../images/red.png" alt="hat image" class="featured-hats-grid-item-img">
-            <h5 class="featured-hats-grid-item-name">Hat name 1</h5>
-            <button class="btn featured-hats-grid-item-btn">Details</button>
-        </div>
-
-        <div class="featured-hats-grid-item">
-            <img src="../images/red.png" alt="hat image" class="featured-hats-grid-item-img">
-            <h5 class="featured-hats-grid-item-name">Hat name 1</h5>
-            <button class="btn featured-hats-grid-item-btn">Details</button>
-        </div>
+        @foreach (Product p in Model)
+        {
+            <div class="featured-hats-grid-item">
+                <img src="../images/@Html.DisplayFor(modelItem => p.ProductImage)" alt="hat image" class="featured-hats-grid-item-img">
+                <h5 class="featured-hats-grid-item-name">@Html.DisplayFor(modelItem => p.ProductName)</h5>
+                <a href="/Products/index" class="btn featured-hats-grid-item-btn Details">Details</a>
+            </div>
+        }
     </div>
 </section>
 
@@ -75,6 +62,11 @@
     </canvas>
     <video class="video" src="~/images/Mom puts Santa hat on son.mp4" type="video/mp4" controls></video>
 </section>
+
+
+
+
+
 
 @section Scripts {
 
@@ -188,4 +180,5 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbVRedWria7VHa8jmfOj-0X_Y5-JMww24&callback=initMap&libraries=&v=weekly"
             async>
     </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 }
