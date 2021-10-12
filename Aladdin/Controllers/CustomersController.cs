@@ -56,32 +56,7 @@ namespace Aladdin.Controllers
             return View();
         }
 
-        // POST: Customers/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        /*        [HttpPost]
-                [ValidateAntiForgeryToken]
-                public async Task<IActionResult> Create([Bind("CustomerID,CustomerName,CustomerPassword,CustomerAddress,CustomerEmail,CustomerPhoneNumber")] Customer customer)
-                {
-                    if (ModelState.IsValid)
-                    {
-                        var max_id = _context.Customer.Any() ? _context.Customer.Max(m => m.CustomerID) + 1 : 1;
-                        Cart cart = new();
-                        //cart.CartID = max_id;
-                        cart.CustomerID = max_id;
-                        customer.CartID = max_id;
-                        _context.Add(customer);
-                        _context.Add(cart);
-                        await _context.SaveChangesAsync();
-                        return RedirectToAction(nameof(Index));
-                    }
-                    return View(customer);
-                }*/
-
-
-
-        [HttpPost]
-  
+        [HttpPost]  
         public async Task<IActionResult> Create([Bind("CustomerID,CustomerName,CustomerPassword,CustomerAddress,CustomerImage,CustomerEmail,CustomerPhoneNumber")] Customer customer)
         {
             if (ModelState.IsValid)
@@ -123,42 +98,7 @@ namespace Aladdin.Controllers
             return View(customer);
         }
 
-        // POST: Customers/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        /*        [HttpPost]
-                [ValidateAntiForgeryToken]
-                public async Task<IActionResult> Edit(int id, [Bind("CustomerID,CustomerName,CustomerAddress,CustomerEmail,CustomerRole,CustomerPhoneNumber,CartID,ErrorMessage,CustomerPassword,CustomerImage")] Customer customer)
-                {
-                    if (id != customer.CustomerID)
-                    {
-                        return NotFound();
-                    }
 
-                    if (ModelState.IsValid)
-                    {
-                        try
-                        {
-                            _context.Update(customer);
-                            await _context.SaveChangesAsync();
-                        }
-                        catch (DbUpdateConcurrencyException)
-                        {
-                            if (!CustomerExists(customer.CustomerID))
-                            {
-                                return NotFound();
-                            }
-                            else
-                            {
-                                throw;
-                            }
-                        }
-                        return RedirectToAction(nameof(Index));
-                    }
-                    return View(customer);
-                }
-
-        */
         [HttpPost]
         public async Task<IActionResult> Edit([Bind("CustomerID,CustomerName,CustomerAddress,CustomerEmail,CustomerRole,CustomerPhoneNumber,CartID,CustomerPassword,CustomerImage")] Customer customer)
         {
@@ -207,18 +147,6 @@ namespace Aladdin.Controllers
 
             return View(customer);
         }
-
-        /*// POST: Customers/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var customer = await _context.Customer.FindAsync(id);
-            _context.Customer.Remove(customer);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }*/
-
 
         // POST: Customers/Delete/5
         [HttpPost, ActionName("Delete")]
