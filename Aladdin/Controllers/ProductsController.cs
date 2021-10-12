@@ -96,7 +96,7 @@ namespace Aladdin.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("ProductID,ProductName,ProductColor,ProductRating,ProductPrice,SupplierID,ProductImage")] Product model)
+        public async Task<IActionResult> Create([Bind("ProductID,ProductName,ProductColor,ProductRating,ProductPrice,SupplierID,ProductImage,ProductQuantityS,ProductQuantityM,ProductQuantityL")] Product model)
         {
             if (ModelState.IsValid)
             {
