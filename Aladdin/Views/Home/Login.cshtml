@@ -1,6 +1,7 @@
 ﻿@{
     Layout = "~/Views/Shared/mylayout.cshtml";
     ViewData["Title"] = "Aladdin";
+    var error_1 = ViewData["Error_1"];
 }
 
 <br/>
@@ -10,4 +11,9 @@
     <input class="form-control" type="password" name="txtPassword" placeholder="Password" />
     <br />
     <button class="btn-btn-success">Sign</button>
+    @if(error_1 != null)
+    {
+        <span>@error_1</span>
+        ViewData["Error_1"] = null;
+    }
 </form>
