@@ -41,19 +41,18 @@
                 @if (cart_id == null)
                 {
                     <a asp-area="" asp-controller="home" asp-action="login" class="utils-cart">login</a>
-                    <a asp-area="" asp-controller="Customer" asp-action="Create" class="utils-cart">signup</a>
+                    <a asp-area="" asp-controller="customers" asp-action="Create" class="utils-cart">signup</a>
                 }
                 else
                 {
                     <a asp-area="" asp-controller="home" asp-action="logout" class="utils-cart">logout</a>
+                    <a href="/carts/mycart?id=@cart_id">
+                        <svg class="cart-icon">
+                            <use xlink:href="images/symbol-defs.svg#icon-cart" />
+                        </svg>
+                        (<span class="cart-item-count">cart</span>)
+                    </a>
                 }
-
-                <a href="/carts/mycart?id=@cart_id">
-                    <svg class="cart-icon">
-                        <use xlink:href="images/symbol-defs.svg#icon-cart" />
-                    </svg>
-                    (<span class="cart-item-count">0</span>)
-                </a>
             </div>
         </nav>
     </header>

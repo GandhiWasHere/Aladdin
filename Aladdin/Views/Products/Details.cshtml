@@ -16,14 +16,17 @@
         }
         else {
             <text>
-            $.get('/carts/addproduct',
+        $.get('/carts/addproduct',
             {
                 'cartid': @cart_id ,
-                'productid':"@Html.DisplayFor(model => model.ProductID)",
+                'productid': "@Html.DisplayFor(model => model.ProductID)",
                 'size': "L"
-                })
-            alert("added to cart");
-                </text>
+            }).fail(function () {
+                alert('sold out.');
+            }).done(function () {
+                alert("added to cart");
+            })
+        </text>
         }
     });
 </script>

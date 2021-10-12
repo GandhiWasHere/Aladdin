@@ -41,7 +41,7 @@ namespace Aladdin.Controllers
         {
             Product p = _context.Product.Where(s => s.ProductID == productid).FirstOrDefault();
             Cart c = _context.Cart.Where(s => s.CartID == cartid).Include(p=>p.CartProducts).FirstOrDefault();
-           
+            
             if (c != null) // checks if c exsists
             {
                 if (c.CartProducts == null)
@@ -65,14 +65,38 @@ namespace Aladdin.Controllers
                     };
                 }
                 if (size == "L")
+                {
+                    if (p.ProductQuantityL == 0)
+                    {
+                        return NotFound();
+                    }
                     p_copy.ProductQuantityL += 1;
+                    p.ProductQuantityL -= 1;
+                }
                 if (size == "M")
-                    p_copy.ProductQuantityL += 1;
+                {
+                    if (p.ProductQuantityM == 0)
+                    {
+                        return NotFound();
+                    }
+                    p_copy.ProductQuantityM += 1;
+                    p.ProductQuantityM -= 1;
+                }
+
                 if (size == "S")
-                    p_copy.ProductQuantityL += 1;
+                {
+                    if (p.ProductQuantityS == 0)
+                    {
+                        return NotFound();
+                    }
+                    p_copy.ProductQuantityS += 1;
+                    p.ProductQuantityS -= 1;
+                }
+
 
                 c.CartProducts.Add(p_copy);
                 _context.Update(c);
+                _context.Update(p);
                 await _context.SaveChangesAsync();
                 return Ok();
             }
@@ -86,6 +110,23 @@ namespace Aladdin.Controllers
             }
             return null;
         }
+        [HttpGet]
+        public async Task<IActionResult> DeleteItemFromCart(int cartid, int productid)
+        {
+            Cart c = _context.Cart.Where(s => s.CartID == cartid).Include(p => p.CartProducts).FirstOrDefault();
+            ProductInCart p = CheckInCart(c, productid);
+            if (p != null)
+            {
+                Product product = _context.Product.Where(s => s.ProductID == p.ProductID).FirstOrDefault();
+                product.ProductQuantityL += p.ProductQuantityL;
+                product.ProductQuantityM += p.ProductQuantityM;
+                product.ProductQuantityS += p.ProductQuantityS;
+                c.CartProducts.Remove(p);
+            }
+            _context.Update(c);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("mycart","carts", new { id = cartid });
+        }
 
         [HttpGet]
         public async Task<IActionResult> CheckoutAsync(int cartid)
@@ -94,9 +135,6 @@ namespace Aladdin.Controllers
             foreach (ProductInCart pic in c.CartProducts)
             {
                 Product product = _context.Product.Where(s => s.ProductID == pic.ProductID).FirstOrDefault();
-                product.ProductQuantityL -= pic.ProductQuantityL;
-                product.ProductQuantityM -= pic.ProductQuantityM;
-                product.ProductQuantityS -= pic.ProductQuantityS;
                 Sell sell = new() { ProductID=pic.ProductID, Quantity=(pic.ProductQuantityL + pic.ProductQuantityM + pic.ProductQuantityS), CustomerID=cartid, PDate= DateTime.Now};
                 _context.Update(sell);
             }
