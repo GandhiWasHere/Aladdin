@@ -27,7 +27,8 @@ namespace Aladdin.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var products_list = _context.Product.OrderBy(rate=> rate.ProductRating).Reverse().Take(4);
+            return View(products_list);
         }
         public IActionResult Login()
         {
