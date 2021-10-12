@@ -60,12 +60,8 @@ namespace Aladdin.Controllers
         [Authorize]
         public async Task<IActionResult> Prodadmin( )
         {
-            
-              
                     var products_list = from p in _context.Product select p;
                     return View(await products_list.ToListAsync());
-                    //return View(await _context.Customer.ToListAsync());
-                          
         }
 
 
@@ -90,68 +86,16 @@ namespace Aladdin.Controllers
             return View(product);
         }
 
-
-        /*
-        public string Details(int? id)
-        {
-            if (id == null)
-            {
-                return "NotFound()";
-            }
-
-            var product =  _context.Product
-                .FirstOrDefaultAsync(m => m.ProductID == id);
-            if (product == null)
-            {
-                return "NotFound()";
-            }
-
-            return "hello1111111";
-        }
-
-        */
-
+        [Authorize]
         // GET: Products/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Products/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        // I edited the create function so we can add image to product
-        /*[HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductID,ProductName,ProductSize,ProductColor,ProductRating,ProductPrice,SupplierID,ProductImage")] ProductView model)
-        {
-            if (ModelState.IsValid)
-            {
-                string uniqueFileName = UploadedFile(model);
-                Product product = new()
-                {
-                    ProductID = model.ProductID,
-                    ProductName = model.ProductName,
-                    ProductQuantityS = model.ProductSize,
-                    ProductColor = model.ProductColor,
-                    ProductRating = model.ProductRating,
-                    ProductPrice = model.ProductPrice,
-                    SupplierID = model.SupplierID,
-                    ProductImage = uniqueFileName
-                    
-                };
 
-                _context.Add(product);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(model);
-        }*/
-
-
-
+        [Authorize]
         [HttpPost]
-        //public async Task<IActionResult> Create([Bind("ProductID,ProductName,ProductColor,ProductSize,ProductRating,ProductPrice,SupplierID,ProductImage")] ProductView model)
         public async Task<IActionResult> Create([Bind("ProductID,ProductName,ProductColor,ProductRating,ProductPrice,SupplierID,ProductImage")] Product model)
         {
             if (ModelState.IsValid)
@@ -174,10 +118,10 @@ namespace Aladdin.Controllers
                 _context.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Successfuly", "Admin");
-                //return RedirectToAction(nameof(Index));
+                
             }
             return RedirectToAction("unSuccessfuly", "Admin");
-            //return View(model);
+
         }
 
 
@@ -190,7 +134,6 @@ namespace Aladdin.Controllers
             
 
             var se2 = x.Split("base64,");
-            //var t = x.Substring(22);  // remove data:image/png;base64,
             var t = se2[1];
             byte[] bytes = Convert.FromBase64String(t);
 
@@ -206,7 +149,6 @@ namespace Aladdin.Controllers
 
             var se = filePath.Split("\\");
             var filenameFinal = se[se.Length -1];
-            //var pa = filePath.Substring(57);  // remove data:image/png;base64,
             return filenameFinal;
         
         
@@ -217,7 +159,7 @@ namespace Aladdin.Controllers
 
 
 
-
+        [Authorize]
         // GET: Products/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -234,50 +176,10 @@ namespace Aladdin.Controllers
             return View(product);
         }
 
-        // POST: Products/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        /*        [HttpPost]
-                [ValidateAntiForgeryToken]
-                public async Task<IActionResult> Edit(int id, [Bind("ProductID,ProductName,ProductSize,ProductColor,ProductRating,ProductPrice,ProductImage")] Product product)
-                {
-                    if (id != product.ProductID)
-                    {
-                        return NotFound();
-                    }
-
-                    if (ModelState.IsValid)
-                    {
-                        try
-                        {
-                            _context.Update(product);
-                            await _context.SaveChangesAsync();
-                        }
-                        catch (DbUpdateConcurrencyException)
-                        {
-                            if (!ProductExists(product.ProductID))
-                            {
-                                return NotFound();
-                            }
-                            else
-                            {
-                                throw;
-                            }
-                        }
-                        return RedirectToAction(nameof(Index));
-                    }
-                    return View(product);
-                }
-        */
-
-
+        [Authorize]
         [HttpPost]
-
-        //public async Task<IActionResult> Edit([Bind("ProductID,ProductName,ProductSize,ProductColor,ProductRating,ProductPrice,ProductImage")] Product product)
         public async Task<IActionResult> Edit([Bind("ProductID,ProductName,ProductColor,ProductSize,SupplierID,ProductRating,ProductPrice,ProductImage,ProductQuantityS,ProductQuantityM,ProductQuantityL")] Product product)
         {
-       
-
             if (ModelState.IsValid)
             {
                 try
@@ -296,11 +198,10 @@ namespace Aladdin.Controllers
                         throw;
                     }
                 }
-                //return RedirectToAction(nameof(Index));
+                
                 return RedirectToAction("Successfuly", "Admin");
             }
             return RedirectToAction("unSuccessfuly", "Admin");
-            //return View(product);
         }
 
         // GET: Products/Delete/5
