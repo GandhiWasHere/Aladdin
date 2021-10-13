@@ -84,7 +84,7 @@
 
 
         function getDetails(id) {
-            $.get('/products/details', { "id": id }, function (data, status) {
+            $.get('/products/AdminDetails', { "id": id }, function (data, status) {
                 console.log("Inside the Async Call");
                 console.log(status);
                 console.log(data);
@@ -126,9 +126,6 @@
                 @Html.DisplayNameFor(model => model.ProductColor)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductRating)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.ProductPrice)
             </th>
             <th>
@@ -155,9 +152,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ProductColor)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductRating)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ProductPrice)

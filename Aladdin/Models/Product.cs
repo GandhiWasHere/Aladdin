@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,8 +15,11 @@ namespace Aladdin.Models
         public int ProductRating { get; set; }
         public int ProductPrice { get; set; }
         public string ProductImage { get; set; }
+        [DisplayName("S")]
         public int ProductQuantityS{ get; set; }
+        [DisplayName("M")]
         public int ProductQuantityM { get; set; }
+        [DisplayName("L")]
         public int ProductQuantityL { get; set; }
     }
 }
