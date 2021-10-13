@@ -1,132 +1,184 @@
 ﻿
+
 @{
-    Layout = "~/Views/Shared/Empty_Layout_no_scripts.cshtml";
- 
+    ViewData["Title"] = "Admin";
+    Layout = "~/Views/Shared/_LayoutNOHEADERFOOTER.cshtml";
 }
 
 
-<title>Admin Page</title>
+
+<style>
+
+    .sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+/* Sidebar links */
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+
+/* Active/current link */
+.sidebar a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+</style>
+
+<!-- Page Content -->
+<div class="graph-container">
 
 
-<head>
-    
-    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <h2></h2>
-</head>
+    <aside class="sidebar">
+        
+            
+            <a class="" id="sup">Manage Suppliers</a>
+            <a class="1btn 1btn-primary" id="prod">Manage Products</a>
+            <a class="1btn 1btn-primary" id="cust">Manage Customers</a>
+            <a class="1btn 1btn-primary" id="stat">Statistics - By Address</a>
+            <a class="1btn 1btn-primary" id="stat2">Statistics - By Products</a>
+        
+    </aside>
+
+    <div class="content" id="maindiv" >
+        asdasdasdasd
+    </div>
+</div>
 
 
 
 
-<body>
-
-    @section Scripts {
-
-        <script>
-            console.log("ASDASDSAD");
-            console.log($("#sup").html())
-            $("#sup").click(test1)
-            $("#prod").click(test2)
-            $("#cust").click(test3)
-            $("#stat").click(test4)
-            $("#stat2").click(test5)
-            console.log("ssa");
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        console.log("ASDASDSAD");
+        console.log($("#sup").html())
+        $("#sup").click(test1)
+        $("#prod").click(test2)
+        $("#cust").click(test3)
+        $("#stat").click(test4)
+        $("#stat2").click(test5)
+        console.log("ssa");
 
 
-            $(".container").css('margin-left', '0px');
+        $(".container").css('margin-left', '0px');
 
-            function test1() {
-                console.log("SSSSsS");
-                console.log($("#hid").html())
-                var token = $("#hid").html();
-                $.get('/suppliers/index', {}, function (data, status) {
-                    console.log("inside test1");
-                    // console.log(status);
-                    console.log(data);
-                    $("#maindiv").html(data);
-                    $("#maindiv").html(data);
-                    $("#maindiv").html(data);
-                    $("#maindiv").html(data);
-                })
-                console.log("SSSSsS");
-            }
+        function test1() {
+            console.log("SSSSsS");
+            console.log($("#hid").html())
+            var token = $("#hid").html();
+            $.get('/suppliers/index', {}, function (data, status) {
+                console.log("inside test1");
+                // console.log(status);
+                console.log(data);
+                $("#maindiv").html(data);
+                $("#maindiv").html(data);
+                $("#maindiv").html(data);
+                $("#maindiv").html(data);
+            })
+            console.log("SSSSsS");
+        }
 
 
 
-            function test2() {
+        function test2() {
 
-                // console.log($("#hid").html())
-                //var token = $("#hid").html();
-                console.log("SSSSsS");
-                $.get('/products/prodadmin', {}, function (data, status) {
-                    console.log("inside test1");
-                    // console.log(status);
-                    console.log(data);
-                    $("#maindiv").html(data);
-                })
-                console.log("SSSSsS");
-            }
+            // console.log($("#hid").html())
+            //var token = $("#hid").html();
+            console.log("SSSSsS");
+            $.get('/products/prodadmin', {}, function (data, status) {
+                console.log("inside test1");
+                // console.log(status);
+                console.log(data);
+                $("#maindiv").html(data);
+            })
+            console.log("SSSSsS");
+        }
 
-            function test3() {
+        function test3() {
 
-                //console.log($("#hid").html())
-                // var token = $("#hid").html();
-                console.log("SSSSsS");
-                $.get('/customers/index', {}, function (data, status) {
-                    console.log("inside test1");
-                    // console.log(status);
-                    console.log(data);
-                    $("#maindiv").html(data);
-                })
-                console.log("SSSSsS");
-            }
+            //console.log($("#hid").html())
+            // var token = $("#hid").html();
+            console.log("SSSSsS");
+            $.get('/customers/index', {}, function (data, status) {
+                console.log("inside test1");
+                // console.log(status);
+                console.log(data);
+                $("#maindiv").html(data);
+            })
+            console.log("SSSSsS");
+        }
 
 
 
-            function test4() {
-                console.log("SSSSsS");
-                console.log($("#hid").html())
-                var token = $("#hid").html();
-                $.get('/statistics/index', {}, function (data, status) {
-                    console.log("inside test1");
-                    // console.log(status);
-                    console.log(data);
-                    $("#maindiv").html(data);
-                })
-                console.log("SSSSsS");
-            }
+        function test4() {
+            console.log("SSSSsS");
+            console.log($("#hid").html())
+            var token = $("#hid").html();
+            $.get('/statistics/index', {}, function (data, status) {
+                console.log("inside test1");
+                // console.log(status);
+                console.log(data);
+                $("#maindiv").html(data);
+            })
+            console.log("SSSSsS");
+        }
 
-            function test5() {
-                console.log("SSSSsS");
-                console.log($("#hid").html())
-                var token = $("#hid").html();
-                $.get('/statistics/ByProduct', {}, function (data, status) {
-                    console.log("inside test1");
-                    // console.log(status);
-                    console.log(data);
-                    $("#maindiv").html(data);
-                })
-                console.log("SSSSsS");
-            }
+        function test5() {
+            console.log("SSSSsS");
+            console.log($("#hid").html())
+            var token = $("#hid").html();
+            $.get('/statistics/ByProduct', {}, function (data, status) {
+                console.log("inside test1");
+                // console.log(status);
+                console.log(data);
+                $("#maindiv").html(data);
+            })
+            console.log("SSSSsS");
+        }
 
-        </script>
-    }
+    </script>
 
-    <main>
-        <aside class="sidebar">
-            <h3 class="tertiary-title">Menu</h3>
-            <button class="x btn sidebar-btn" id="sup">Manage Suppliers</button>
-            <button class="x btn sidebar-btn" id="prod">Manage Products</button>
-            <button class="x btn sidebar-btn" id="cust">Manage Customers</button>
-            <button class="x btn sidebar-btn" id="stat">Statistics - By Customer Address</button>
-            <button class="x btn sidebar-btn" id="stat2">Statistics - By Products</button>
-        </aside>
-
-        <!-- Page Content -->
-        <div class="graph-container">
-            <div class="graph" id="maindiv">
-            </div>
-        </div>
-    </main>
-</body>
+}
 
