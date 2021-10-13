@@ -43,7 +43,7 @@
                 @if (cart_id == null && admin == null)
                 {
                     <a asp-area="" asp-controller="home" asp-action="login" class="utils-cart">login</a>
-                    <a asp-area="" asp-controller="customers" asp-action="Create" class="utils-cart">signup</a>
+                    <a asp-area="" asp-controller="customers" asp-action="CustomerCreate" class="utils-cart">signup</a>
                 }
                 else if (admin != null && cart_id == null)
                 {

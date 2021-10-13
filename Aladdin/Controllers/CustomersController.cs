@@ -56,6 +56,12 @@ namespace Aladdin.Controllers
             return View();
         }
 
+        public IActionResult CustomerCreate()
+        {
+            return View();
+        }
+
+
         [HttpPost]  
         public async Task<IActionResult> Create([Bind("CustomerID,CustomerName,CustomerPassword,CustomerAddress,CustomerImage,CustomerEmail,CustomerPhoneNumber")] Customer customer)
         {
@@ -80,6 +86,56 @@ namespace Aladdin.Controllers
         }
 
 
+
+        [HttpPost]
+        public async Task<IActionResult> CustomerCreate([Bind("CustomerID,CustomerName,CustomerPassword,CustomerAddress,CustomerImage,CustomerEmail,CustomerPhoneNumber")] Customer customer)
+        {
+
+            if (ModelState.IsValid)
+            {
+                if (IsAvailable(customer.CustomerName)== "NotAvailable")
+                {
+                    return RedirectToAction("Unsuccessfuly", "Admin");
+                }
+                var max_id = _context.Customer.Any() ? _context.Customer.Max(m => m.CustomerID) + 1 : 1;
+                Cart cart = new();
+                //cart.CartID = max_id;
+                cart.CustomerID = max_id;
+                customer.CartID = max_id;
+                _context.Add(customer);
+                _context.Add(cart);
+                await _context.SaveChangesAsync();
+                //return RedirectToAction(nameof(Index));
+                //return View("Succefully");
+                //return View("~/Views/admin/Succefully.cshtml");
+                //return View("login", "home");
+                //return RedirectToAction("login", "home");
+                //return View("~/Views/home/login.cshtml", "Home");
+                return RedirectToAction("Successfuly", "Admin");
+
+            }
+            //return View("unSuccessfuly", "Admin");
+            return RedirectToAction("Unsuccessfuly", "Admin");
+            //return View(customer);
+        }
+
+
+        [HttpPost]
+        public string IsAvailable(string username)
+        {
+            var all_usernames = from p in _context.Customer select p;
+            
+            foreach (var item in all_usernames)
+            {
+                if (item.CustomerName == username)
+                {
+                     
+                    return "NotAvailable";
+                }
+            }
+
+            return "Available";
+        }
 
 
         // GET: Customers/Edit/5
