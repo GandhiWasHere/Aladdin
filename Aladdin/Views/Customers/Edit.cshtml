@@ -61,6 +61,7 @@
 @section Scripts {
 
     <script>
+        var valid=1
         $('#btn').click(function () {
             var elmId = $(this).attr("id");
             //getDetails(elmId);
@@ -68,25 +69,44 @@
             console.log($('#fname').val());
 
 
-            if (typeof x6 == 'undefined' ) {
+            if (typeof x6 == 'undefined') {
                 x6 = $('#CustomerImageold').val()
+                //alert("test");
             }
 
             if ($('#CustomerPassword').val() == "" || $('#CustomerName').val() == "") {
                 //alert("Please Enter a Password");
                 alert("Please Fill All The Information");
             }
-            test1($('#CustomerName').val());
-
-
-
-
-            send();
+            else {
+                if (valid == 1) {
+                    send();
+                }
+                else {
+                    alert("Username Is Taken");
+                }
+                
+            }
+        
         });
 
 
 
 
+        $("#CustomerName").change(function () {
+            $('#CustomerName').val()
+
+            $.post("/customers/IsAvailable", { username: $('#CustomerName').val() }, function (data) {
+                console.log(data); // John
+
+                if (data == "NotAvailable") {
+                    alert("Username Is Already Taken");
+                    valid = 0;
+                }
+                else {valid =1}
+            });
+
+        });
 
 
 
@@ -135,7 +155,22 @@
 
             })
         });
+        function test1(user) {
 
+            $.post("/customers/IsAvailable", { username: user }, function (data) {
+                console.log(data); // John
+
+                if (data == "NotAvailable") {
+
+                    alert("Username Is Already Taken");
+                    return "NotAvailable"
+                }
+                else {
+                    return "Available"
+                }
+            });
+
+        }
 
 
 
