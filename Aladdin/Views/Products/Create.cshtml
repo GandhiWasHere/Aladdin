@@ -46,6 +46,78 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '300292434906252',
+                autoLogAppEvents: true,
+                xfbml: true,
+                version: 'v12.0'
+            });
+        };
+        /*
+        const fbCreds = {
+            pageID: '110717931387340',
+            accessToken: "EAAERHUfpTIwBAN515E38b31HFyGgF2Kx9e9U6cAgwCSXbpbsnpPekmINJ6f1X7ZCmBIZAT3sP2ycdqFl0eeTcrTem9ZBJrE0TyMqh4Koxg4IhkaZCVo1syR5bB6rpUczUM0ZCG8eGvRD0ltQwIZAlGZBopSnq2kll8CtyWH6JwjB0cgq6IK7BRD9S9w13WWPxAZD\"
+        }
+        */
+        const productInputElements = {
+            name: 'ProductName',
+            price: 'ProductPrice',
+            quantityL: 'ProductQuantityL',
+            quantityM: 'ProductQuantityM',
+            quantityS: 'ProductQuantityS',
+            image: 'ProductImage'
+        };
+
+        const productInfo = {
+            name: '',
+            price: '',
+            quantity: '',
+            image: ''
+        }
+
+        const submit = document.getElementById('btn');
+
+        function fillProductInfo() {
+            productInfo.name = document.getElementById(productInputElements.name).value;
+            productInfo.price = document.getElementById(productInputElements.price).value;
+            const ql = document.getElementById(productInputElements.quantityL).value ? document.getElementById(productInputElements.quantityL).value : 0;
+            const qm = document.getElementById(productInputElements.quantityM).value ? document.getElementById(productInputElements.quantityM).value : 0;
+            const qs = document.getElementById(productInputElements.quantityS).value ? document.getElementById(productInputElements.quantityS).value : 0;
+            productInfo.quantity = parseInt(ql) + parseInt(qm) + parseInt(qs);
+
+            console.log("filled Info");
+        }
+
+        function createPost() {
+            const message = `Check Out The New ${productInfo.name}\nWe've got only ${productInfo.quantity} in stock\nso buy them now for only ${productInfo.price}`;
+            console.log("message");
+            return message;
+        }
+
+        function postToFacebook() {
+            const message = createPost();
+            FB.api(
+                '/110717931387340/feed',
+                'POST',
+                { "message": message, "access_token": "EAAERHUfpTIwBAN515E38b31HFyGgF2Kx9e9U6cAgwCSXbpbsnpPekmINJ6f1X7ZCmBIZAT3sP2ycdqFl0eeTcrTem9ZBJrE0TyMqh4Koxg4IhkaZCVo1syR5bB6rpUczUM0ZCG8eGvRD0ltQwIZAlGZBopSnq2kll8CtyWH6JwjB0cgq6IK7BRD9S9w13WWPxAZD\"" },
+                function (response) {
+                    console.log(response);
+                }
+            );
+            console.log("post");
+        }
+
+        submit.addEventListener('click', () => {
+            console.log('clicked')
+            fillProductInfo();
+            postToFacebook();
+        })
+
+    </script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+
     <script type="text/javascript">
         // Add the following code if you want the name of the file appear on select
         $(".custom-file-input").on("change", function () {
@@ -59,15 +131,12 @@
     <script>
         $('#btn').click(function () {
             var elmId = $(this).attr("id");
-            //getDetails(elmId);
-            console.log("ASDASD");
-            console.log($('#fname').val());
             send();
         });
         function send() {
 
             $.post("/products/create", {
-                
+
                 ProductName: $('#ProductName').val(),
                 ProductColor: $('#ProductColor').val(),
                 SupplierID: $('#SupplierID').val(), ProductRating: $('#ProductRating').val(),
@@ -76,16 +145,14 @@
                 ProductQuantityL: $('#ProductQuantityL').val()
 
             }, function (data) {
-                console.log(data); // John
-                console.log(data); // 2pm
                 $("#maindiv").html(data);
             });
         }
-        
 
 
 
-    
+
+
         File.prototype.convertToBase64 = function (callback) {
             var reader = new FileReader();
             reader.onloadend = function (e) {
@@ -99,18 +166,16 @@
             selectedFile.convertToBase64(function (base64) {
 
                 x5 = base64;
-                
+
 
 
                 $.post("/products/saveimage", {
 
-                   file : x5
+                    file: x5
 
                 }, function (data) {
-                    console.log(data); // John
-                    console.log(data); // 2pm
                     x6 = data;
-                   // $("#maindiv").html(data);
+                    // $("#maindiv").html(data);
                 });
 
             })

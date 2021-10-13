@@ -24,7 +24,7 @@
             {
                 'cartid': @cart_id ,
                 'productid': "@Html.DisplayFor(model => model.ProductID)",
-                'size': "L"
+                'size': size
             }).fail(function () {
                 alert('sold out.');
             }).done(function () {
@@ -54,6 +54,22 @@
                 });
 
         }
+    </script>
+    <script>
+        var size = "";
+        $('.small-size').click(small);
+        function small() {
+            size = "S";
+        }
+        $('.medium-size').click(medium);
+        function medium() {
+            size = "M";
+        }
+        $('.large-size').click(large);
+        function large() {
+            size = "L";
+        }
+
     </script>
 }
 
@@ -102,9 +118,9 @@
                         <span>Hat Size</span>
 
                         <div class="size-choose">
-                            <button>S</button>
-                            <button>M</button>
-                            <button>L</button>
+                            <button class="small-size">S</button>
+                            <button class="medium-size">M</button>
+                            <button class="large-size">L</button>
                         </div>
                     </div>
                 </div>
@@ -112,6 +128,7 @@
                 <!-- Product Pricing -->
                 <div class="product-price">
                     <span>Price: </span>&nbsp;
+
                     <span id="price">@Html.DisplayFor(model => model.ProductPrice)</span>
                     <span>
                         <select class="nav-link select-box" aria-labelledby="navbarDropdown" onchange="convertCurrency(this)">
@@ -119,6 +136,7 @@
                             <option value="ILS">ILS</option>
                         </select>
                     </span>
+
                 </div>
 
 
