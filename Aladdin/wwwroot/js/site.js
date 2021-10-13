@@ -2,3 +2,9 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+
+$('.search-submit__icon').click(function () {
+    console.log('hello');
+    var search = $('.search-bar').val();
+    window.location = '/Products/index?searchString=' + search;
+});
