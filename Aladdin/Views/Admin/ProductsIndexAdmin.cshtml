@@ -15,9 +15,6 @@
         });
         function getDetails(id) {
             $.get('/Products/details', { "id": id }, function (data, status) {
-                console.log("Inside the Async Call");
-                console.log(status);
-                console.log(data);
                 $('#getitem').html(data);
             })
 
@@ -29,13 +26,8 @@
             var Stringvalue = $('#search-head').val();
             var Sizevalue = $('#colors').val().html;
             var conceptName = $('#colors').find(":selected").text();
-            console.log(conceptName);
 
             $.get('/Products/index', { searchColor: conceptName, searchString: Stringvalue }, function (data, status) {
-
-                console.log("Inside the Async Call");
-                console.log(status);
-                console.log(data);
                 $('body').html(data);
             })
         }</script>

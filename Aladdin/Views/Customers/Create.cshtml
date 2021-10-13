@@ -41,9 +41,6 @@
     <script>
         $('#btn').click(function () {
             var elmId = $(this).attr("id");
-            //getDetails(elmId);
-            console.log("ASDASD");
-            console.log($('#fname').val());
 
 
             if (typeof x6 == 'undefined') {
@@ -69,7 +66,6 @@
                 CustomerImage: x6
             }, function (data) {
 
-                console.log(data); // 2pm
                 $("#maindiv").html(data);
 @*                $("body").html(data);
 
@@ -106,10 +102,7 @@
                     file: x5
 
                 }, function (data) {
-                    console.log(data); // John
-                    console.log(data); // 2pm
                     x6 = data;
-                    //$("#maindiv").html(data);
                 });
 
             })
@@ -123,7 +116,6 @@
         function test1(user) {
 
             $.post("/customers/IsAvailable", { username: user }, function (data) {
-                console.log(data); // John
 
                 if (data == "NotAvailable") {
 
@@ -141,7 +133,6 @@
             $('#CustomerName').val()
 
             $.post("/customers/IsAvailable", { username: $('#CustomerName').val() }, function (data) {
-                console.log(data); // John
 
                 if (data == "NotAvailable") {
 
