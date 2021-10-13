@@ -112,7 +112,8 @@ p {
 
 .hat-size-config,
 .add-to-cart,
-.product-price {
+.product-price,
+.product-rating{
     border-bottom: 1px solid #E1E8EE;
     margin-bottom: 20px;
     font-size: 12px;
@@ -144,7 +145,8 @@ p {
 }
 
 /* Product Price */
-.product-price {
+.product-price,
+.product-rating{
     display: flex;
     align-items: center;
     padding-bottom: 20px;
