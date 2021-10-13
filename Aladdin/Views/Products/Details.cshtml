@@ -8,7 +8,9 @@
 
 @*<link rel="stylesheet" href="~/css/shared-style.css">*@
 
-<script>
+@section scripts
+{
+    <script>
     $('#addcart').click(function () {
         @if (cart_id == null) {
             <text>
@@ -31,7 +33,8 @@
         </text>
         }
     });
-</script>
+    </script>
+}
 
 <!DOCTYPE html>
 <html>
@@ -90,7 +93,7 @@
                     <span>Price: </span>&nbsp;
                     <span id="price">@Html.DisplayFor(model => model.ProductPrice)$</span>
                 </div>
-          
+
 
                 <div class="add-to-cart">
                     <button class="btn cart-btn" id="addcart">Add to cart</button>
