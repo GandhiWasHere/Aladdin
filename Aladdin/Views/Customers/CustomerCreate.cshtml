@@ -1,0 +1,162 @@
+﻿@model Aladdin.Models.Customer
+
+@{
+    Layout = "~/Views/Shared/_LayoutNOHEADERFOOTER.cshtml";
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Customer</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <label for="fname">UserName</label>
+        <input type="text" id="CustomerName" name="fname"><br><br>
+
+        <label for="lname">CustomerAddress</label>
+        <input type="text" id="CustomerAddress" name="lname"><br><br>
+
+        <label for="lname">CustomerEmail</label>
+        <input type="email" id="CustomerEmail" name="lname"><br><br>
+
+        <label for="lname">CustomerPhoneNumber</label>
+        <input type="text" id="CustomerPhoneNumber" name="lname"><br><br>
+
+        <label for="lname">CustomerPassword</label>
+        <input type="text" id="CustomerPassword" name="lname"><br><br>
+
+        <label for="lname">CustomerImage</label>
+        <input type="file" id="CustomerImage" name="lname"><br><br>
+
+
+        <input type="button" value="Create" id="btn" class="btn btn-primary">
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <script>
+        $('#btn').click(function () {
+            var elmId = $(this).attr("id");
+            //getDetails(elmId);
+            console.log("ASDASD");
+            console.log($('#fname').val());
+
+          
+            if (typeof x6 == 'undefined') {
+                alert("Please Upload Image");
+            }
+
+            if ($('#CustomerPassword').val() == "" || $('#CustomerName').val()== "") {
+                //alert("Please Enter a Password");
+                alert("Please Fill All The Information");
+            }
+            test1($('#CustomerName').val());
+
+
+
+            send();
+        });
+        function send() {
+            $.post("/customers/customercreate", {
+                CustomerName: $('#CustomerName').val(),
+                CustomerAddress: $('#CustomerAddress').val(), CustomerEmail: $('#CustomerEmail').val(),
+                CustomerRole: $('#CustomerRole').val(), CustomerPhoneNumber: $('#CustomerPhoneNumber').val(),
+                CustomerPassword: $('#CustomerPassword').val(),
+                CustomerImage: x6
+            }, function (data) {
+                
+                console.log(data); // 2pm
+                $("body").html(data);
+
+                setTimeout(function () {
+                    window.location.replace("/home/login");
+                },
+                    2000);
+                //alert("Redirecting You To Home Page");
+                //window.location.replace("/home/login");
+            });
+        }
+    </script>
+
+    <script>
+        
+        File.prototype.convertToBase64 = function (callback) {
+            var reader = new FileReader();
+            reader.onloadend = function (e) {
+                callback(e.target.result, e.target.error);
+            };
+            reader.readAsDataURL(this);
+        };
+
+        $("#CustomerImage").on('change', function () {
+            var selectedFile = this.files[0];
+            selectedFile.convertToBase64(function (base64) {
+
+                x5 = base64;
+
+
+
+                $.post("/products/saveimage", {
+
+                    file: x5
+
+                }, function (data) {
+                    console.log(data); // John
+                    console.log(data); // 2pm
+                    x6 = data;
+                    // $("#maindiv").html(data);
+                });
+
+            })
+        });
+
+
+
+
+   
+
+        function test1(user)
+        {
+
+            $.post("/customers/IsAvailable", { username: user }, function (data) {
+                console.log(data); // John
+
+                if (data == "NotAvailable") {
+
+                    alert("Username Is Already Taken");
+
+                }
+            });
+
+        }
+
+
+
+     
+        $("#CustomerName").change(function () {
+            $('#CustomerName').val()
+
+            $.post("/customers/IsAvailable", { username: $('#CustomerName').val() }, function (data) {
+                console.log(data); // John
+                
+                if (data == "NotAvailable") {
+
+                    alert("Username Is Already Taken");
+
+                }
+            });
+
+        });
+
+
+
+
+
+
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
