@@ -202,6 +202,7 @@ namespace Aladdin.Controllers
             {
                 try
                 {
+
                     _context.Update(product);
                     await _context.SaveChangesAsync();
                 }
