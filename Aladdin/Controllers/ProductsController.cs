@@ -70,6 +70,23 @@ namespace Aladdin.Controllers
         // GET: Products/Details/5
 
         public async Task<IActionResult> Details(int? id)
+            {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = await _context.Product
+                .FirstOrDefaultAsync(m => m.ProductID == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
+        [Authorize]
+        public async Task<IActionResult> AdminDetails(int? id)
         {
             if (id == null)
             {
@@ -83,6 +100,7 @@ namespace Aladdin.Controllers
                 return NotFound();
             }
 
+            //return RedirectToAction("Successfuly", "Admin");
             return View(product);
         }
 
