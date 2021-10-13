@@ -48,7 +48,7 @@
         var e = @Json.Serialize(ProductNames);
         var e2 = @Json.Serialize(counter);
         data =[]
-        for (var i = 0; i < 2; i++) {
+        for (var i = 0; i < e.length; i++) {
             data1 = { year: e[i], value: e2[i] }
             data.push(data1)
         }
@@ -112,7 +112,7 @@
                     return y(d.value) - 15;
                 })
                 .text(function () {
-                    return ['$' + d.value];  // Value of the text
+                    return ['units - ' + d.value];  // Value of the text
                 });
         }
         //mouseout event handler function
