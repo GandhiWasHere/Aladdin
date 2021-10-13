@@ -62,11 +62,6 @@
 
 
 
-
-
-
-
-
         function getDetails(id) {
             $.get('/products/AdminDetails', { "id": id }, function (data, status) {
                 $("#maindiv").html(data);

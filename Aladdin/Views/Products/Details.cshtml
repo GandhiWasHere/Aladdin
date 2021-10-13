@@ -5,7 +5,7 @@
     ViewData["Title"] = "Details";
     var cart_id = HttpContextAccessor.HttpContext.Request.Cookies["cart_id"];
 }
-
+<link rel="stylesheet" href="~/css/products.css">
 @*<link rel="stylesheet" href="~/css/shared-style.css">*@
 
 @section scripts
@@ -32,7 +32,28 @@
             })
         </text>
         }
+
     });
+
+
+        // convert currency
+        function convertCurrency(curr) {
+            var selected = curr.value;
+            var amount = $("#price")[0].innerText;
+            var result;
+            fetch(`https://free.currconv.com/api/v7/convert?q=USD_ILS&compact=ultra&apiKey=55188a61473d21f7818f`)
+                .then(response => response.json())
+                .then(data => {
+                    if (selected === "USD") {
+                        result = amount / data["USD_ILS"];
+                    }
+                    else {
+                        result = amount * data["USD_ILS"];
+                    }
+                    $('#price')[0].innerText = result.toFixed(2);
+                });
+
+        }
     </script>
     <script>
         var size = "";
@@ -107,7 +128,15 @@
                 <!-- Product Pricing -->
                 <div class="product-price">
                     <span>Price: </span>&nbsp;
-                    <span id="price">@Html.DisplayFor(model => model.ProductPrice)₪</span>
+
+                    <span id="price">@Html.DisplayFor(model => model.ProductPrice)</span>
+                    <span>
+                        <select class="nav-link select-box" aria-labelledby="navbarDropdown" onchange="convertCurrency(this)">
+                            <option value="USD">USD</option>
+                            <option value="ILS">ILS</option>
+                        </select>
+                    </span>
+
                 </div>
 
 
@@ -132,9 +161,7 @@
                             <label for="star1" title="text">1 star</label>
                         </div>
                     </div>
-                    <p class="comment-form-comment">Your Review</p>
-                    <textarea id="comment" name="comment" cols="30" rows="4" required=""></textarea>
-                    <input class="btn submit-btn" type="submit">
+
                 </form>
             </div>
         </main>
