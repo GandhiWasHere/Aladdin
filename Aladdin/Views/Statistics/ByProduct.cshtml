@@ -52,19 +52,7 @@
             data1 = { year: e[i], value: e2[i] }
             data.push(data1)
         }
-        var data1 = [{
-            'year': '2012',
-            'value': 40
-        },
-        {
-            'year': '2014',
-            'value': 50
-        },
-        {
-            'year': '2015',
-            'value': 60
-        }
-        ]
+
         console.log(data)
         x.domain(data.map(function (d) { return d.year; }));
         y.domain([0, d3.max(data, function (d) { return d.value; })]);

@@ -52,6 +52,7 @@ namespace Aladdin.Controllers
                 HttpContext.SignInAsync(
                     CookieAuthenticationDefaults.AuthenticationScheme, principal, props).Wait();
                 //return RedirectToAction("", "Admin");
+                //HttpContext.Response.Cookies.Append("cart_id", "-999");
                 return RedirectToAction("AdminPage", "Admin");
             }
             else
