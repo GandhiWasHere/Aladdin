@@ -15,17 +15,7 @@
 {
     <script>
 
-        $('.Details').click(function () {
-            var elmId = $(this).attr("id");
-            getDetails(elmId);
-        });
-        // get product's details
-        function getDetails(id) {
-            $.get('/Products/details', { "id": id }, function (data, status) {
-                $('#getitem').html(data);
-            })
-        }
-        // filter 
+        // filter
         $('#btn-filter').click(filter);
         function filter() {
             var Stringvalue = $('#name-search').val();
@@ -56,12 +46,8 @@
         }
 
     </script>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="~/js/site.js"></script>
-}
 
+}
 
 
 <div class="container">
@@ -81,7 +67,7 @@
                     <form class="form-inline my-2 my-lg-0 select-box">
                         <select class="nav-link select-box" aria-labelledby="navbarDropdown" id="colors-search">
                             <option disabled selected>Color</option>
-                            @foreach (String item in Model.Select(x=> x.ProductColor).Distinct())
+                            @foreach (String item in Model.Select(x => x.ProductColor).Distinct())
                             {
                                 <option value=Product Color>@Html.DisplayFor(modelItem => item)</option>
                             }
@@ -154,9 +140,9 @@
                 <div class="card-body">
                     <h5 class="card-title">@Html.DisplayFor(modelItem => item.ProductName)</h5>
                     <p class="card-text">@Html.DisplayFor(modelItem => item.ProductPrice)₪</p>
-@*                    <button type="button" class="btn btn-info Details" data-toggle="modal" data-target="#exampleModal" id="@item.ProductID">
-                        View Details
-                    </button>*@
+                    @*                    <button type="button" class="btn btn-info Details" data-toggle="modal" data-target="#exampleModal" id="@item.ProductID">
+                            View Details
+                        </button>*@
                     <a href="/Products/Details/@item.ProductID" class="btn btn-info Details">View Details</a>
                 </div>
             </div>
@@ -184,3 +170,4 @@
     </div>
 </div>
 
+<script src="~/js/site.js"></script>
