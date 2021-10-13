@@ -1,21 +1,22 @@
 ﻿
 @{
-    Layout = "~/Views/Shared/Empty_Layout.cshtml";
+    Layout = "~/Views/Shared/Empty_Layout_no_scripts.cshtml";
  
 }
 
 
-<!DOCTYPE html>
-<html>
 <title>Admin Page</title>
 
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <link rel="stylesheet" href="/css/admin.css">
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <h2></h2>
 </head>
+
+
+
 
 <body>
 
@@ -28,6 +29,7 @@
             $("#prod").click(test2)
             $("#cust").click(test3)
             $("#stat").click(test4)
+            $("#stat2").click(test5)
             console.log("ssa");
 
 
@@ -41,6 +43,9 @@
                     console.log("inside test1");
                     // console.log(status);
                     console.log(data);
+                    $("#maindiv").html(data);
+                    $("#maindiv").html(data);
+                    $("#maindiv").html(data);
                     $("#maindiv").html(data);
                 })
                 console.log("SSSSsS");
@@ -91,6 +96,19 @@
                 console.log("SSSSsS");
             }
 
+            function test5() {
+                console.log("SSSSsS");
+                console.log($("#hid").html())
+                var token = $("#hid").html();
+                $.get('/statistics/ByProduct', {}, function (data, status) {
+                    console.log("inside test1");
+                    // console.log(status);
+                    console.log(data);
+                    $("#maindiv").html(data);
+                })
+                console.log("SSSSsS");
+            }
+
         </script>
     }
 
@@ -100,7 +118,8 @@
             <button class="x btn sidebar-btn" id="sup">Manage Suppliers</button>
             <button class="x btn sidebar-btn" id="prod">Manage Products</button>
             <button class="x btn sidebar-btn" id="cust">Manage Customers</button>
-            <button class="x btn sidebar-btn" id="stat">Statistics</button>
+            <button class="x btn sidebar-btn" id="stat">Statistics - By Customer Address</button>
+            <button class="x btn sidebar-btn" id="stat2">Statistics - By Products</button>
         </aside>
 
         <!-- Page Content -->
@@ -110,4 +129,4 @@
         </div>
     </main>
 </body>
-</html>
+
