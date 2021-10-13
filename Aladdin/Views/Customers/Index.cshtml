@@ -13,26 +13,22 @@
     $('.Details').click(function () {
     var elmId = $(this).attr("id");
     getDetails(elmId);
-        console.log("ASDASD");
     });
 
         $('.Edit').click(function () {
             var elmId = $(this).attr("id");
             getEdit(elmId);
-            console.log("ASDASD");
         });
 
         $('.Delete').click(function () {
             var elmId = $(this).attr("id");
             getDelete(elmId);
-            console.log("ASDASD");
         });
 
 
         $('.Create').click(function () {
             var elmId = $(this).attr("id");
             getCreate(elmId);
-            console.log("ASDASD");
         });
 
 
@@ -40,20 +36,12 @@
 
         function getCreate(id) {
             $.get('/customers/Create', {}, function (data, status) {
-                console.log("Inside the Async Call");
-                console.log(status);
-                console.log(data);
-                //$('#getitem').html(data);
                 $("#maindiv").html(data);
             })
         }
 
         function getDelete(id) {
             $.get('/customers/delete', { "id": id }, function (data, status) {
-                console.log("Inside the Async Call");
-                console.log(status);
-                console.log(data);
-                //$('#getitem').html(data);
                 $("#maindiv").html(data);
             })
         }
@@ -62,20 +50,12 @@
 
         function getEdit(id) {
             $.get('/customers/edit', { "id": id }, function (data, status) {
-                console.log("Inside the Async Call");
-                console.log(status);
-                console.log(data);
-                //$('#getitem').html(data);
                 $("#maindiv").html(data);
             })
         }
 
         function getDetails(id) {
             $.get('/customers/details', { "id": id }, function (data, status) {
-                console.log("Inside the Async Call");
-                console.log(status);
-                console.log(data);
-                //$('#getitem').html(data);
                 $("#maindiv").html(data);
             })
         }

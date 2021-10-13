@@ -62,14 +62,11 @@
 
         $('#btn').click(function () {
             var elmId = $(this).attr("id");
-            console.log("ASDASD");
-            console.log($('#fname').val());
 
 
 
             if (typeof x6 == 'undefined') {
                 x6 = $('#CustomerImageold').val()
-                //alert("test");
             }
 
 
@@ -90,8 +87,6 @@
                 ProductQuantityL: $('#ProductQuantityL').val()
 
             }, function (data) {
-                console.log(data); // John
-                console.log(data); // 2pm
                 $("#maindiv").html(data);
             });
         }
@@ -126,10 +121,7 @@
                     file: x5
 
                 }, function (data) {
-                    console.log(data); // John
-                    console.log(data); // 2pm
                     x6 = data;
-                    // $("#maindiv").html(data);
                 });
 
             })

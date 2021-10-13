@@ -33,9 +33,6 @@
     <script>
         $('#btn').click(function () {
             var elmId = $(this).attr("id");
-            //getDetails(elmId);
-            console.log("ASDASD");
-            console.log($('#CustomerID').val());
             send($('#CustomerID').val());
         });
 
@@ -43,8 +40,6 @@
 
         function send() {
             $.post("/customers/delete", { id: $('#CustomerID').val() }, function (data) {
-                console.log(data); // John
-                console.log(data); // 2pm
                 $("#maindiv").html(data);
             });
         }

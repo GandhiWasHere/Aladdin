@@ -30,9 +30,6 @@
     <script>
         $('#btn').click(function () {
             var elmId = $(this).attr("id");
-            //getDetails(elmId);
-            console.log("ASDASD");
-            console.log($('#SupplierID').val());
             send($('#SupplierID').val());
         });
 
@@ -40,8 +37,6 @@
 
         function send() {
             $.post("/Suppliers/delete", { id: $('#SupplierID').val()}, function (data) {
-                console.log(data); // John
-                console.log(data); // 2pm
                 $("#maindiv").html(data);
             });
         }

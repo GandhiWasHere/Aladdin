@@ -93,90 +93,51 @@ media screen and (max-width: 400px) {
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script>
-        console.log("ASDASDSAD");
-        console.log($("#sup").html())
         $("#sup").click(test1)
         $("#prod").click(test2)
         $("#cust").click(test3)
         $("#stat").click(test4)
         $("#stat2").click(test5)
-        console.log("ssa");
 
 
         $(".container").css('margin-left', '0px');
 
         function test1() {
-            console.log("SSSSsS");
-            console.log($("#hid").html())
-            var token = $("#hid").html();
             $.get('/suppliers/index', {}, function (data, status) {
-                console.log("inside test1");
-                // console.log(status);
-                console.log(data);
                 $("#maindiv").html(data);
                 $("#maindiv").html(data);
                 $("#maindiv").html(data);
                 $("#maindiv").html(data);
             })
-            console.log("SSSSsS");
         }
 
 
 
         function test2() {
-
-            // console.log($("#hid").html())
-            //var token = $("#hid").html();
-            console.log("SSSSsS");
             $.get('/products/prodadmin', {}, function (data, status) {
-                console.log("inside test1");
-                // console.log(status);
-                console.log(data);
                 $("#maindiv").html(data);
             })
-            console.log("SSSSsS");
         }
 
         function test3() {
-
-            //console.log($("#hid").html())
-            // var token = $("#hid").html();
-            console.log("SSSSsS");
             $.get('/customers/index', {}, function (data, status) {
-                console.log("inside test1");
-                // console.log(status);
-                console.log(data);
                 $("#maindiv").html(data);
             })
-            console.log("SSSSsS");
         }
 
 
 
         function test4() {
-            console.log("SSSSsS");
-            console.log($("#hid").html())
             var token = $("#hid").html();
             $.get('/statistics/index', {}, function (data, status) {
-                console.log("inside test1");
-                // console.log(status);
-                console.log(data);
                 $("#maindiv").html(data);
             })
-            console.log("SSSSsS");
         }
 
         function test5() {
-            console.log("SSSSsS");
-            console.log($("#hid").html())
-            var token = $("#hid").html();
             $.get('/statistics/ByProduct', {}, function (data, status) {
-                console.log("inside test1");
-                // console.log(status);
-                console.log(data);
                 $("#maindiv").html(data);
             })
-            console.log("SSSSsS");
         }
 
     </script>

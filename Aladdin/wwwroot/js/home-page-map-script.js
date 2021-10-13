@@ -1,7 +1,6 @@
 var map;
 var marker
 
-console.log("Im Here")
 
 const locationList = {
   nemo: { lat: -48.876667, lng: -123.393333 },
@@ -54,11 +53,8 @@ for (const [key, value] of Object.entries(mapBtns)) {
 }
 
 function toProducts() {
-    console.log("inside test1");
     $.get('/products/index', {}, function (data, status) {
         
-        // console.log(status);
-        console.log(data);
         $("body").html(data);
     })
 }

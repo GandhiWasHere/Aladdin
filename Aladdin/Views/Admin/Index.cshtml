@@ -199,15 +199,9 @@
             var psw_value = $("#psw").val();
             $.get('/Admin/Login', { username: uname_value, password: psw_value }, function (data, status) { 
                 token = data;
-               // console.log(status);
-                //console.log(token);
 
                 if (token != "BAD") {
                     $.get('/Admin/AdminPage', { password: token }, function (data, status) {
-                        console.log("Inside the Async Call");
-                        console.log(status);
-                        console.log(data);
-
                         $("body").html(data);
                     })
                 }
