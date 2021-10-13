@@ -173,10 +173,6 @@ namespace Aladdin.Controllers
         }
 
 
-
-
-
-
         [Authorize]
         // GET: Products/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -254,9 +250,6 @@ namespace Aladdin.Controllers
 */
 
 
-
-
-
         [HttpPost, ActionName("Delete")]
         
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -290,6 +283,35 @@ namespace Aladdin.Controllers
                 model.ProductImage.CopyTo(fileStream);
             }
             return uniqueFileName;
+        }
+
+
+        public static decimal CurrencyConvert(string amount, string toCurrency)
+        {
+            string fromCurrency;
+            if (toCurrency == "ILS")
+            {
+                fromCurrency = "USD";
+            }
+            else
+            {
+                fromCurrency = "ILS";
+            }
+
+            //Grab your values and build your Web Request to the API
+            string apiURL = String.Format("https://free.currconv.com/api/v7/convert?q={0}_{1}&compact=ultra&apiKey=55188a61473d21f7818f", fromCurrency, toCurrency, Guid.NewGuid().ToString());
+
+            //Make your Web Request and grab the results
+            var request = System.Net.WebRequest.Create(apiURL);
+
+            //Get the Response
+            var streamReader = new StreamReader(request.GetResponse().GetResponseStream(), System.Text.Encoding.ASCII);
+
+            // Get the converted value
+            var convert_rate = System.Text.RegularExpressions.Regex.Matches(streamReader.ReadToEnd(), "<span class=\"?bld\"?>([^<]+)</span>")[0].Groups[1].Value;
+
+            //Get the Result
+            return Convert.ToDecimal(convert_rate) * Convert.ToDecimal(amount);
         }
     }
 }
