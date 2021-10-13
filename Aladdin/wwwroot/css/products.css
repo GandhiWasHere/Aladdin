@@ -9,3 +9,7 @@
 .select-box {
     border: hidden;
 }
+
+.checked {
+    color: orange;
+}
