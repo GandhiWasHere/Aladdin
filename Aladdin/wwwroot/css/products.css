@@ -1,11 +1,5 @@
-﻿.product {
-    border: hidden;
-}
-
-.price-input {
-    border:hidden;
-}
-
+﻿.product,
+.price-input,
 .select-box {
     border: hidden;
 }
